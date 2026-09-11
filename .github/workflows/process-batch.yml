@@ -1,5 +1,8 @@
 name: CoinDCX Futures batch processing
 on:
+  workflow_run:
+    workflows: ["CoinDCX Futures continuous collector"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       batch_id: {description: "Raw batch ID", required: true, type: string}
@@ -8,29 +11,60 @@ on:
 permissions:
   contents: write
   actions: read
+concurrency:
+  group: futures-processing
+  cancel-in-progress: false
 jobs:
   process:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
-    concurrency:
-      group: futures-processing
-      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with: {ref: main, fetch-depth: 1}
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
       - run: python -m pip install -r requirements.txt
+      - id: source
+        name: Resolve collector artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          EVENT_RUN_ID: ${{ github.event.workflow_run.id }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_BATCH_ID: ${{ inputs.batch_id }}
+          INPUT_SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          INPUT_ARTIFACT_ID: ${{ inputs.artifact_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            batch_id="$INPUT_BATCH_ID"
+            source_run_id="$INPUT_SOURCE_RUN_ID"
+            artifact_id="$INPUT_ARTIFACT_ID"
+          else
+            source_run_id="$EVENT_RUN_ID"
+            artifact_line="$(gh api "/repos/$REPO/actions/runs/$source_run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | select(.name | startswith("coindcx-futures-raw-")) | [.id,.name] | @tsv' | head -n 1)"
+            test -n "$artifact_line" || { echo "No Futures raw artifact found for collector run $source_run_id"; exit 1; }
+            artifact_id="${artifact_line%%$'\t'*}"
+            raw_name="${artifact_line#*$'\t'}"
+            batch_id="${raw_name#coindcx-futures-raw-}"
+          fi
+          test -n "$batch_id"; test -n "$source_run_id"; test -n "$artifact_id"
+          {
+            echo "batch_id=$batch_id"
+            echo "source_run_id=$source_run_id"
+            echo "artifact_id=$artifact_id"
+          } >> "$GITHUB_OUTPUT"
+          echo "PROCESS_SOURCE batch=$batch_id source_run=$source_run_id artifact=$artifact_id"
       - name: Download exact artifact
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          ARTIFACT_ID: ${{ inputs.artifact_id }}
-          BATCH_ID: ${{ inputs.batch_id }}
-          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          ARTIFACT_ID: ${{ steps.source.outputs.artifact_id }}
+          BATCH_ID: ${{ steps.source.outputs.batch_id }}
         run: |
           set -euo pipefail
-          test -n "$ARTIFACT_ID"; test -n "$BATCH_ID"; test -n "$SOURCE_RUN_ID"
           mkdir -p "runtime/$BATCH_ID"
           for attempt in 1 2 3 4 5 6 7 8; do
             rm -f /tmp/raw.zip
@@ -42,38 +76,41 @@ jobs:
           test -f "runtime/$BATCH_ID/manifest.json"
           test -f "runtime/$BATCH_ID/data_quality.json"
           python - <<'PY'
-          import json,os
-          from pathlib import Path
-          p=Path('runtime')/os.environ['BATCH_ID']
-          m=json.loads((p/'manifest.json').read_text()); q=json.loads((p/'data_quality.json').read_text())
-          assert m.get('market_mode')=='FUTURES_ONLY'; assert q.get('market_mode')=='FUTURES_ONLY'
-          forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
-          assert not any((p/x).exists() for x in forbidden)
-          required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
-          assert required.issubset({x.name for x in p.iterdir()})
-          PY
+import json, os
+from pathlib import Path
+p=Path('runtime')/os.environ['BATCH_ID']
+m=json.loads((p/'manifest.json').read_text())
+q=json.loads((p/'data_quality.json').read_text())
+assert m.get('market_mode')=='FUTURES_ONLY'
+assert q.get('market_mode')=='FUTURES_ONLY'
+forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
+assert not any((p/x).exists() for x in forbidden)
+required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
+assert required.issubset({x.name for x in p.iterdir()})
+PY
       - name: Build Futures features
-        run: python src/futures_research.py --batch "runtime/${{ inputs.batch_id }}"
+        env: {BATCH_ID: ${{ steps.source.outputs.batch_id }} }
+        run: python src/futures_research.py --batch "runtime/${BATCH_ID}"
       - name: Validate research grid
-        env: {BATCH_ID: ${{ inputs.batch_id }}}
+        env: {BATCH_ID: ${{ steps.source.outputs.batch_id }} }
         run: |
           python - <<'PY'
-          import csv,gzip,os,sys
-          from pathlib import Path
-          expected={'B-BTC_USDT','B-ETH_USDT','B-SOL_USDT','B-SUI_USDT','B-XRP_USDT','B-DOGE_USDT'}
-          p=Path('runtime')/os.environ['BATCH_ID']/'features_1s.csv.gz'
-          with gzip.open(p,'rt',encoding='utf-8',newline='') as f: rs=list(csv.DictReader(f))
-          for s in expected:
-              x=sorted(int(r['epoch_second']) for r in rs if r['symbol']==s)
-              if not x or x!=list(range(x[0],x[-1]+1)): sys.exit(f'non-contiguous 1s grid for {s}')
-              if not any(r.get('futures_book_valid')=='True' for r in rs if r['symbol']==s): sys.exit(f'no valid book for {s}')
-          if {r['symbol'] for r in rs} != expected: sys.exit('symbol set mismatch')
-          PY
+import csv,gzip,os,sys
+from pathlib import Path
+expected={'B-BTC_USDT','B-ETH_USDT','B-SOL_USDT','B-SUI_USDT','B-XRP_USDT','B-DOGE_USDT'}
+p=Path('runtime')/os.environ['BATCH_ID']/'features_1s.csv.gz'
+with gzip.open(p,'rt',encoding='utf-8',newline='') as f: rs=list(csv.DictReader(f))
+for s in expected:
+    x=sorted(int(r['epoch_second']) for r in rs if r['symbol']==s)
+    if not x or x!=list(range(x[0],x[-1]+1)): sys.exit(f'non-contiguous 1s grid for {s}')
+    if not any(r.get('futures_book_valid')=='True' for r in rs if r['symbol']==s): sys.exit(f'no valid book for {s}')
+if {r['symbol'] for r in rs} != expected: sys.exit('symbol set mismatch')
+PY
       - name: Run Futures strategy research
-        env: {BATCH_ID: ${{ inputs.batch_id }}}
+        env: {BATCH_ID: ${{ steps.source.outputs.batch_id }} }
         run: python src/futures_strategy_research.py --input "runtime/${BATCH_ID}/features_1s.csv.gz" --capital 50000 --round-trip-bps 11.8 --out "runtime/${BATCH_ID}/futures_hypotheses.json"
       - name: Merge isolated Futures compact history
-        env: {BATCH_ID: ${{ inputs.batch_id }} }
+        env: {BATCH_ID: ${{ steps.source.outputs.batch_id }} }
         run: python tools/merge_compact.py --batch "runtime/${BATCH_ID}" --dest-root "data/research/futures_compact_1m" --dest-root-3m "data/research/futures_compact_3m"
       - name: Commit isolated research state
         run: |
@@ -82,15 +119,15 @@ jobs:
           git config user.email advisorx-bot@users.noreply.github.com
           git add data/research/futures_compact_1m data/research/futures_compact_3m data/state/protected_batches.json
           if ! git diff --cached --quiet; then git commit -m "chore: update Futures compact research"; git push origin HEAD:main; fi
-      - name: Run repository-local storage report
+      - name: Run repository-local storage and archive lifecycle
         if: always()
         env: {GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
         run: python src/storage_manager.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: coindcx-futures-processed-${{ inputs.batch_id }}
-          path: runtime/${{ inputs.batch_id }}/
+          name: coindcx-futures-processed-${{ steps.source.outputs.batch_id }}
+          path: runtime/${{ steps.source.outputs.batch_id }}/
           retention-days: 14
           compression-level: 0
           if-no-files-found: warn
