@@ -1,0 +1,44 @@
+name: Futures overnight coverage audit
+on:
+  schedule:
+    - cron: "53 */4 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Check recent collector and processor activity
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          collector_id="$(gh api "/repos/$REPO/actions/workflows/continuous-collector.yml" --jq '.id')"
+          processor_id="$(gh api "/repos/$REPO/actions/workflows/process-batch.yml" --jq '.id')"
+          since_epoch=$(date -u -d '5 hours ago' +%s)
+          collector_recent=0
+          processor_recent=0
+          while IFS=$'\t' read -r id status conclusion created; do
+            [ -n "$id" ] || continue
+            ts=$(date -u -d "$created" +%s)
+            [ "$ts" -ge "$since_epoch" ] || continue
+            collector_recent=$((collector_recent+1))
+            echo "COLLECTOR run=$id status=$status conclusion=$conclusion created=$created"
+          done < <(gh api "/repos/$REPO/actions/workflows/$collector_id/runs?branch=main&per_page=30" --jq '.workflow_runs[] | [.id,.status,.conclusion,.created_at] | @tsv')
+          while IFS=$'\t' read -r id status conclusion created; do
+            [ -n "$id" ] || continue
+            ts=$(date -u -d "$created" +%s)
+            [ "$ts" -ge "$since_epoch" ] || continue
+            processor_recent=$((processor_recent+1))
+            echo "PROCESSOR run=$id status=$status conclusion=$conclusion created=$created"
+          done < <(gh api "/repos/$REPO/actions/workflows/$processor_id/runs?branch=main&per_page=30" --jq '.workflow_runs[] | [.id,.status,.conclusion,.created_at] | @tsv')
+          test "$collector_recent" -ge 1 || { echo "COVERAGE_FAIL no collector run in last 5h"; exit 1; }
+          test "$processor_recent" -ge 1 || { echo "COVERAGE_FAIL no processor run in last 5h"; exit 1; }
+          echo "COVERAGE_PASS collector_runs_last_5h=$collector_recent processor_runs_last_5h=$processor_recent"
