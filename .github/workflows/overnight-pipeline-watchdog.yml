@@ -1,7 +1,7 @@
 name: Futures overnight pipeline watchdog
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "37 * * * *"
   workflow_dispatch: {}
 permissions:
   contents: read
