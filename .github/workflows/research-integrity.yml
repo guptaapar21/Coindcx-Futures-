@@ -1,0 +1,54 @@
+name: Futures research integrity checks
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: python -m pip install -r requirements.txt
+      - name: Verify repository configuration and isolation
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+import json
+from pathlib import Path
+cfg=json.loads(Path('config.json').read_text())
+assert cfg['coindcx']['market_mode']=='FUTURES_ONLY'
+assert cfg['research']['market_mode']=='FUTURES_ONLY'
+assert len(cfg['coindcx']['futures_symbols']) == 6
+assert cfg['research']['windows_seconds'] == [5,15,30,60,180]
+assert cfg['research']['forward_horizons_seconds'] == [60,300,600,900,1800]
+assert cfg['storage']['raw_artifact_prefix'].startswith('coindcx-futures-raw-')
+forbidden=['src/collector.py']
+assert Path('src/futures_collector.py').exists()
+assert Path('src/futures_research.py').exists()
+assert Path('src/futures_strategy_research.py').exists()
+PY
+      - name: Verify latest compact research artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for root in data/research/futures_compact_1m data/research/futures_compact_3m; do
+            test -d "$root"
+            find "$root" -type f -name '*.csv.gz' -print | head -n 1 | grep -q . || true
+          done
+      - name: Verify workflow definitions
+        run: |
+          set -euo pipefail
+          grep -q 'workflow_run:' .github/workflows/process-batch.yml
+          grep -q 'cron: "0 \*/2 \* \* \*"' .github/workflows/continuous-collector.yml
+          grep -q 'cron: "\*/30 \* \* \* \*"' .github/workflows/overnight-pipeline-watchdog.yml
+          grep -q 'archive_trigger_percent' config.json
+          grep -q 'release_asset_max_mb' config.json
+      - name: Check Python test suite
+        run: python -m unittest discover -s tests -v
