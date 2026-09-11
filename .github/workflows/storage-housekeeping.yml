@@ -1,0 +1,26 @@
+name: Futures repository storage housekeeping
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: write
+jobs:
+  housekeeping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: python -m pip install requests
+      - name: Produce repository-local storage report
+        env: {GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
+        run: python src/storage_manager.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: futures-storage-report-${{ github.run_id }}
+          path: storage_report.json
+          retention-days: 7
+          if-no-files-found: ignore
