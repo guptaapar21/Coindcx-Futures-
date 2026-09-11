@@ -44,7 +44,7 @@ jobs:
             artifact_id="$INPUT_ARTIFACT_ID"
           else
             source_run_id="$EVENT_RUN_ID"
-            artifact_line="$(gh api "/repos/$REPO/actions/runs/$source_run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | select(.name | startswith("coindcx-futures-raw-")) | [.id,.name] | @tsv' | head -n 1)"
+            artifact_line="$(gh api "/repos/$REPO/actions/runs/$source_run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | select(.name | startswith("coindcx-futures-raw-")) | [.id,.name] | @tsv' | sed -n '1p')"
             test -n "$artifact_line" || { echo "No Futures raw artifact found for collector run $source_run_id"; exit 1; }
             artifact_id="${artifact_line%%$'\t'*}"
             raw_name="${artifact_line#*$'\t'}"
