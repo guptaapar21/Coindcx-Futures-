@@ -124,10 +124,10 @@ PY
         env: {GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
         run: python src/storage_manager.py
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ success() }}
         with:
           name: coindcx-futures-processed-${{ steps.source.outputs.batch_id }}
           path: runtime/${{ steps.source.outputs.batch_id }}/
           retention-days: 14
           compression-level: 0
-          if-no-files-found: warn
+          if-no-files-found: error
