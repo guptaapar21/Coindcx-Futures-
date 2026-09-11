@@ -1,0 +1,141 @@
+name: Futures Nightly Supervisor
+
+on:
+  schedule:
+    - cron: '30 22 * * *'
+    - cron: '0 0 * * *'
+    - cron: '30 1 * * *'
+    - cron: '0 3 * * *'
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  actions: write
+
+concurrency:
+  group: coindcx-futures-nightly-supervisor
+  cancel-in-progress: false
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Verify workflows are registered with expected triggers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          for wf in continuous-collector.yml process-batch.yml storage-housekeeping.yml nightly-supervisor.yml; do
+            json=$(gh api "repos/$REPO/actions/workflows/$wf")
+            state=$(printf '%s' "$json" | python -c 'import json,sys; print(json.load(sys.stdin)["state"])')
+            echo "$wf state=$state"
+            test "$state" = active
+          done
+
+      - name: Check recent collector, processor and housekeeping health
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess, sys, time
+          repo = os.environ['REPO']
+          workflows = {
+              'collector': 'continuous-collector.yml',
+              'processor': 'process-batch.yml',
+              'housekeeping': 'storage-housekeeping.yml',
+          }
+          def api(path):
+              out = subprocess.check_output(['gh','api',path], text=True)
+              return json.loads(out)
+          now=time.time()
+          failures=[]
+          for role,wf in workflows.items():
+              data=api(f'repos/{repo}/actions/workflows/{wf}/runs?branch=main&per_page=10')
+              runs=data.get('workflow_runs',[])
+              print(f'== {role} ==')
+              for r in runs[:5]:
+                  print(r['id'], r['status'], r.get('conclusion'), r['created_at'], r['head_sha'][:8])
+              recent=[r for r in runs if now-time.mktime(time.strptime(r['created_at'][:19], '%Y-%m-%dT%H:%M:%S')) < 8*3600]
+              if not recent:
+                  failures.append(f'{role}: no run in last 8h')
+              elif any(r.get('conclusion') == 'failure' for r in recent):
+                  failures.append(f'{role}: failure in last 8h')
+          if failures:
+              print('HEALTH CHECK FAILED:', *failures, sep='\n- ')
+              sys.exit(1)
+          print('Nightly supervisor health check passed.')
+          PY
+
+      - name: Verify collector raw artifacts have a matching processor run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess, sys
+          repo=os.environ['REPO']
+          def api(path): return json.loads(subprocess.check_output(['gh','api',path], text=True))
+          runs=api(f'repos/{repo}/actions/workflows/continuous-collector.yml/runs?branch=main&per_page=10')['workflow_runs']
+          procruns=api(f'repos/{repo}/actions/workflows/process-batch.yml/runs?branch=main&per_page=50')['workflow_runs']
+          bad=[]
+          for r in runs:
+              if r.get('conclusion') != 'success':
+                  continue
+              arts=api(f"repos/{repo}/actions/runs/{r['id']}/artifacts")['artifacts']
+              raws=[a for a in arts if a['name'].startswith('coindcx-futures-raw-')]
+              if len(raws) != 1:
+                  bad.append(f"collector {r['id']}: expected exactly one raw artifact, found {len(raws)}")
+                  continue
+              raw=raws[0]
+              batch=raw['name'].replace('coindcx-futures-raw-','',1)
+              matches=[p for p in procruns if batch in json.dumps(p.get('name','')) or batch in json.dumps(p.get('display_title',''))]
+              print(f"collector {r['id']} batch={batch} processor_matches={len(matches)}")
+          if bad:
+              print(*bad, sep='\n')
+              sys.exit(1)
+          PY
+
+      - name: Force processing for any successful collector without a processor run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess
+          repo=os.environ['REPO']
+          def api(path): return json.loads(subprocess.check_output(['gh','api',path], text=True))
+          collector_runs=api(f'repos/{repo}/actions/workflows/continuous-collector.yml/runs?branch=main&per_page=10')['workflow_runs']
+          proc_runs=api(f'repos/{repo}/actions/workflows/process-batch.yml/runs?branch=main&per_page=50')['workflow_runs']
+          for r in collector_runs:
+              if r.get('conclusion') != 'success': continue
+              arts=api(f"repos/{repo}/actions/runs/{r['id']}/artifacts")['artifacts']
+              raws=[a for a in arts if a['name'].startswith('coindcx-futures-raw-')]
+              if len(raws) != 1: continue
+              raw=raws[0]
+              batch=raw['name'].replace('coindcx-futures-raw-','',1)
+              if any(batch in (p.get('name') or '') for p in proc_runs):
+                  continue
+              print(f'No processor run for {batch}; dispatching directly with verified artifact id {raw["id"]}.')
+              subprocess.run([
+                'gh','workflow','run','process-batch.yml','--repo',repo,'--ref','main',
+                '-f',f'batch_id={batch}',
+                '-f',f'source_run_id={r["id"]}',
+                '-f',f'artifact_id={raw["id"]}'
+              ], check=True)
+          PY
