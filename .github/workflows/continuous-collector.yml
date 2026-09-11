@@ -43,18 +43,21 @@ jobs:
           retention-days: 4
           compression-level: 0
           if-no-files-found: error
-      - name: Trigger Futures processing
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-          BATCH_ID: ${{ steps.batch.outputs.batch_id }}
-          ARTIFACT_ID: ${{ steps.raw_upload.outputs.artifact-id }}
-        run: |
-          test -n "$ARTIFACT_ID"
-          gh workflow run process-batch.yml --repo "$REPO" --ref main -f batch_id="$BATCH_ID" -f source_run_id="$GITHUB_RUN_ID" -f artifact_id="$ARTIFACT_ID"
+      # Chain immediately after successful raw capture/upload. Processing is
+      # downstream and therefore cannot prevent the next acquisition cycle.
       - name: Trigger next Futures batch
         if: ${{ inputs.continue_chain == true }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: gh workflow run continuous-collector.yml --repo "$REPO" --ref main -f duration_minutes=120 -f continue_chain=true
+      - name: Trigger Futures processing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BATCH_ID: ${{ steps.batch.outputs.batch_id }}
+          ARTIFACT_ID: ${{ steps.raw_upload.outputs.artifact-id }}
+        continue-on-error: true
+        run: |
+          test -n "$ARTIFACT_ID"
+          gh workflow run process-batch.yml --repo "$REPO" --ref main -f batch_id="$BATCH_ID" -f source_run_id="$GITHUB_RUN_ID" -f artifact_id="$ARTIFACT_ID"
