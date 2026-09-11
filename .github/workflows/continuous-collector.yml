@@ -1,5 +1,8 @@
 name: CoinDCX Futures continuous collector
 on:
+  push:
+    paths:
+      - "_manual_workflow_trigger.txt"
   workflow_dispatch:
     inputs:
       duration_minutes:
