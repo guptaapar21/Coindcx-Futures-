@@ -1,0 +1,41 @@
+{
+  "coindcx": {
+    "market_mode": "FUTURES_ONLY",
+    "base_api": "https://api.coindcx.com",
+    "futures_socket_url": "https://stream.coindcx.com",
+    "futures_symbols": [
+      {"name":"BTC/USDT","pair":"B-BTC_USDT"},
+      {"name":"ETH/USDT","pair":"B-ETH_USDT"},
+      {"name":"SOL/USDT","pair":"B-SOL_USDT"},
+      {"name":"SUI/USDT","pair":"B-SUI_USDT"},
+      {"name":"XRP/USDT","pair":"B-XRP_USDT"},
+      {"name":"DOGE/USDT","pair":"B-DOGE_USDT"}
+    ],
+    "futures_orderbook_depth": 50
+  },
+  "collector": {
+    "default_duration_minutes": 120,
+    "heartbeat_seconds": 60,
+    "connect_timeout_seconds": 30,
+    "reconnect": true,
+    "max_reconnect_attempts": 12
+  },
+  "research": {
+    "market_mode": "FUTURES_ONLY",
+    "windows_seconds": [5,15,30,60,180],
+    "forward_horizons_seconds": [60,300,600,900,1800],
+    "compact_root_1m": "data/research/futures_compact_1m",
+    "compact_root_3m": "data/research/futures_compact_3m",
+    "raw_archive_after_hours": 48
+  },
+  "storage": {
+    "artifact_budget_mb": 500,
+    "archive_trigger_percent": 70,
+    "archive_target_percent": 50,
+    "emergency_percent": 85,
+    "raw_artifact_prefix": "coindcx-futures-raw-",
+    "protected_file": "data/state/protected_batches.json",
+    "raw_artifact_retention_days": 4,
+    "release_asset_max_mb": 1800
+  }
+}
