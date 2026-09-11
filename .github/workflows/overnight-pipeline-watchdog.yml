@@ -29,17 +29,16 @@ jobs:
             IFS=$'\t' read -r run_id status conclusion created <<< "$row"
             [ "$conclusion" = "success" ] || continue
             checked=$((checked+1))
-            artifacts="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | .name' || true)"
-            raw_name="$(printf '%s\n' "$artifacts" | grep '^coindcx-futures-raw-' | head -n1 || true)"
+            raw_name="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | .name' | grep '^coindcx-futures-raw-' | head -n1 || true)"
             [ -n "$raw_name" ] || { echo "AUDIT_FAIL collector=$run_id missing raw artifact"; failures=$((failures+1)); continue; }
             batch="${raw_name#coindcx-futures-raw-}"
-            processed="$(printf '%s\n' "$artifacts" | grep '^coindcx-futures-processed-' || true)"
+            processed_count="$(gh api "/repos/$REPO/actions/artifacts?name=coindcx-futures-processed-$batch&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | length')"
             age=$((now-$(date -d "$created" +%s)))
-            if printf '%s\n' "$processed" | grep -qx "coindcx-futures-processed-$batch"; then
+            if [ "$processed_count" -gt 0 ]; then
               echo "AUDIT_OK collector=$run_id batch=$batch age_sec=$age processed=yes"
             elif [ "$age" -gt 10800 ]; then
               echo "AUDIT_FAIL collector=$run_id batch=$batch age_sec=$age processed artifact missing; attempting recovery"
-              collector_artifact="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.name == "coindcx-futures-raw-'"$batch"'") | .id' | head -n1)"
+              collector_artifact="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.name == "'"$raw_name"'") | .id' | head -n1)"
               test -n "$collector_artifact"
               gh workflow run process-batch.yml --repo "$REPO" --ref main -f batch_id="$batch" -f source_run_id="$run_id" -f artifact_id="$collector_artifact" || true
               failures=$((failures+1))
