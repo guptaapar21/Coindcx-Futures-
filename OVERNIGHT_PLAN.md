@@ -1,0 +1,1 @@
+The overnight supervisor runs five scheduled checks at 22:30, 00:00, 01:30, 03:00 and 04:30 UTC. It validates workflow registration and recent collector/processor/housekeeping activity, and checks collector raw artifacts against processor runs. Acquisition remains independently scheduled so processing never blocks the collector.
