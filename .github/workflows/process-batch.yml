@@ -10,7 +10,7 @@ on:
       artifact_id: {description: "Exact raw artifact ID", required: true, type: string}
 permissions:
   contents: write
-  actions: read
+  actions: write
 concurrency:
   group: futures-processing
   cancel-in-progress: false
