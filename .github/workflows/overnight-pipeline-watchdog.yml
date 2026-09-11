@@ -1,0 +1,52 @@
+name: Futures overnight pipeline watchdog
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  actions: write
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 1}
+      - name: Audit recent collector batches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          collector_id="$(gh api "/repos/$REPO/actions/workflows/continuous-collector.yml" --jq '.id')"
+          mapfile -t runs < <(gh api "/repos/$REPO/actions/workflows/$collector_id/runs?branch=main&per_page=10" --jq '.workflow_runs[] | [.id,.status,.conclusion,.created_at] | @tsv')
+          now=$(date -u +%s)
+          failures=0
+          checked=0
+          for row in "${runs[@]}"; do
+            IFS=$'\t' read -r run_id status conclusion created <<< "$row"
+            [ "$conclusion" = "success" ] || continue
+            checked=$((checked+1))
+            artifacts="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.expired == false) | .name' || true)"
+            raw_name="$(printf '%s\n' "$artifacts" | grep '^coindcx-futures-raw-' | head -n1 || true)"
+            [ -n "$raw_name" ] || { echo "AUDIT_FAIL collector=$run_id missing raw artifact"; failures=$((failures+1)); continue; }
+            batch="${raw_name#coindcx-futures-raw-}"
+            processed="$(printf '%s\n' "$artifacts" | grep '^coindcx-futures-processed-' || true)"
+            age=$((now-$(date -d "$created" +%s)))
+            if printf '%s\n' "$processed" | grep -qx "coindcx-futures-processed-$batch"; then
+              echo "AUDIT_OK collector=$run_id batch=$batch age_sec=$age processed=yes"
+            elif [ "$age" -gt 10800 ]; then
+              echo "AUDIT_FAIL collector=$run_id batch=$batch age_sec=$age processed artifact missing; attempting recovery"
+              collector_artifact="$(gh api "/repos/$REPO/actions/runs/$run_id/artifacts?per_page=100" --jq '.artifacts[] | select(.name == "coindcx-futures-raw-'"$batch"'") | .id' | head -n1)"
+              test -n "$collector_artifact"
+              gh workflow run process-batch.yml --repo "$REPO" --ref main -f batch_id="$batch" -f source_run_id="$run_id" -f artifact_id="$collector_artifact" || true
+              failures=$((failures+1))
+            else
+              echo "AUDIT_WAIT collector=$run_id batch=$batch age_sec=$age processed=no"
+            fi
+          done
+          test "$checked" -gt 0 || { echo "AUDIT_FAIL no successful collector run found"; exit 1; }
+          if [ "$failures" -gt 0 ]; then exit 1; fi
+          echo "AUDIT_PASS successful_collectors_checked=$checked"
