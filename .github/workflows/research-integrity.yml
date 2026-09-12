@@ -28,20 +28,20 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
-import json
-from pathlib import Path
-cfg=json.loads(Path('config.json').read_text())
-assert cfg['coindcx']['market_mode']=='FUTURES_ONLY'
-assert cfg['research']['market_mode']=='FUTURES_ONLY'
-assert len(cfg['coindcx']['futures_symbols']) == 6
-assert cfg['research']['windows_seconds'] == [5,15,30,60,180]
-assert cfg['research']['forward_horizons_seconds'] == [60,300,600,900,1800]
-assert cfg['storage']['raw_artifact_prefix'].startswith('coindcx-futures-raw-')
-assert cfg['collector']['default_duration_minutes'] == 30
-assert Path('src/futures_collector.py').exists()
-assert Path('src/futures_research.py').exists()
-assert Path('src/futures_strategy_research.py').exists()
-PY
+          import json
+          from pathlib import Path
+          cfg=json.loads(Path('config.json').read_text())
+          assert cfg['coindcx']['market_mode']=='FUTURES_ONLY'
+          assert cfg['research']['market_mode']=='FUTURES_ONLY'
+          assert len(cfg['coindcx']['futures_symbols']) == 6
+          assert cfg['research']['windows_seconds'] == [5,15,30,60,180]
+          assert cfg['research']['forward_horizons_seconds'] == [60,300,600,900,1800]
+          assert cfg['storage']['raw_artifact_prefix'].startswith('coindcx-futures-raw-')
+          assert cfg['collector']['default_duration_minutes'] == 30
+          assert Path('src/futures_collector.py').exists()
+          assert Path('src/futures_research.py').exists()
+          assert Path('src/futures_strategy_research.py').exists()
+          PY
 
       - name: Verify proven manual collector control model
         shell: bash
