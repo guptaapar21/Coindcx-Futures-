@@ -41,6 +41,7 @@ jobs:
           assert Path('src/futures_collector.py').exists()
           assert Path('src/futures_research.py').exists()
           assert Path('src/futures_strategy_research.py').exists()
+          assert Path('src/futures_hypothesis_engine.py').exists()
           PY
 
       - name: Verify proven manual collector control model
@@ -74,6 +75,9 @@ jobs:
           ! grep -q '^  workflow_run:' .github/workflows/process-batch.yml
           grep -q 'artifact_id' .github/workflows/process-batch.yml
           grep -q 'SOURCE_RUN_ID' .github/workflows/process-batch.yml
+          grep -q 'Run Futures hypothesis engine' .github/workflows/process-batch.yml
+          grep -q 'futures_hypothesis_engine.py' .github/workflows/process-batch.yml
+          grep -q 'data/research/futures_hypothesis_engine' .github/workflows/process-batch.yml
 
       - name: Verify storage maintenance is not pipeline supervision
         shell: bash
@@ -89,6 +93,9 @@ jobs:
           set -euo pipefail
           test -d data/research/futures_compact_1m
           test -d data/research/futures_compact_3m
+
+      - name: Verify hypothesis engine test
+        run: python -m pytest -q tests/test_futures_hypothesis_engine.py
 
       - name: Check Python test suite
         run: python -m unittest discover -s tests -v
