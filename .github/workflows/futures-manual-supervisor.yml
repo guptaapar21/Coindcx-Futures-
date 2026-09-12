@@ -1,0 +1,104 @@
+name: CoinDCX Futures manual supervisor
+
+on:
+  workflow_dispatch:
+    inputs:
+      recover_stale:
+        description: Trigger one 30-minute collector recovery when stale
+        required: false
+        default: false
+        type: boolean
+      stale_minutes:
+        description: Collector age that is considered stale
+        required: false
+        default: "35"
+        type: string
+      duration_minutes:
+        description: Recovery batch duration in minutes
+        required: false
+        default: "30"
+        type: string
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect latest collector
+        id: collector
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          STALE_MINUTES: ${{ inputs.stale_minutes }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          runs="$(gh api "/repos/${REPO}/actions/workflows/futures-manual-collector.yml/runs?branch=main&per_page=20")"
+          count="$(jq '.total_count' <<<"$runs")"
+          if [ "$count" -lt 1 ]; then
+            echo "SUPERVISOR: no collector run exists"
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          latest_id="$(jq -r '.workflow_runs[0].id' <<<"$runs")"
+          latest_event="$(jq -r '.workflow_runs[0].event' <<<"$runs")"
+          latest_status="$(jq -r '.workflow_runs[0].status' <<<"$runs")"
+          latest_conclusion="$(jq -r '.workflow_runs[0].conclusion // "null"' <<<"$runs")"
+          latest_created="$(jq -r '.workflow_runs[0].created_at' <<<"$runs")"
+          now="$(date -u +%s)"
+          created="$(date -u -d "$latest_created" +%s)"
+          age="$(( (now-created)/60 ))"
+          echo "COLLECTOR run=$latest_id event=$latest_event status=$latest_status conclusion=$latest_conclusion created=$latest_created age_min=$age"
+          if [ "$latest_status" = "in_progress" ] || [ "$latest_status" = "queued" ]; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          elif [ "$latest_conclusion" != "success" ] || [ "$age" -ge "$STALE_MINUTES" ]; then
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Inspect latest processor
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          runs="$(gh api "/repos/${REPO}/actions/workflows/process-batch.yml/runs?branch=main&per_page=5")"
+          if [ "$(jq '.total_count' <<<"$runs")" -eq 0 ]; then
+            echo "PROCESSOR: no run exists"
+          else
+            jq -r '.workflow_runs[0] | "PROCESSOR run=\(.id) event=\(.event) status=\(.status) conclusion=\(.conclusion // "null") created=\(.created_at)"' <<<"$runs"
+          fi
+
+      - name: Recover one collector batch
+        if: ${{ steps.collector.outputs.stale == 'true' && inputs.recover_stale == true }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DURATION_MINUTES: ${{ inputs.duration_minutes }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' "$DURATION_MINUTES"
+import sys
+n=int(sys.argv[1])
+assert 5 <= n <= 230
+PY
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "/repos/${REPO}/dispatches" \
+            -f event_type='coindcx-next-batch' \
+            -f client_payload[reason]='manual_supervisor_recovery' \
+            -f client_payload[duration_minutes]="${DURATION_MINUTES}"
+          echo "RECOVERY_DISPATCHED duration_minutes=${DURATION_MINUTES}"
+
+      - name: Fail manual supervision when stale and not recovered
+        if: ${{ steps.collector.outputs.stale == 'true' && inputs.recover_stale != true }}
+        run: |
+          echo "SUPERVISOR_FAIL collector is stale/failed; rerun with recover_stale=true to dispatch one safe recovery batch"
+          exit 1
