@@ -29,12 +29,12 @@ The collector preserves raw exchange payloads together with local receive timest
 
 Collection is operator-controlled through `.github/workflows/continuous-collector.yml`.
 
-Manual `Run workflow` inputs:
+The default production batch is **120 minutes (2 hours)**. Manual `Run workflow` accepts:
 
-- `duration_minutes`: 5-230 minutes; default 30.
+- `duration_minutes`: 5-230 minutes; default 120.
 - `continue_chain`: `false` for a single standalone batch; `true` to continue automatically after each successful raw batch.
 
-When chaining is enabled, the selected duration is carried in the repository-dispatch payload to the next collector run. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
+When chaining is enabled, the selected duration is carried in the repository-dispatch payload to the next collector run. With the default settings, this creates an approximately **2-hour batch cadence**: the next collection starts after the previous raw batch uploads successfully, while processing of the completed batch is dispatched independently. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
 
 ## Feature contract
 
