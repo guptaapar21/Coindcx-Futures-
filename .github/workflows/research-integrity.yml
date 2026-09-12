@@ -1,20 +1,29 @@
 name: Futures research integrity checks
+
 on:
   push:
   workflow_dispatch: {}
+
 permissions:
   contents: read
   actions: read
+
 jobs:
   integrity:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
       - uses: actions/checkout@v4
-        with: {fetch-depth: 1}
+        with:
+          fetch-depth: 1
+
       - uses: actions/setup-python@v5
-        with: {python-version: "3.11"}
+        with:
+          python-version: "3.11"
+
       - run: python -m pip install -r requirements.txt
+
       - name: Verify repository configuration and isolation
         run: |
           set -euo pipefail
@@ -33,27 +42,48 @@ assert Path('src/futures_collector.py').exists()
 assert Path('src/futures_research.py').exists()
 assert Path('src/futures_strategy_research.py').exists()
 PY
-      - name: Verify workflow architecture
+
+      - name: Verify collector control model
         shell: bash
         run: |
           set -euo pipefail
           test -f .github/workflows/futures-manual-collector.yml
           ! test -f .github/workflows/continuous-collector.yml
           grep -q '^  workflow_dispatch:' .github/workflows/futures-manual-collector.yml
-          grep -q 'continue_chain:' .github/workflows/futures-manual-collector.yml
+          grep -q '^  repository_dispatch:' .github/workflows/futures-manual-collector.yml
           grep -q 'duration_minutes:' .github/workflows/futures-manual-collector.yml
-          grep -q 'repository_dispatch:' .github/workflows/futures-manual-collector.yml
-          grep -q 'futures-manual-collector.yml' .github/workflows/process-batch.yml || true
+          grep -q 'continue_chain:' .github/workflows/futures-manual-collector.yml
           ! grep -qE '^\s*schedule:' .github/workflows/futures-manual-collector.yml
+          grep -q 'coindcx-next-batch' .github/workflows/futures-manual-collector.yml
+          grep -q 'coindcx-process-batch' .github/workflows/futures-manual-collector.yml
           ! find .github/workflows -maxdepth 1 -type f -name '*supervisor*.yml' -print -quit | grep -q .
           ! find .github/workflows -maxdepth 1 -type f -name '*watchdog*.yml' -print -quit | grep -q .
-          ! grep -R -q 'overnight-pipeline-watchdog' .github/workflows || true
-      - name: Verify latest compact research artifacts
+
+      - name: Verify processor handoff model
         shell: bash
         run: |
           set -euo pipefail
-          for root in data/research/futures_compact_1m data/research/futures_compact_3m; do
-            test -d "$root"
-          done
+          test -f .github/workflows/process-batch.yml
+          grep -q '^  repository_dispatch:' .github/workflows/process-batch.yml
+          grep -q 'coindcx-process-batch' .github/workflows/process-batch.yml
+          ! grep -q '^  workflow_run:' .github/workflows/process-batch.yml
+          grep -q 'artifact_id' .github/workflows/process-batch.yml
+          grep -q 'SOURCE_RUN_ID' .github/workflows/process-batch.yml
+
+      - name: Verify storage maintenance is not pipeline supervision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/storage-housekeeping.yml
+          grep -q 'storage_manager.py' .github/workflows/storage-housekeeping.yml
+          ! grep -qE 'supervisor|watchdog|coindcx-next-batch' .github/workflows/storage-housekeeping.yml
+
+      - name: Verify latest compact research directories
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d data/research/futures_compact_1m
+          test -d data/research/futures_compact_3m
+
       - name: Check Python test suite
         run: python -m unittest discover -s tests -v
