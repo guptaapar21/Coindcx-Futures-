@@ -1,0 +1,100 @@
+name: CoinDCX Futures manual supervisor
+
+on:
+  workflow_dispatch:
+    inputs:
+      duration_minutes:
+        description: "Recovery batch duration in minutes (5-230)"
+        required: false
+        default: "30"
+        type: string
+      stale_minutes:
+        description: "Consider the collector stale after this many minutes"
+        required: false
+        default: "35"
+        type: string
+      recover_stale:
+        description: "Dispatch a recovery batch when the latest collector is stale or absent"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Inspect collector health
+        id: inspect
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          STALE_MINUTES: ${{ inputs.stale_minutes || '35' }}
+          DURATION_MINUTES: ${{ inputs.duration_minutes || '30' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' "$STALE_MINUTES"
+import sys
+n=int(sys.argv[1])
+assert 5 <= n <= 1440, f"stale_minutes must be 5..1440, got {n}"
+PY
+          python - <<'PY' "$DURATION_MINUTES"
+import sys
+n=int(sys.argv[1])
+assert 5 <= n <= 230, f"duration_minutes must be 5..230, got {n}"
+PY
+          runs="$(gh api --paginate "/repos/${REPO}/actions/workflows/futures-manual-collector.yml/runs?per_page=20" --jq '.workflow_runs[] | [.id,.run_number,.status,.conclusion,.created_at,.updated_at,.event,.head_sha] | @tsv' | head -n 20)"
+          if [ -z "$runs" ]; then
+            echo "COLLECTOR_STATE=ABSENT"
+            stale=true
+          else
+            latest="$(printf '%s\n' "$runs" | head -n 1)"
+            printf '%s\n' "$latest"
+            created="$(printf '%s' "$latest" | cut -f5)"
+            status="$(printf '%s' "$latest" | cut -f3)"
+            conclusion="$(printf '%s' "$latest" | cut -f4)"
+            python - <<'PY' "$created" "$STALE_MINUTES" "$status"
+from datetime import datetime, timezone
+import sys
+created=datetime.fromisoformat(sys.argv[1].replace('Z','+00:00'))
+mins=float(sys.argv[2])
+age=(datetime.now(timezone.utc)-created).total_seconds()/60
+print(f"COLLECTOR_AGE_MINUTES={age:.1f}")
+print(f"COLLECTOR_STATUS={sys.argv[3]}")
+print(f"COLLECTOR_STALE={str(age > mins).lower()}")
+PY
+            stale="$(python - <<'PY' "$created" "$STALE_MINUTES"
+from datetime import datetime, timezone
+import sys
+created=datetime.fromisoformat(sys.argv[1].replace('Z','+00:00'))
+mins=float(sys.argv[2])
+print(str((datetime.now(timezone.utc)-created).total_seconds()/60 > mins).lower())
+PY
+)"
+            echo "LATEST_CONCLUSION=${conclusion}"
+          fi
+
+          if [ "${{ inputs.recover_stale }}" = "true" ] && [ "$stale" = "true" ]; then
+            gh api --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2026-03-10" \
+              "/repos/${REPO}/dispatches" \
+              -f event_type='coindcx-next-batch' \
+              -f client_payload[reason]='manual_supervisor_recovery' \
+              -f client_payload[duration_minutes]="${DURATION_MINUTES}"
+            echo "RECOVERY_DISPATCHED=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "RECOVERY_DISPATCHED=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Emit supervisor verdict
+        env:
+          RECOVERY: ${{ steps.inspect.outputs.RECOVERY_DISPATCHED || 'false' }}
+        run: |
+          echo "MANUAL_SUPERVISOR_OK recovery_dispatched=${RECOVERY}"
