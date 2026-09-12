@@ -8,7 +8,11 @@ This repository is intentionally separate from the Spot+Futures production repos
 
 ## Pipeline
 
-`continuous-collector.yml` -> raw Futures artifact -> exact-artifact processing -> Futures 1s/1m/3m features -> Futures Delta strategy research -> isolated compact research -> storage housekeeping.
+`futures-manual-collector.yml` -> raw Futures artifact -> exact-artifact processing -> Futures 1s/1m/3m features -> Futures Delta strategy research -> isolated compact research -> storage housekeeping.
+
+The collector is intentionally operator-controlled. `Run workflow` accepts a batch duration from 5-230 minutes (default 30) and an explicit `continue_chain` toggle. With chaining off, exactly one batch is collected. With chaining on, each successful batch dispatches the next batch with the same duration.
+
+There is no collector cron and no GitHub supervisor/watchdog. Monitoring/supervision is handled outside GitHub.
 
 The first successful batch is an infrastructure/research acceptance test, not a profitability claim.
 
