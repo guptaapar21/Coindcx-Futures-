@@ -82,6 +82,9 @@ def build_rows(batch):
 def aggregate(rows,bucket):
     if not rows:return []
     inkey="epoch_second" if "epoch_second" in rows[0] else "minute_epoch" if "minute_epoch" in rows[0] else "epoch"
+    count_key="futures_trade_count" if "futures_trade_count" in rows[0] else "trade_count"
+    delta_key="futures_delta_qty" if "futures_delta_qty" in rows[0] else None
+    total_key="futures_total_qty" if "futures_total_qty" in rows[0] else None
     g=defaultdict(list)
     for r in rows:
         e=int(r[inkey]); g[(r["symbol"],e-e%bucket)].append(r)
@@ -89,9 +92,10 @@ def aggregate(rows,bucket):
     for (s,b),rs in sorted(g.items()):
         close=[r for r in rs if r.get("close") is not None]
         if not close:continue
-        row={"symbol":s,"epoch":b,"utc":datetime.fromtimestamp(b,timezone.utc).isoformat(),"open":close[0]["open"],"high":max(r["high"] for r in close),"low":min(r["low"] for r in close),"close":close[-1]["close"],"trade_count":sum(int(r["futures_trade_count"]) for r in rs),"futures_delta_qty":sum(float(r["futures_delta_qty"]) for r in rs),"futures_total_qty":sum(float(r["futures_total_qty"]) for r in rs),"futures_book_valid_seconds":sum(bool(r.get("futures_book_valid")) for r in rs)}; row["futures_delta_ratio"]=row["futures_delta_qty"]/row["futures_total_qty"] if row["futures_total_qty"] else None
+        row={"symbol":s,"epoch":b,"utc":datetime.fromtimestamp(b,timezone.utc).isoformat(),"open":close[0]["open"],"high":max(r["high"] for r in close),"low":min(r["low"] for r in close),"close":close[-1]["close"],"trade_count":sum(int(float(r.get(count_key,0) or 0)) for r in rs),"futures_delta_qty":sum(float(r.get(delta_key,0) or 0) for r in rs) if delta_key else None,"futures_total_qty":sum(float(r.get(total_key,0) or 0) for r in rs) if total_key else None,"futures_book_valid_seconds":sum(bool(r.get("futures_book_valid")) for r in rs)}; row["futures_delta_ratio"]=row["futures_delta_qty"]/row["futures_total_qty"] if row["futures_total_qty"] else None
         for k in ("futures_book_imbalance_1","futures_book_imbalance_5","futures_book_imbalance_10","futures_book_imbalance_20","futures_spread_bps","futures_microprice"):
-            v=[float(r[k]) for r in rs if r.get(k) is not None]; row[k+"_mean"]=sum(v)/len(v) if v else None
+            source_key=k if any(k in r for r in rs) else k+"_mean"
+            v=[float(r[source_key]) for r in rs if r.get(source_key) is not None]; row[k+"_mean"]=sum(v)/len(v) if v else None
         out.append(row)
     return out
 def write(rows,path):
