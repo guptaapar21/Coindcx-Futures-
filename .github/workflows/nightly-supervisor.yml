@@ -1,29 +1,33 @@
-name: Futures Nightly Supervisor
+name: Futures 24x7 Supervisor
 
 on:
+  # One supervisor, every 30 minutes, continuously checks and self-heals the pipeline.
   schedule:
-    - cron: '30 22 * * *'
-    - cron: '0 0 * * *'
-    - cron: '30 1 * * *'
-    - cron: '0 3 * * *'
-    - cron: '30 4 * * *'
-  workflow_dispatch:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: read
   actions: write
 
 concurrency:
-  group: coindcx-futures-nightly-supervisor
+  group: coindcx-futures-supervisor
   cancel-in-progress: false
 
 jobs:
   supervise:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
       - name: Verify required workflows are active
-        env: {GH_TOKEN: ${{ github.token }}, REPO: ${{ github.repository }}}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           for wf in continuous-collector.yml process-batch.yml storage-housekeeping.yml nightly-supervisor.yml; do
@@ -31,43 +35,157 @@ jobs:
             echo "$wf state=$state"
             test "$state" = active
           done
+
       - name: Recover successful raw batches missing processing
-        env: {GH_TOKEN: ${{ github.token }}, REPO: ${{ github.repository }}}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           python - <<'PY'
-          import json, os, subprocess
+          import json, os, subprocess, time
           repo=os.environ['REPO']
-          def api(path): return json.loads(subprocess.check_output(['gh','api',path], text=True))
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api',path], text=True))
+          now=time.time()
           collectors=api(f'repos/{repo}/actions/workflows/continuous-collector.yml/runs?branch=main&per_page=20')['workflow_runs']
           processors=api(f'repos/{repo}/actions/workflows/process-batch.yml/runs?branch=main&per_page=100')['workflow_runs']
           for r in collectors:
-              if r.get('conclusion')!='success': continue
+              if r.get('conclusion')!='success':
+                  continue
+              created=time.mktime(time.strptime(r['created_at'][:19], '%Y-%m-%dT%H:%M:%S'))
+              if now-created < 20*60:
+                  continue
               arts=api(f"repos/{repo}/actions/runs/{r['id']}/artifacts?per_page=100")['artifacts']
               raws=[a for a in arts if not a.get('expired') and a['name'].startswith('coindcx-futures-raw-')]
-              if len(raws)!=1: continue
-              raw=raws[0]; batch=raw['name'].replace('coindcx-futures-raw-','',1)
+              if len(raws)!=1:
+                  print(f'SKIP collector={r["id"]}: raw artifact count={len(raws)}')
+                  continue
+              raw=raws[0]
+              batch=raw['name'].replace('coindcx-futures-raw-','',1)
               matches=[p for p in processors if batch in (p.get('display_title') or '') or batch in (p.get('name') or '')]
-              if any(p.get('conclusion')=='success' for p in matches) or any(p.get('status') in ('queued','in_progress') for p in matches): continue
-              print(f'RECOVER batch={batch} source={r["id"]} artifact={raw["id"]}')
-              subprocess.run(['gh','workflow','run','process-batch.yml','--repo',repo,'--ref','main','-f',f'batch_id={batch}','-f',f'source_run_id={r["id"]}','-f',f'artifact_id={raw["id"]}'],check=True)
+              if any(p.get('conclusion')=='success' for p in matches) or any(p.get('status') in ('queued','in_progress') for p in matches):
+                  continue
+              print(f'RECOVER processor batch={batch} source={r["id"]} artifact={raw["id"]}')
+              subprocess.run([
+                  'gh','workflow','run','process-batch.yml','--repo',repo,'--ref','main',
+                  '-f',f'batch_id={batch}',
+                  '-f',f'source_run_id={r["id"]}',
+                  '-f',f'artifact_id={raw["id"]}'
+              ],check=True)
+              break
           PY
-      - name: End-to-end health gate
-        env: {GH_TOKEN: ${{ github.token }}, REPO: ${{ github.repository }}}
+
+      - name: Recover stale collector
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           python - <<'PY'
-          import json, os, subprocess, sys, time
+          import json, os, subprocess, time
           repo=os.environ['REPO']
           def api(path): return json.loads(subprocess.check_output(['gh','api',path], text=True))
-          sets={w:api(f'repos/{repo}/actions/workflows/{w}/runs?branch=main&per_page=20')['workflow_runs'] for w in ['continuous-collector.yml','process-batch.yml','storage-housekeeping.yml']}
-          now=time.time(); bad=[]
-          def recent(r): return now-time.mktime(time.strptime(r['created_at'][:19],'%Y-%m-%dT%H:%M:%S'))<10*3600
-          if not any(recent(r) for r in sets['continuous-collector.yml']): bad.append('no collector run in 10h')
-          if not any(recent(r) for r in sets['process-batch.yml']): bad.append('no processor run in 10h')
-          if any(recent(r) and r.get('conclusion')=='failure' for r in sets['continuous-collector.yml']): bad.append('collector failure in 10h')
-          if any(recent(r) and r.get('conclusion')=='failure' for r in sets['process-batch.yml']): bad.append('processor failure in 10h')
-          if bad:
-              print('FINAL HEALTH FAIL'); print(*bad,sep='\n- '); sys.exit(1)
-          print('FINAL HEALTH PASS')
+          now=time.time()
+          runs=api(f'repos/{repo}/actions/workflows/continuous-collector.yml/runs?branch=main&per_page=10')['workflow_runs']
+          active=[r for r in runs if r.get('status') in ('queued','in_progress')]
+          if active:
+              print(f'Collector active: {active[0]["id"]}')
+              raise SystemExit(0)
+          completed=[r for r in runs if r.get('conclusion')=='success']
+          if not completed:
+              print('No successful collector exists; starting a 230-minute production batch.')
+              subprocess.run(['gh','workflow','run','continuous-collector.yml','--repo',repo,'--ref','main','-f','duration_minutes=230'],check=True)
+              raise SystemExit(0)
+          latest=completed[0]
+          age=now-time.mktime(time.strptime(latest['created_at'][:19], '%Y-%m-%dT%H:%M:%S'))
+          # 230m collection + 10m allowance. If exceeded, start recovery collection.
+          if age > 240*60:
+              print(f'RECOVER collector: latest successful run {latest["id"]} is {age/3600:.2f}h old.')
+              subprocess.run(['gh','workflow','run','continuous-collector.yml','--repo',repo,'--ref','main','-f','duration_minutes=230'],check=True)
+          else:
+              print(f'Collector cadence healthy: latest success {age/60:.1f} min ago.')
           PY
+
+      - name: Build machine-readable overall health report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set +e
+          python - <<'PY'
+          import json, os, subprocess, time
+          from pathlib import Path
+          repo=os.environ['REPO']
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api',path], text=True))
+          now=time.time()
+          names={
+              'collector':'continuous-collector.yml',
+              'processor':'process-batch.yml',
+              'storage':'storage-housekeeping.yml',
+          }
+          report={'checked_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),'repository':repo,'market_mode':'FUTURES_ONLY','overall':'PASS','components':{}}
+          bad=[]
+          for role,wf in names.items():
+              runs=api(f'repos/{repo}/actions/workflows/{wf}/runs?branch=main&per_page=20')['workflow_runs']
+              successful=[r for r in runs if r.get('conclusion')=='success']
+              active=[r for r in runs if r.get('status') in ('queued','in_progress')]
+              latest=runs[0] if runs else None
+              latest_success=successful[0] if successful else None
+              info={
+                  'workflow':wf,
+                  'latest_run_id': latest.get('id') if latest else None,
+                  'latest_status': latest.get('status') if latest else None,
+                  'latest_conclusion': latest.get('conclusion') if latest else None,
+                  'latest_success_run_id': latest_success.get('id') if latest_success else None,
+                  'active_runs': len(active),
+              }
+              max_age={'collector': 240*60,'processor': 300*60,'storage': 12*3600}[role]
+              if latest_success:
+                  age=now-time.mktime(time.strptime(latest_success['created_at'][:19], '%Y-%m-%dT%H:%M:%S'))
+                  info['latest_success_age_minutes']=round(age/60,1)
+                  if age>max_age and not active:
+                      bad.append(f'{role}: no successful run within allowed age')
+              else:
+                  bad.append(f'{role}: no successful run recorded')
+              if latest and latest.get('conclusion')=='failure':
+                  age=now-time.mktime(time.strptime(latest['created_at'][:19], '%Y-%m-%dT%H:%M:%S'))
+                  if age<10*3600:
+                      bad.append(f'{role}: recent workflow failure {latest["id"]}')
+              report['components'][role]=info
+
+          # Verify latest completed collector has a matching processed artifact, unless it finished very recently.
+          collector_runs=api(f'repos/{repo}/actions/workflows/continuous-collector.yml/runs?branch=main&per_page=10')['workflow_runs']
+          processor_runs=api(f'repos/{repo}/actions/workflows/process-batch.yml/runs?branch=main&per_page=50')['workflow_runs']
+          if collector_runs:
+              c=collector_runs[0]
+              if c.get('conclusion')=='success':
+                  arts=api(f"repos/{repo}/actions/runs/{c['id']}/artifacts?per_page=100")['artifacts']
+                  raws=[a for a in arts if not a.get('expired') and a['name'].startswith('coindcx-futures-raw-')]
+                  batch=raws[0]['name'].replace('coindcx-futures-raw-','',1) if len(raws)==1 else None
+                  age=now-time.mktime(time.strptime(c['created_at'][:19], '%Y-%m-%dT%H:%M:%S'))
+                  matching=[p for p in processor_runs if batch and batch in (p.get('display_title') or '')]
+                  proc_success=[p for p in matching if p.get('conclusion')=='success']
+                  report['latest_batch']={'collector_run_id':c['id'],'batch_id':batch,'collector_age_minutes':round(age/60,1),'processor_matches':len(matching),'processor_successes':len(proc_success)}
+                  if batch and age>20*60 and not proc_success and not any(p.get('status') in ('queued','in_progress') for p in matching):
+                      bad.append(f'latest batch {batch}: no completed processor after 20 minutes')
+
+          if bad:
+              report['overall']='FAIL'
+              report['failures']=bad
+          else:
+              report['failures']=[]
+          Path('supervisor_health.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+          print(json.dumps(report,indent=2))
+          raise SystemExit(1 if bad else 0)
+          PY
+
+      - name: Upload supervisor verdict
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: futures-supervisor-verdict-${{ github.run_id }}
+          path: supervisor_health.json
+          retention-days: 7
+          if-no-files-found: warn
