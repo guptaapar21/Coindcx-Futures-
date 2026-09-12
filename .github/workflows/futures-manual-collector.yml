@@ -1,16 +1,14 @@
-name: CoinDCX Futures continuous collector
+name: CoinDCX Futures manual continuous collector
 
 run-name: "Futures collector | ${{ github.event_name }} | run=${{ github.run_id }}"
 
 on:
-  schedule:
-    - cron: "23 */2 * * *"
   workflow_dispatch:
     inputs:
       duration_minutes:
         description: "Batch duration in minutes (5-230)"
         required: false
-        default: "120"
+        default: "30"
         type: string
       continue_chain:
         description: "Automatically start the next batch after this one"
@@ -57,10 +55,7 @@ jobs:
             repository_dispatch)
               echo "REPOSITORY_DISPATCH_ACTION=${{ github.event.action }}"
               echo "CHAIN_REASON=${{ github.event.client_payload.reason || 'unspecified' }}"
-              echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '120' }}"
-              ;;
-            schedule)
-              echo "SCHEDULED_RUN=true"
+              echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '30' }}"
               ;;
             *)
               echo "UNEXPECTED_EVENT=${{ github.event_name }}"
@@ -88,11 +83,9 @@ jobs:
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            minutes="${{ github.event.client_payload.duration_minutes || '120' }}"
-          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            minutes="${{ inputs.duration_minutes || '120' }}"
+            minutes="${{ github.event.client_payload.duration_minutes || '30' }}"
           else
-            minutes="120"
+            minutes="${{ inputs.duration_minutes || '30' }}"
           fi
           python - <<'PY' "$minutes"
 import sys
