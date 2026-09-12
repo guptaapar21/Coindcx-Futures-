@@ -1,7 +1,7 @@
 name: CoinDCX Futures batch processing
 on:
   workflow_run:
-    workflows: ["CoinDCX Futures continuous collector"]
+    workflows: ["CoinDCX Futures manual continuous collector"]
     types: [completed]
   workflow_dispatch:
     inputs:
