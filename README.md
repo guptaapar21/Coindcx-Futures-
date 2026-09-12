@@ -10,7 +10,7 @@ This repository is intentionally separate from the Spot+Futures production repos
 
 ## Current pipeline
 
-`continuous-collector.yml` -> raw Futures artifact -> exact-artifact processing -> Futures 1s/1m/3m features -> Futures Delta strategy research -> isolated compact history -> storage lifecycle/report.
+`continuous-collector.yml` -> raw Futures artifact -> exact-artifact processing -> Futures 1s/1m/3m features -> Futures Delta strategy research -> **Futures Hypothesis Engine** -> isolated compact/hypothesis history -> storage lifecycle/report.
 
 The collector is operator-controlled. `Run workflow` accepts:
 
@@ -58,19 +58,31 @@ Default starting capital: INR 50,000.
 
 Default exchange-fee assumption: 11.8 bps round trip.
 
-The processor writes two complementary reports:
+The processor writes:
 
-- `futures_hypotheses.json`: machine-readable full results, including every parameter combination.
-- `futures_research_report.md`: concise human-readable report with coverage, best holdout results and interpretation guardrails.
-
-The report is **holdout-first** and explicitly labels small-sample results as exploratory. A positive holdout result with very few trades is not treated as proof of a durable strategy.
+- `futures_hypotheses.json`: machine-readable full batch results, including every parameter combination.
+- `futures_research_report.md`: concise human-readable batch report.
+- `futures_hypothesis_engine_report.md`: cross-batch hypothesis summary designed as the primary human-readable artifact.
+- `futures_hypothesis_engine_summary.json`: machine-readable cross-batch engine output.
 
 Funding, spread, slippage and execution uncertainty are excluded from current P&L and must be evaluated before any live conclusion.
+
+## Futures Hypothesis Engine
+
+The hypothesis engine is an additive layer; it does not replace the collector, feature builder or existing batch strategy research.
+
+After every processed batch it persists compact side-specific holdout evidence in `data/research/futures_hypothesis_engine/batch_results.jsonl` and a persistent hypothesis registry in `data/research/futures_hypothesis_engine/hypothesis_registry.json`.
+
+The engine evaluates normalized Delta-tail hypothesis families for each symbol and for an all-symbol pooled view. For each candidate it reconstructs a walk-forward history: discovery can use only batches strictly earlier than the first forward-test batch; the first eligible future batch becomes a genuine forward test; later batches remain forward evidence. New candidates discovered from the newest combined history are not credited with that same batch as forward evidence.
+
+The engine records positive-batch fraction, trade count, median/worst/best batch net basis points, forward P&L, parameter-neighbour support and lifecycle status. Statuses are research labels only: `CANDIDATE`, `SURVIVING`, `ROBUST`, `WEAKENING`, and `RETIRED`.
+
+The engine never auto-promotes a hypothesis to live trading. The 11.8 bps round-trip exchange-fee model is retained; spread, slippage, funding and execution uncertainty remain outside the current engine scope.
 
 ## Operational acceptance
 
 A green code/test state is not by itself a production acceptance. A fresh batch must prove:
 
-`correct commit -> Futures raw capture -> required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol feature build -> valid 1s grid/depth -> strategy report -> compact 1m/3m commit/push -> storage report -> next collector cycle when chaining is enabled`
+`correct commit -> Futures raw capture -> required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol feature build -> valid 1s grid/depth -> strategy report -> hypothesis engine -> hypothesis history commit -> compact 1m/3m commit/push -> storage report -> next collector cycle when chaining is enabled`
 
 The first successful batch is an infrastructure/research acceptance test, not a profitability claim.
