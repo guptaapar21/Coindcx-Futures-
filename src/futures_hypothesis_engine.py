@@ -150,7 +150,7 @@ def build(rows):
         else:
             status="WEAKENING"
         hypothesis["status"]=status
-        hypothesis["description"]=f"Extreme {'positive Delta -> SHORT' if direction=='SHORT' else 'negative Delta -> LONG'} | {window_s}s -> {horizon_s}s | {symbol}"
+        hypothesis["description"]=f"Extreme {'positive Delta -> SHORT' if hypothesis['direction']=='SHORT' else 'negative Delta -> LONG'} | {hypothesis['delta_window_s']}s -> {hypothesis['horizon_s']}s | {hypothesis['symbol']}"
     return result
 
 
