@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Nightly end-to-end health check for the Futures research pipeline."""
+"""Manual end-to-end health check for the Futures research pipeline.
+
+This utility inspects recent collector, processor and storage-housekeeping runs;
+it is not a scheduled supervisor and does not dispatch collection or research.
+"""
 import json, os, subprocess, sys, time
 
 repo=os.environ.get('REPO')

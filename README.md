@@ -12,12 +12,12 @@ This repository is intentionally separate from the Spot+Futures production repos
 
 `continuous-collector.yml` -> raw Futures artifact -> exact-artifact processing -> Futures 1s/1m/3m features -> Futures Delta strategy research -> **Futures Hypothesis Engine** -> isolated compact/hypothesis history -> storage lifecycle/report.
 
-The collector is operator-controlled. `Run workflow` accepts:
+The collector is operator-controlled. The default production batch is **120 minutes (2 hours)**. `Run workflow` accepts:
 
-- `duration_minutes`: 5-230 minutes; default 30.
+- `duration_minutes`: 5-230 minutes; default 120.
 - `continue_chain`: `false` for one standalone batch; `true` to automatically start the next batch after each successful raw batch.
 
-A chained run carries the selected duration forward. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
+A chained run carries the selected duration forward, so the default chained cadence is approximately one new batch every 2 hours. Processing of each completed batch is dispatched independently immediately after raw upload, so processing does not block the next collection cycle. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
 
 ## Captured market data
 

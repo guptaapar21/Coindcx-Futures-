@@ -6,7 +6,7 @@ on:
       duration_minutes:
         description: "Batch duration in minutes (5-230)"
         required: false
-        default: "30"
+        default: "120"
         type: string
       continue_chain:
         description: "Start/continue automatic batch chaining"
@@ -53,7 +53,7 @@ jobs:
             repository_dispatch)
               echo "REPOSITORY_DISPATCH_ACTION=${{ github.event.action }}"
               echo "CHAIN_REASON=${{ github.event.client_payload.reason || 'unspecified' }}"
-              echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '30' }}"
+              echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '120' }}"
               ;;
             *)
               echo "UNEXPECTED_EVENT=${{ github.event_name }}"
@@ -81,9 +81,9 @@ jobs:
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            minutes="${{ github.event.client_payload.duration_minutes || '30' }}"
+            minutes="${{ github.event.client_payload.duration_minutes || '120' }}"
           else
-            minutes="${{ inputs.duration_minutes || '30' }}"
+            minutes="${{ inputs.duration_minutes || '120' }}"
           fi
           python - <<'PY' "$minutes"
           import sys
