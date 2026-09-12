@@ -1,14 +1,16 @@
-name: CoinDCX Futures manual continuous collector
+name: CoinDCX Futures continuous collector
 
 run-name: "Futures collector | ${{ github.event_name }} | run=${{ github.run_id }}"
 
 on:
+  schedule:
+    - cron: "23 */2 * * *"
   workflow_dispatch:
     inputs:
       duration_minutes:
         description: "Batch duration in minutes (5-230)"
         required: false
-        default: "30"
+        default: "120"
         type: string
       continue_chain:
         description: "Automatically start the next batch after this one"
@@ -47,17 +49,24 @@ jobs:
           echo "SHA=${GITHUB_SHA}"
           echo "RUN_ID=${GITHUB_RUN_ID}"
           echo "ACTOR=${GITHUB_ACTOR}"
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "DURATION_INPUT=${{ inputs.duration_minutes }}"
-            echo "CONTINUE_CHAIN=${{ inputs.continue_chain }}"
-          elif [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            echo "REPOSITORY_DISPATCH_ACTION=${{ github.event.action }}"
-            echo "CHAIN_REASON=${{ github.event.client_payload.reason || 'unspecified' }}"
-            echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '30' }}"
-          else
-            echo "UNEXPECTED_EVENT=${{ github.event_name }}"
-            exit 1
-          fi
+          case "${{ github.event_name }}" in
+            workflow_dispatch)
+              echo "DURATION_INPUT=${{ inputs.duration_minutes }}"
+              echo "CONTINUE_CHAIN=${{ inputs.continue_chain }}"
+              ;;
+            repository_dispatch)
+              echo "REPOSITORY_DISPATCH_ACTION=${{ github.event.action }}"
+              echo "CHAIN_REASON=${{ github.event.client_payload.reason || 'unspecified' }}"
+              echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '120' }}"
+              ;;
+            schedule)
+              echo "SCHEDULED_RUN=true"
+              ;;
+            *)
+              echo "UNEXPECTED_EVENT=${{ github.event_name }}"
+              exit 1
+              ;;
+          esac
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -79,9 +88,11 @@ jobs:
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
-            minutes="${{ github.event.client_payload.duration_minutes || '30' }}"
+            minutes="${{ github.event.client_payload.duration_minutes || '120' }}"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            minutes="${{ inputs.duration_minutes || '120' }}"
           else
-            minutes="${{ inputs.duration_minutes || '30' }}"
+            minutes="120"
           fi
           python - <<'PY' "$minutes"
 import sys
@@ -134,8 +145,6 @@ assert not (files & forbidden), f'Spot raw files present: {sorted(files & forbid
 assert all(x.stat().st_size > 0 for x in p.iterdir() if x.is_file()), 'empty raw artifact file detected'
 PY
 
-      # Upload before triggering either downstream processing or the next
-      # collection batch so both handoffs have an exact artifact reference.
       - id: raw_upload
         name: Upload raw Futures batch
         if: ${{ steps.raw_complete.outputs.complete == 'true' }}
@@ -147,8 +156,6 @@ PY
           compression-level: 0
           if-no-files-found: error
 
-      # Start the next acquisition BEFORE downstream research, exactly so a
-      # research failure cannot strand the acquisition chain.
       - name: Trigger next Futures batch
         if: ${{ steps.raw_upload.outcome == 'success' && (github.event_name == 'repository_dispatch' || inputs.continue_chain == true) }}
         env:
@@ -166,8 +173,6 @@ PY
             -f client_payload[reason]='raw_batch_finished' \
             -f client_payload[duration_minutes]="${DURATION_MINUTES}"
 
-      # Process the exact artifact from this collector run. This is deliberately
-      # independent of collector success/failure after raw collection completes.
       - name: Trigger Futures batch processing
         if: ${{ steps.raw_upload.outcome == 'success' }}
         env:
