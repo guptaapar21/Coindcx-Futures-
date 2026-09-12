@@ -66,19 +66,19 @@ jobs:
           test -f "runtime/${BATCH_ID}/data_quality.json"
 
           python - <<'PY'
-import json, os
-from pathlib import Path
-p=Path('runtime')/os.environ['BATCH_ID']
-m=json.loads((p/'manifest.json').read_text())
-q=json.loads((p/'data_quality.json').read_text())
-assert m.get('market_mode') == 'FUTURES_ONLY'
-assert q.get('market_mode') == 'FUTURES_ONLY'
-required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
-files={x.name for x in p.iterdir()}
-assert required.issubset(files), f'missing Futures raw files: {sorted(required-files)}'
-forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
-assert not (files & forbidden), f'Spot raw files present: {sorted(files & forbidden)}'
-PY
+          import json, os
+          from pathlib import Path
+          p=Path('runtime')/os.environ['BATCH_ID']
+          m=json.loads((p/'manifest.json').read_text())
+          q=json.loads((p/'data_quality.json').read_text())
+          assert m.get('market_mode') == 'FUTURES_ONLY'
+          assert q.get('market_mode') == 'FUTURES_ONLY'
+          required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
+          files={x.name for x in p.iterdir()}
+          assert required.issubset(files), f'missing Futures raw files: {sorted(required-files)}'
+          forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
+          assert not (files & forbidden), f'Spot raw files present: {sorted(files & forbidden)}'
+          PY
 
       - name: Build Futures features
         env:
@@ -90,17 +90,17 @@ PY
           BATCH_ID: ${{ github.event.client_payload.batch_id }}
         run: |
           python - <<'PY'
-import csv,gzip,os,sys
-from pathlib import Path
-expected={'B-BTC_USDT','B-ETH_USDT','B-SOL_USDT','B-SUI_USDT','B-XRP_USDT','B-DOGE_USDT'}
-p=Path('runtime')/os.environ['BATCH_ID']/'features_1s.csv.gz'
-with gzip.open(p,'rt',encoding='utf-8',newline='') as f: rs=list(csv.DictReader(f))
-for s in expected:
-    x=sorted(int(r['epoch_second']) for r in rs if r['symbol']==s)
-    if not x or x!=list(range(x[0],x[-1]+1)): sys.exit(f'non-contiguous 1s grid for {s}')
-    if not any(r.get('futures_book_valid')=='True' for r in rs if r['symbol']==s): sys.exit(f'no valid book for {s}')
-if {r['symbol'] for r in rs} != expected: sys.exit('symbol set mismatch')
-PY
+          import csv,gzip,os,sys
+          from pathlib import Path
+          expected={'B-BTC_USDT','B-ETH_USDT','B-SOL_USDT','B-SUI_USDT','B-XRP_USDT','B-DOGE_USDT'}
+          p=Path('runtime')/os.environ['BATCH_ID']/'features_1s.csv.gz'
+          with gzip.open(p,'rt',encoding='utf-8',newline='') as f: rs=list(csv.DictReader(f))
+          for s in expected:
+              x=sorted(int(r['epoch_second']) for r in rs if r['symbol']==s)
+              if not x or x!=list(range(x[0],x[-1]+1)): sys.exit(f'non-contiguous 1s grid for {s}')
+              if not any(r.get('futures_book_valid')=='True' for r in rs if r['symbol']==s): sys.exit(f'no valid book for {s}')
+          if {r['symbol'] for r in rs} != expected: sys.exit('symbol set mismatch')
+          PY
 
       - name: Run Futures strategy research
         env:
@@ -157,4 +157,5 @@ PY
           name: coindcx-futures-storage-report-${{ github.run_id }}
           path: storage_report.json
           retention-days: 14
+          compression-level: 0
           if-no-files-found: ignore
