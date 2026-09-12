@@ -31,10 +31,10 @@ Collection is operator-controlled through `.github/workflows/continuous-collecto
 
 Manual `Run workflow` inputs:
 
-- `duration_minutes`: 5-230 minutes; default 30.
+- `duration_minutes`: 5-230 minutes; default **120 minutes (2 hours)**.
 - `continue_chain`: `false` for a single standalone batch; `true` to continue automatically after each successful raw batch.
 
-When chaining is enabled, the selected duration is carried in the repository-dispatch payload to the next collector run. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
+When chaining is enabled with the default duration, the selected **120-minute** duration is carried into the next collector run. A completed raw batch immediately triggers its dedicated processing run while the next collection batch starts independently. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
 
 ## Feature contract
 
@@ -126,6 +126,6 @@ Raw and processed artifacts use Futures-specific names and isolated Futures comp
 
 A fresh production-accepted batch must demonstrate:
 
-`correct commit -> Futures raw capture -> all required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol 1s feature build -> valid depth -> strategy report -> isolated 1m/3m compact commit/push -> storage report -> next collector cycle when chaining is enabled`
+`correct commit -> Futures raw capture -> all required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol 1s feature build -> valid depth -> strategy report -> isolated 1m/3m compact commit/push -> storage report -> next 120-minute collector cycle when chaining is enabled`
 
 A green test workflow is necessary but not sufficient. The first successful end-to-end batch is an infrastructure/research acceptance test, not a profitability claim.
