@@ -14,10 +14,10 @@ This repository is intentionally separate from the Spot+Futures production repos
 
 The collector is operator-controlled. `Run workflow` accepts:
 
-- `duration_minutes`: 5-230 minutes; default 30.
+- `duration_minutes`: 5-230 minutes; default **120 minutes (2 hours)**.
 - `continue_chain`: `false` for one standalone batch; `true` to automatically start the next batch after each successful raw batch.
 
-A chained run carries the selected duration forward. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
+When chaining is enabled with the default duration, the system continuously runs **2-hour Futures collection batches**. A completed raw batch is handed to processing immediately, while the next 2-hour collection starts independently. A chained run carries the selected duration forward. There is no collector cron and no GitHub supervisor/watchdog. External supervision is handled outside GitHub.
 
 ## Captured market data
 
@@ -83,6 +83,6 @@ The engine never auto-promotes a hypothesis to live trading. The 11.8 bps round-
 
 A green code/test state is not by itself a production acceptance. A fresh batch must prove:
 
-`correct commit -> Futures raw capture -> required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol feature build -> valid 1s grid/depth -> strategy report -> hypothesis engine -> hypothesis history commit -> compact 1m/3m commit/push -> storage report -> next collector cycle when chaining is enabled`
+`correct commit -> Futures raw capture -> required streams -> exact artifact handoff -> exact artifact download/extraction -> six-symbol feature build -> valid 1s grid/depth -> strategy report -> hypothesis engine -> hypothesis history commit -> compact 1m/3m commit/push -> storage report -> next 120-minute collector cycle when chaining is enabled`
 
 The first successful batch is an infrastructure/research acceptance test, not a profitability claim.
