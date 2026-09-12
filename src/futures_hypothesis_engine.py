@@ -37,7 +37,7 @@ def side_records(result,batch_id,cost_bps):
         out.append({"batch_id":batch_id,"scope":"SYMBOL","symbol":s,"window_s":int(w),"horizon_s":int(h),
                     "direction":side,"trades":len(trades),"wins":sum(1 for _,p in trades if p>0),
                     "net_pnl_inr":sum(p for _,p in trades),"net_return_bps_sum":sum(net_bps),
-                    "mean_net_bps":sum(net_bps)/len(net_bps),"median_net_bps":median(net_bps)})
+                    "mean_net_bps":sum(net_bps)/len(trades),"median_net_bps":median(net_bps)})
     return out
 
 
@@ -83,51 +83,74 @@ def discovery_ok(recs):
 
 def build(rows):
     defs=[]
-    for s in SYMBOLS:
-        for w in WINDOWS:
-            for h in HORIZONS:
-                for d in ("LONG","SHORT"):defs.append(("SYMBOL",s,w,h,d))
-    for w in WINDOWS:
-        for h in HORIZONS:
-            for d in ("LONG","SHORT"):defs.append(("ALL_SYMBOLS","ALL_SYMBOLS",w,h,d))
+    for symbol in SYMBOLS:
+        for window_s in WINDOWS:
+            for horizon_s in HORIZONS:
+                for direction in ("LONG","SHORT"):
+                    defs.append(("SYMBOL",symbol,window_s,horizon_s,direction))
+    for window_s in WINDOWS:
+        for horizon_s in HORIZONS:
+            for direction in ("LONG","SHORT"):
+                defs.append(("ALL_SYMBOLS","ALL_SYMBOLS",window_s,horizon_s,direction))
     batches=sorted({str(r["batch_id"]) for r in rows})
     result={}
     for key in defs:
-        scope,s,w,h,d=key; hid=stable_id(scope,s,w,h,d); recs=aggregate(rows,key)
-        first=None; forward=[]
+        scope,symbol,window_s,horizon_s,direction=key
+        hypothesis_id=stable_id(scope,symbol,window_s,horizon_s,direction)
+        recs=aggregate(rows,key)
+        first_forward_batch=None; forward_tests=[]
         for bid in batches:
             prior=[r for r in recs if str(r["batch_id"])<bid]
             cur=[r for r in recs if str(r["batch_id"])==bid]
-            if first is None and discovery_ok(prior):first=bid
-            if first is not None and bid>=first and cur:forward.append(cur[0])
-        retro={"batches":len(recs),"positive_batches":sum(1 for r in recs if float(r["mean_net_bps"])>0),
-               "positive_batch_fraction":(sum(1 for r in recs if float(r["mean_net_bps"])>0)/len(recs) if recs else 0),
-               "trades":sum(int(r["trades"]) for r in recs),"median_batch_mean_net_bps":(median(float(r["mean_net_bps"]) for r in recs) if recs else None),
-               "net_pnl_inr":sum(float(r["net_pnl_inr"]) for r in recs),"eligible":discovery_ok(recs)}
-        fp=[float(r["mean_net_bps"]) for r in forward]; pos=sum(1 for x in fp if x>0)
-        fsum={"batches_tested":len(forward),"positive_batches":pos,"positive_batch_fraction":(pos/len(forward) if forward else 0),
-              "trades":sum(int(r["trades"]) for r in forward),"net_pnl_inr":sum(float(r["net_pnl_inr"]) for r in forward),
-              "median_batch_mean_net_bps":median(fp) if fp else None,"worst_batch_mean_net_bps":min(fp) if fp else None,
-              "best_batch_mean_net_bps":max(fp) if fp else None}
-        result[hid]={"hypothesis_id":hid,"scope":scope,"symbol":s,"delta_window_s":w,"horizon_s":h,"direction":d,
-                     "first_forward_batch":first,"retrospective_evidence":retro,"forward_tests":forward,"forward_summary":fsum}
+            if first_forward_batch is None and discovery_ok(prior):
+                first_forward_batch=bid
+            if first_forward_batch is not None and bid>=first_forward_batch and cur:
+                forward_tests.append(cur[0])
+        retrospective={"batches":len(recs),"positive_batches":sum(1 for r in recs if float(r["mean_net_bps"])>0),
+                       "positive_batch_fraction":(sum(1 for r in recs if float(r["mean_net_bps"])>0)/len(recs) if recs else 0),
+                       "trades":sum(int(r["trades"]) for r in recs),
+                       "median_batch_mean_net_bps":(median(float(r["mean_net_bps"]) for r in recs) if recs else None),
+                       "net_pnl_inr":sum(float(r["net_pnl_inr"]) for r in recs),"eligible":discovery_ok(recs)}
+        forward_means=[float(r["mean_net_bps"]) for r in forward_tests]
+        forward_positive=sum(1 for value in forward_means if value>0)
+        forward_summary={"batches_tested":len(forward_tests),"positive_batches":forward_positive,
+                         "positive_batch_fraction":(forward_positive/len(forward_tests) if forward_tests else 0),
+                         "trades":sum(int(r["trades"]) for r in forward_tests),
+                         "net_pnl_inr":sum(float(r["net_pnl_inr"]) for r in forward_tests),
+                         "median_batch_mean_net_bps":median(forward_means) if forward_means else None,
+                         "worst_batch_mean_net_bps":min(forward_means) if forward_means else None,
+                         "best_batch_mean_net_bps":max(forward_means) if forward_means else None}
+        result[hypothesis_id]={"hypothesis_id":hypothesis_id,"scope":scope,"symbol":symbol,
+                               "delta_window_s":window_s,"horizon_s":horizon_s,"direction":direction,
+                               "first_forward_batch":first_forward_batch,"retrospective_evidence":retrospective,
+                               "forward_tests":forward_tests,"forward_summary":forward_summary}
     # Parameter-neighbour support is deliberately simple and local.
-    for h in result.values():
+    for hypothesis in result.values():
         support=0
-        if h["scope"]=="SYMBOL":
-            wi=WINDOWS.index(h["delta_window_s"]); hi=HORIZONS.index(h["horizon_s"])
-            for dw in WINDOWS:
-                for hh in HORIZONS:
-                    if (abs(WINDOWS.index(dw)-wi)+abs(HORIZONS.index(hh)-hi))!=1:continue
-                    nh=result[stable_id("SYMBOL",h["symbol"],dw,hh,h["direction"])]
-                    if nh["retrospective_evidence"]["eligible"]:support+=1
-        h["parameter_neighbor_support"]=support
-        f=h["forward_summary"]; k=f["batches_tested"]; frac=f["positive_batch_fraction"]; med=f["median_batch_mean_net_bps"]
-        h["status"]=("ROBUST" if k>=ROBUST_FORWARD_BATCHES and frac>=ROBUST_POSITIVE_FRACTION and med is not None and med>0 and support>=1 else
-                      "SURVIVING" if k>=SURVIVE_FORWARD_BATCHES and frac>=MIN_POSITIVE_FRACTION and med is not None and med>0 else
-                      "RETIRED" if k and (frac<.40 or pos==0 if False else False) else
-                      "CANDIDATE" if k==0 else "WEAKENING")
-        h["description"]=f"Extreme {'positive Delta -> SHORT' if d=='SHORT' else 'negative Delta -> LONG'} | {w}s -> {h}s | {s}"
+        if hypothesis["scope"]=="SYMBOL":
+            wi=WINDOWS.index(hypothesis["delta_window_s"]); hi=HORIZONS.index(hypothesis["horizon_s"])
+            for neighbour_window in WINDOWS:
+                for neighbour_horizon in HORIZONS:
+                    if (abs(WINDOWS.index(neighbour_window)-wi)+abs(HORIZONS.index(neighbour_horizon)-hi))!=1:continue
+                    neighbour=result[stable_id("SYMBOL",hypothesis["symbol"],neighbour_window,neighbour_horizon,hypothesis["direction"])]
+                    if neighbour["retrospective_evidence"]["eligible"]:support+=1
+        hypothesis["parameter_neighbor_support"]=support
+        forward=hypothesis["forward_summary"]
+        tested_batches=forward["batches_tested"]
+        positive_fraction=forward["positive_batch_fraction"]
+        median_net_bps=forward["median_batch_mean_net_bps"]
+        if tested_batches>=ROBUST_FORWARD_BATCHES and positive_fraction>=ROBUST_POSITIVE_FRACTION and median_net_bps is not None and median_net_bps>0 and support>=1:
+            status="ROBUST"
+        elif tested_batches>=SURVIVE_FORWARD_BATCHES and positive_fraction>=MIN_POSITIVE_FRACTION and median_net_bps is not None and median_net_bps>0:
+            status="SURVIVING"
+        elif tested_batches>0 and positive_fraction<0.40:
+            status="RETIRED"
+        elif tested_batches==0:
+            status="CANDIDATE"
+        else:
+            status="WEAKENING"
+        hypothesis["status"]=status
+        hypothesis["description"]=f"Extreme {'positive Delta -> SHORT' if hypothesis['direction']=='SHORT' else 'negative Delta -> LONG'} | {hypothesis['delta_window_s']}s -> {hypothesis['horizon_s']}s | {hypothesis['symbol']}"
     return result
 
 
@@ -142,22 +165,24 @@ def report_md(rep):
     if not any(x["status"] in ("ROBUST","SURVIVING") for x in rep["all_hypotheses"]):p.append("| — | No hypothesis has enough genuine forward evidence yet | — | — | — | — | — | CANDIDATE |")
     p += ["","## Current-batch forward tests","","| Hypothesis | First forward batch | Current net bp | Trades | Result |","|---|---|---:|---:|---|"]
     cur=[]
-    for h in rep["all_hypotheses"]:
-        for r in h["forward_tests"]:
-            if str(r["batch_id"])==rep["current_batch_id"]:cur.append((h,r));break
+    for hypothesis in rep["all_hypotheses"]:
+        for record in hypothesis["forward_tests"]:
+            if str(record["batch_id"])==rep["current_batch_id"]:
+                cur.append((hypothesis,record));break
     cur.sort(key=lambda x:float(x[1]["mean_net_bps"]),reverse=True)
-    for h,r in cur[:20]:p.append(f"| {h['description']} | {h['first_forward_batch']} | {float(r['mean_net_bps']):.3f} | {r['trades']} | {'POSITIVE' if float(r['mean_net_bps'])>0 else 'NEGATIVE'} |")
+    for hypothesis,record in cur[:20]:
+        p.append(f"| {hypothesis['description']} | {hypothesis['first_forward_batch']} | {float(record['mean_net_bps']):.3f} | {record['trades']} | {'POSITIVE' if float(record['mean_net_bps'])>0 else 'NEGATIVE'} |")
     if not cur:p.append("| — | — | — | — | No prior candidate tested on this batch |")
     p += ["","## Combined-history candidates","","| Rank | Hypothesis | Historical batches | Positive | Median net bp | Trades |","|---:|---|---:|---:|---:|---:|"]
     retro=sorted(rep["all_hypotheses"],key=lambda x:(not x["retrospective_evidence"]["eligible"],-x["retrospective_evidence"]["positive_batch_fraction"],-(x["retrospective_evidence"]["median_batch_mean_net_bps"] or -999)))
-    for i,h in enumerate([x for x in retro if x["retrospective_evidence"]["eligible"]][:20],1):
-        e=h["retrospective_evidence"];p.append(f"| {i} | {h['description']} | {e['batches']} | {e['positive_batch_fraction']*100:.0f}% | {(e['median_batch_mean_net_bps'] or 0):.3f} | {e['trades']} |")
+    for i,hypothesis in enumerate([x for x in retro if x["retrospective_evidence"]["eligible"]][:20],1):
+        evidence=hypothesis["retrospective_evidence"];p.append(f"| {i} | {hypothesis['description']} | {evidence['batches']} | {evidence['positive_batch_fraction']*100:.0f}% | {(evidence['median_batch_mean_net_bps'] or 0):.3f} | {evidence['trades']} |")
     p += ["","## Batch evidence for leading hypotheses",""]
-    for h in [x for x in surv if x["retrospective_evidence"]["eligible"]][:10]:
-        p += [f"### {h['hypothesis_id']} — {h['description']}","","| Batch | Net bp | Trades |","|---|---:|---:|"]
+    for hypothesis in [x for x in surv if x["retrospective_evidence"]["eligible"]][:10]:
+        p += [f"### {hypothesis['hypothesis_id']} — {hypothesis['description']}","","| Batch | Net bp | Trades |","|---|---:|---:|"]
         seen=set()
-        for r in h["forward_tests"]:
-            seen.add(r["batch_id"]);p.append(f"| {r['batch_id']} | {float(r['mean_net_bps']):.3f} | {r['trades']} |")
+        for record in hypothesis["forward_tests"]:
+            seen.add(record["batch_id"]);p.append(f"| {record['batch_id']} | {float(record['mean_net_bps']):.3f} | {record['trades']} |")
         if not seen:p.append("| No forward tests | — | — |")
         p.append("")
     p += ["## Guardrails","","- Discovery for a forward batch uses only strictly earlier batches.","- A newly discoverable hypothesis is not credited with the batch that made it discoverable.","- Delta-tail definitions use the same 10th/90th percentile contract as the existing batch research.","- Current modeled cost is 11.8 bps round trip; spread, slippage, funding and execution uncertainty remain excluded.","- No live-trading promotion is performed by this engine."]
@@ -171,8 +196,8 @@ def main():
     for r in allr:sym.extend(side_records(r,a.batch_id,a.round_trip_bps))
     cur=sym+pool_records(sym,a.batch_id); hp=Path(a.history); previous=load_history(hp)
     rows=[r for r in previous if str(r.get("batch_id"))!=a.batch_id]+cur; rows.sort(key=lambda r:(str(r["batch_id"]),r["scope"],r["symbol"],r["window_s"],r["horizon_s"],r["direction"]))
-    data=build(rows); survivors=sum(1 for h in data.values() if h["status"] in ("SURVIVING","ROBUST")); candidates=sum(1 for h in data.values() if h["retrospective_evidence"]["eligible"])
-    current_tests=sum(1 for h in data.values() if any(str(r["batch_id"])==a.batch_id for r in h["forward_tests"]))
+    data=build(rows); survivors=sum(1 for hypothesis in data.values() if hypothesis["status"] in ("SURVIVING","ROBUST")); candidates=sum(1 for hypothesis in data.values() if hypothesis["retrospective_evidence"]["eligible"])
+    current_tests=sum(1 for hypothesis in data.values() if any(str(record["batch_id"])==a.batch_id for record in hypothesis["forward_tests"]))
     rep={"schema_version":1,"engine":"FUTURES_HYPOTHESIS_ENGINE","engine_status":"EXPLORATORY__NO_AUTO_LIVE_PROMOTION","current_batch_id":a.batch_id,"batch_count":len({r["batch_id"] for r in rows}),"batches_observed":sorted({str(r["batch_id"]) for r in rows}),"hypotheses_evaluated":len(data),"retrospective_candidates":candidates,"forward_survivors":survivors,"current_batch_forward_tests":current_tests,"all_hypotheses":list(data.values())}
     hp.parent.mkdir(parents=True,exist_ok=True)
     records_by_batch={}
