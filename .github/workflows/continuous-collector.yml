@@ -1,9 +1,8 @@
 name: CoinDCX Futures continuous collector
 
 on:
-  # 30-minute production batches, continuously scheduled every 30 minutes.
-  schedule:
-    - cron: "*/30 * * * *"
+  # No automatic cron. Operator controls when collection starts.
+  # A manual run may optionally self-chain into another batch.
   workflow_dispatch:
     inputs:
       duration_minutes:
@@ -11,6 +10,14 @@ on:
         required: false
         default: "30"
         type: string
+      continue_chain:
+        description: "Continue automatically after this batch"
+        required: false
+        default: false
+        type: boolean
+  repository_dispatch:
+    types:
+      - coindcx-next-batch
 
 permissions:
   contents: read
@@ -36,7 +43,11 @@ jobs:
       - id: duration
         shell: bash
         run: |
-          minutes="${{ inputs.duration_minutes || '30' }}"
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            minutes="${{ github.event.client_payload.duration_minutes || '30' }}"
+          else
+            minutes="${{ inputs.duration_minutes || '30' }}"
+          fi
           python - <<'PY' "$minutes"
 import sys
 n=int(sys.argv[1])
@@ -79,6 +90,23 @@ PY
           retention-days: 4
           compression-level: 0
           if-no-files-found: error
+      - name: Trigger next Futures batch
+        if: ${{ steps.raw_upload.outcome == 'success' && (github.event_name == 'repository_dispatch' || inputs.continue_chain == true) }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DURATION_MINUTES: ${{ steps.duration.outputs.minutes }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "/repos/${REPO}/dispatches" \
+            -f event_type='coindcx-next-batch' \
+            -f client_payload[reason]='raw_batch_finished' \
+            -f client_payload[duration_minutes]="${DURATION_MINUTES}"
       - name: Emit collection summary
         run: |
           echo "COLLECTOR_OK batch=${{ steps.batch.outputs.batch_id }} artifact=${{ steps.raw_upload.outputs.artifact-id }} run=${GITHUB_RUN_ID}"
