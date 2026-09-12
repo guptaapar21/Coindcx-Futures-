@@ -1,2 +1,2 @@
 ## Overnight runbook
-The collector is independent from processing. Raw Futures artifacts must be followed by a processor run. Five scheduled supervisor checks cover the overnight period. The supervisor records failures in workflow logs rather than allowing a green collector to imply an end-to-end success.
+The Futures collector and processor are event-driven and independent. The default production collector batch is 120 minutes (2 hours). After a successful raw upload, the completed batch is dispatched for processing while the next 120-minute collection cycle starts when chaining is enabled. There is no GitHub supervisor/watchdog workflow in this repository; storage housekeeping runs independently on its own schedule. External supervision is handled outside GitHub.
