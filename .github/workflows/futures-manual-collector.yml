@@ -1,5 +1,7 @@
 name: CoinDCX Futures manual continuous collector
 
+run-name: "Futures collector | ${{ github.event_name }} | run=${{ github.run_id }}"
+
 on:
   workflow_dispatch:
     inputs:
@@ -35,6 +37,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      - name: Verify trigger source before collection
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "EVENT_NAME=${{ github.event_name }}"
+          echo "REF=${GITHUB_REF}"
+          echo "SHA=${GITHUB_SHA}"
+          echo "RUN_ID=${GITHUB_RUN_ID}"
+          echo "ACTOR=${GITHUB_ACTOR}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "DURATION_INPUT=${{ inputs.duration_minutes }}"
+            echo "CONTINUE_CHAIN=${{ inputs.continue_chain }}"
+          elif [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "REPOSITORY_DISPATCH_ACTION=${{ github.event.action }}"
+            echo "CHAIN_REASON=${{ github.event.client_payload.reason || 'unspecified' }}"
+            echo "CHAIN_DURATION=${{ github.event.client_payload.duration_minutes || '30' }}"
+          else
+            echo "UNEXPECTED_EVENT=${{ github.event_name }}"
+            exit 1
+          fi
 
       - name: Setup Python
         uses: actions/setup-python@v5
