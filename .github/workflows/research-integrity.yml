@@ -43,32 +43,26 @@ assert Path('src/futures_research.py').exists()
 assert Path('src/futures_strategy_research.py').exists()
 PY
 
-      - name: Verify collector control model
+      - name: Verify proven manual collector control model
         shell: bash
         run: |
           set -euo pipefail
-          test -f .github/workflows/futures-manual-collector.yml
-          ! test -f .github/workflows/continuous-collector.yml
-          grep -q '^  workflow_dispatch:' .github/workflows/futures-manual-collector.yml
-          grep -q '^  repository_dispatch:' .github/workflows/futures-manual-collector.yml
-          grep -q 'duration_minutes:' .github/workflows/futures-manual-collector.yml
-          grep -q 'continue_chain:' .github/workflows/futures-manual-collector.yml
-          ! grep -qE '^\s*schedule:' .github/workflows/futures-manual-collector.yml
-          grep -q 'coindcx-next-batch' .github/workflows/futures-manual-collector.yml
-          grep -q 'coindcx-process-batch' .github/workflows/futures-manual-collector.yml
+          test -f .github/workflows/continuous-collector.yml
+          ! test -f .github/workflows/futures-manual-collector.yml
+          grep -q '^  workflow_dispatch:' .github/workflows/continuous-collector.yml
+          grep -q '^  repository_dispatch:' .github/workflows/continuous-collector.yml
+          grep -q 'duration_minutes:' .github/workflows/continuous-collector.yml
+          grep -q 'continue_chain:' .github/workflows/continuous-collector.yml
+          ! grep -qE '^\s*schedule:' .github/workflows/continuous-collector.yml
+          ! grep -q '^  push:' .github/workflows/continuous-collector.yml
+          grep -q 'coindcx-next-batch' .github/workflows/continuous-collector.yml
+          grep -q 'coindcx-process-batch' .github/workflows/continuous-collector.yml
 
-      - name: Verify manual-only supervisor model
+      - name: Verify no GitHub supervisor workflows
         shell: bash
         run: |
           set -euo pipefail
-          test -f .github/workflows/futures-manual-supervisor.yml
-          grep -q '^  workflow_dispatch:' .github/workflows/futures-manual-supervisor.yml
-          ! grep -qE '^\s*schedule:' .github/workflows/futures-manual-supervisor.yml
-          ! grep -q '^  push:' .github/workflows/futures-manual-supervisor.yml
-          grep -q 'recover_stale:' .github/workflows/futures-manual-supervisor.yml
-          grep -q 'coindcx-next-batch' .github/workflows/futures-manual-supervisor.yml
-          ! grep -q 'coindcx-process-batch' .github/workflows/futures-manual-supervisor.yml
-          ! grep -qE '^\s*schedule:' .github/workflows/storage-housekeeping.yml
+          ! find .github/workflows -maxdepth 1 -type f \( -iname '*supervisor*' -o -iname '*watchdog*' -o -iname '*overnight*' \) | grep -q .
 
       - name: Verify processor handoff model
         shell: bash
