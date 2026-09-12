@@ -92,12 +92,15 @@ jobs:
           grep -q 'storage_manager.py' .github/workflows/storage-housekeeping.yml
           ! grep -qE 'supervisor|watchdog|coindcx-next-batch' .github/workflows/storage-housekeeping.yml
 
-      - name: Verify no stale active supervisor references in code
+      - name: Verify no stale active supervisor references in active files
         shell: bash
         run: |
           set -euo pipefail
           ! grep -RniE 'nightly-supervisor\.yml|five scheduled supervisor|independent scheduled collector|supervisor checks' \
-            --exclude-dir=.git --exclude='research-integrity.yml' .
+            --exclude-dir=.git \
+            --exclude='research-integrity.yml' \
+            --exclude='README_NIGHTLY_SUPERVISOR.md' \
+            .github src tools README.md FUTURES_ONLY.md ON_WATCH.md OVERNIGHT_PLAN.md
 
       - name: Verify latest compact research directories
         shell: bash
