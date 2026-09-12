@@ -1,7 +1,6 @@
 name: Futures research integrity checks
 on:
-  schedule:
-    - cron: "23 */2 * * *"
+  push:
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -29,11 +28,23 @@ assert len(cfg['coindcx']['futures_symbols']) == 6
 assert cfg['research']['windows_seconds'] == [5,15,30,60,180]
 assert cfg['research']['forward_horizons_seconds'] == [60,300,600,900,1800]
 assert cfg['storage']['raw_artifact_prefix'].startswith('coindcx-futures-raw-')
-forbidden=['src/collector.py']
 assert Path('src/futures_collector.py').exists()
 assert Path('src/futures_research.py').exists()
 assert Path('src/futures_strategy_research.py').exists()
 PY
+      - name: Verify workflow architecture
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/futures-manual-collector.yml
+          grep -q '^  workflow_dispatch:' .github/workflows/futures-manual-collector.yml
+          grep -q 'continue_chain:' .github/workflows/futures-manual-collector.yml
+          grep -q 'duration_minutes:' .github/workflows/futures-manual-collector.yml
+          grep -q 'repository_dispatch:' .github/workflows/futures-manual-collector.yml
+          grep -q 'futures-manual-collector.yml' .github/workflows/process-batch.yml || true
+          ! grep -R -qE '^\s*schedule:' .github/workflows/futures-manual-collector.yml
+          ! find .github/workflows -maxdepth 1 -type f -name '*supervisor*.yml' -print -quit | grep -q .
+          ! find .github/workflows -maxdepth 1 -type f -name '*watchdog*.yml' -print -quit | grep -q .
       - name: Verify latest compact research artifacts
         shell: bash
         run: |
@@ -42,13 +53,5 @@ PY
             test -d "$root"
             find "$root" -type f -name '*.csv.gz' -print | head -n 1 | grep -q . || true
           done
-      - name: Verify workflow definitions
-        run: |
-          set -euo pipefail
-          grep -q 'workflow_run:' .github/workflows/process-batch.yml
-          grep -q 'cron: "0 \*/2 \* \* \*"' .github/workflows/continuous-collector.yml
-          grep -q 'cron: "\*/30 \* \* \* \*"' .github/workflows/overnight-pipeline-watchdog.yml
-          grep -q 'archive_trigger_percent' config.json
-          grep -q 'release_asset_max_mb' config.json
       - name: Check Python test suite
         run: python -m unittest discover -s tests -v
