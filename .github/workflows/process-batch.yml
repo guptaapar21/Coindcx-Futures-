@@ -107,6 +107,11 @@ jobs:
           BATCH_ID: ${{ github.event.client_payload.batch_id }}
         run: python src/futures_strategy_research.py --input "runtime/${BATCH_ID}/features_1s.csv.gz" --capital 50000 --round-trip-bps 11.8 --out "runtime/${BATCH_ID}/futures_hypotheses.json"
 
+      - name: Run Futures hypothesis engine
+        env:
+          BATCH_ID: ${{ github.event.client_payload.batch_id }}
+        run: python src/futures_hypothesis_engine.py --input "runtime/${BATCH_ID}/futures_hypotheses.json" --batch-id "${BATCH_ID}" --round-trip-bps 11.8 --out-dir "runtime/${BATCH_ID}"
+
       - name: Merge isolated Futures compact history
         env:
           BATCH_ID: ${{ github.event.client_payload.batch_id }}
@@ -118,9 +123,9 @@ jobs:
           set -euo pipefail
           git config user.name advisorx-bot
           git config user.email advisorx-bot@users.noreply.github.com
-          git add data/research/futures_compact_1m data/research/futures_compact_3m data/state/protected_batches.json
+          git add data/research/futures_compact_1m data/research/futures_compact_3m data/research/futures_hypothesis_engine data/state/protected_batches.json
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update Futures compact research"
+            git commit -m "chore: update Futures compact research and hypotheses"
             pushed=false
             for attempt in 1 2 3; do
               if git pull --rebase origin main && git push origin HEAD:main; then
