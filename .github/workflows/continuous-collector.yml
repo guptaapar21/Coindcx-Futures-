@@ -86,10 +86,10 @@ jobs:
             minutes="${{ inputs.duration_minutes || '30' }}"
           fi
           python - <<'PY' "$minutes"
-import sys
-n=int(sys.argv[1])
-assert 5 <= n <= 230, f"duration_minutes must be 5..230, got {n}"
-PY
+          import sys
+          n=int(sys.argv[1])
+          assert 5 <= n <= 230, f"duration_minutes must be 5..230, got {n}"
+          PY
           echo "minutes=$minutes" >> "$GITHUB_OUTPUT"
 
       - name: Verify code revision
@@ -120,21 +120,21 @@ PY
           test -f "runtime/$BATCH_ID/manifest.json"
           test -f "runtime/$BATCH_ID/data_quality.json"
           python - <<'PY'
-import json, os
-from pathlib import Path
-p=Path('runtime')/os.environ['BATCH_ID']
-m=json.loads((p/'manifest.json').read_text())
-q=json.loads((p/'data_quality.json').read_text())
-assert m.get('market_mode') == 'FUTURES_ONLY'
-assert q.get('market_mode') == 'FUTURES_ONLY'
-required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
-files={x.name for x in p.iterdir()}
-missing=required-files
-assert not missing, f'missing Futures raw files: {sorted(missing)}'
-forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
-assert not (files & forbidden), f'Spot raw files present: {sorted(files & forbidden)}'
-assert all(x.stat().st_size > 0 for x in p.iterdir() if x.is_file()), 'empty raw artifact file detected'
-PY
+          import json, os
+          from pathlib import Path
+          p=Path('runtime')/os.environ['BATCH_ID']
+          m=json.loads((p/'manifest.json').read_text())
+          q=json.loads((p/'data_quality.json').read_text())
+          assert m.get('market_mode') == 'FUTURES_ONLY'
+          assert q.get('market_mode') == 'FUTURES_ONLY'
+          required={'futures_trades.jsonl.gz','futures_price_change.jsonl.gz','futures_current_prices.jsonl.gz','futures_depth_snapshot.jsonl.gz'}
+          files={x.name for x in p.iterdir()}
+          missing=required-files
+          assert not missing, f'missing Futures raw files: {sorted(missing)}'
+          forbidden={'trades.jsonl.gz','price_change.jsonl.gz','depth_update.jsonl.gz','depth_snapshot.jsonl.gz'}
+          assert not (files & forbidden), f'Spot raw files present: {sorted(files & forbidden)}'
+          assert all(x.stat().st_size > 0 for x in p.iterdir() if x.is_file()), 'empty raw artifact file detected'
+          PY
 
       - id: raw_upload
         name: Upload raw Futures batch
