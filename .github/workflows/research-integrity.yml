@@ -56,8 +56,19 @@ PY
           ! grep -qE '^\s*schedule:' .github/workflows/futures-manual-collector.yml
           grep -q 'coindcx-next-batch' .github/workflows/futures-manual-collector.yml
           grep -q 'coindcx-process-batch' .github/workflows/futures-manual-collector.yml
-          ! find .github/workflows -maxdepth 1 -type f -name '*supervisor*.yml' -print -quit | grep -q .
-          ! find .github/workflows -maxdepth 1 -type f -name '*watchdog*.yml' -print -quit | grep -q .
+
+      - name: Verify manual-only supervisor model
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .github/workflows/futures-manual-supervisor.yml
+          grep -q '^  workflow_dispatch:' .github/workflows/futures-manual-supervisor.yml
+          ! grep -qE '^\s*schedule:' .github/workflows/futures-manual-supervisor.yml
+          ! grep -q '^  push:' .github/workflows/futures-manual-supervisor.yml
+          grep -q 'recover_stale:' .github/workflows/futures-manual-supervisor.yml
+          grep -q 'coindcx-next-batch' .github/workflows/futures-manual-supervisor.yml
+          ! grep -q 'coindcx-process-batch' .github/workflows/futures-manual-supervisor.yml
+          ! grep -qE '^\s*schedule:' .github/workflows/storage-housekeeping.yml
 
       - name: Verify processor handoff model
         shell: bash
