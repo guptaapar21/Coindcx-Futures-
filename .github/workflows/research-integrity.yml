@@ -37,7 +37,9 @@ jobs:
           assert cfg['research']['windows_seconds'] == [5,15,30,60,180]
           assert cfg['research']['forward_horizons_seconds'] == [60,300,600,900,1800]
           assert cfg['storage']['raw_artifact_prefix'].startswith('coindcx-futures-raw-')
-          assert cfg['collector']['default_duration_minutes'] == 30
+          assert cfg['collector']['default_duration_minutes'] == 120
+          Path('.github/workflows/continuous-collector.yml').read_text()
+          Path('.github/workflows/process-batch.yml').read_text()
           assert Path('src/futures_collector.py').exists()
           assert Path('src/futures_research.py').exists()
           assert Path('src/futures_strategy_research.py').exists()
@@ -53,6 +55,9 @@ jobs:
           grep -q '^  workflow_dispatch:' .github/workflows/continuous-collector.yml
           grep -q '^  repository_dispatch:' .github/workflows/continuous-collector.yml
           grep -q 'duration_minutes:' .github/workflows/continuous-collector.yml
+          grep -q 'default: "120"' .github/workflows/continuous-collector.yml
+          grep -q "minutes=\"\${{ inputs.duration_minutes || '120' }}\"" .github/workflows/continuous-collector.yml
+          grep -q "duration_minutes]=\"\${DURATION_MINUTES}\"" .github/workflows/continuous-collector.yml
           grep -q 'continue_chain:' .github/workflows/continuous-collector.yml
           ! grep -qE '^\s*schedule:' .github/workflows/continuous-collector.yml
           ! grep -q '^  push:' .github/workflows/continuous-collector.yml
@@ -86,6 +91,13 @@ jobs:
           test -f .github/workflows/storage-housekeeping.yml
           grep -q 'storage_manager.py' .github/workflows/storage-housekeeping.yml
           ! grep -qE 'supervisor|watchdog|coindcx-next-batch' .github/workflows/storage-housekeeping.yml
+
+      - name: Verify no stale active supervisor references in code
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -RniE 'nightly-supervisor\.yml|five scheduled supervisor|independent scheduled collector|supervisor checks' \
+            --exclude-dir=.git --exclude='research-integrity.yml' .
 
       - name: Verify latest compact research directories
         shell: bash
