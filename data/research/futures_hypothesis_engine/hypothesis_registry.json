@@ -38,13 +38,13 @@
       "direction": "SHORT",
       "first_forward_batch": "20260913T171713Z_run_34771122064",
       "forward_summary": {
-        "batches_tested": 19,
+        "batches_tested": 20,
         "best_batch_mean_net_bps": 120.85909240165576,
-        "median_batch_mean_net_bps": -12.746428219334994,
-        "net_pnl_inr": -463.6919182128553,
-        "positive_batch_fraction": 0.3157894736842105,
+        "median_batch_mean_net_bps": -12.25332042153623,
+        "net_pnl_inr": -473.09825286590774,
+        "positive_batch_fraction": 0.3,
         "positive_batches": 6,
-        "trades": 19,
+        "trades": 20,
         "worst_batch_mean_net_bps": -56.435637351617686
       },
       "forward_tests": [
@@ -313,19 +313,33 @@
           "trades": 1,
           "window_s": 180,
           "wins": 0
+        },
+        {
+          "batch_id": "20260916T173714Z_run_35129293144",
+          "direction": "SHORT",
+          "horizon_s": 1800,
+          "mean_net_bps": -1.8812669306104937,
+          "median_net_bps": -1.8812669306104937,
+          "net_pnl_inr": -9.406334653052468,
+          "net_return_bps_sum": -1.8812669306104937,
+          "scope": "SYMBOL",
+          "symbol": "B-ETH_USDT",
+          "trades": 1,
+          "window_s": 180,
+          "wins": 0
         }
       ],
       "horizon_s": 1800,
       "hypothesis_id": "HYP-0204A11C96",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 27,
+        "batches": 28,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.008903182268625,
-        "net_pnl_inr": -123.6915162397545,
-        "positive_batch_fraction": 0.4074074074074074,
+        "median_batch_mean_net_bps": -8.93721071776973,
+        "net_pnl_inr": -133.09785089280697,
+        "positive_batch_fraction": 0.39285714285714285,
         "positive_batches": 11,
-        "trades": 27
+        "trades": 28
       },
       "scope": "SYMBOL",
       "status": "RETIRED",
@@ -351,13 +365,13 @@
       "hypothesis_id": "HYP-0294710742",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.631111510213248,
-        "net_pnl_inr": -127034.05730900068,
+        "median_batch_mean_net_bps": -11.676586774040047,
+        "net_pnl_inr": -130172.01929163763,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 2215
+        "trades": 2258
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -383,13 +397,13 @@
       "hypothesis_id": "HYP-02D50EF2A8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 30,
+        "batches": 31,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.499918629267048,
-        "net_pnl_inr": -1219.6028746722336,
-        "positive_batch_fraction": 0.3,
+        "median_batch_mean_net_bps": -11.200261468538443,
+        "net_pnl_inr": -1294.4856527750603,
+        "positive_batch_fraction": 0.2903225806451613,
         "positive_batches": 9,
-        "trades": 42
+        "trades": 44
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -415,13 +429,13 @@
       "hypothesis_id": "HYP-03F248BF5F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.391291476734953,
-        "net_pnl_inr": -6406.557489114864,
-        "positive_batch_fraction": 0.1346153846153846,
+        "median_batch_mean_net_bps": -11.273840928286564,
+        "net_pnl_inr": -6434.5160487920375,
+        "positive_batch_fraction": 0.1320754716981132,
         "positive_batches": 7,
-        "trades": 119
+        "trades": 120
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -447,13 +461,13 @@
       "hypothesis_id": "HYP-03F7DEA475",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.939731538944368,
-        "net_pnl_inr": -4621.7044021573065,
-        "positive_batch_fraction": 0.05555555555555555,
+        "median_batch_mean_net_bps": -16.219193555492694,
+        "net_pnl_inr": -4822.330260121675,
+        "positive_batch_fraction": 0.05405405405405406,
         "positive_batches": 2,
-        "trades": 56
+        "trades": 58
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -479,13 +493,13 @@
       "hypothesis_id": "HYP-0402355602",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 25,
+        "batches": 26,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.740055618497191,
-        "net_pnl_inr": -1027.3515922130894,
-        "positive_batch_fraction": 0.4,
-        "positive_batches": 10,
-        "trades": 25
+        "median_batch_mean_net_bps": -7.8053079752725365,
+        "net_pnl_inr": -867.1874739664053,
+        "positive_batch_fraction": 0.4230769230769231,
+        "positive_batches": 11,
+        "trades": 26
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -511,13 +525,13 @@
       "hypothesis_id": "HYP-04277F3EDD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.799769020655091,
-        "net_pnl_inr": -12832.254536948165,
+        "median_batch_mean_net_bps": -11.799884510327546,
+        "net_pnl_inr": -13484.741160115052,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 226
+        "trades": 232
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -543,13 +557,13 @@
       "hypothesis_id": "HYP-049F447264",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.831883487501493,
-        "net_pnl_inr": -2807.27641791788,
-        "positive_batch_fraction": 0.24390243902439024,
-        "positive_batches": 10,
-        "trades": 55
+        "median_batch_mean_net_bps": -9.830428784255297,
+        "net_pnl_inr": -2536.156033914577,
+        "positive_batch_fraction": 0.2619047619047619,
+        "positive_batches": 11,
+        "trades": 56
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -575,13 +589,13 @@
       "hypothesis_id": "HYP-04A399015F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.541283096012958,
-        "net_pnl_inr": -2926.6843059271623,
-        "positive_batch_fraction": 0.10810810810810811,
+        "median_batch_mean_net_bps": -12.741013992282934,
+        "net_pnl_inr": -3013.604685433614,
+        "positive_batch_fraction": 0.10526315789473684,
         "positive_batches": 4,
-        "trades": 47
+        "trades": 48
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -607,13 +621,13 @@
       "hypothesis_id": "HYP-061264E4BD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.121942970872308,
-        "net_pnl_inr": -21018.95077724102,
-        "positive_batch_fraction": 0.2,
+        "median_batch_mean_net_bps": -11.194310010706333,
+        "net_pnl_inr": -22762.14406032247,
+        "positive_batch_fraction": 0.19607843137254902,
         "positive_batches": 10,
-        "trades": 402
+        "trades": 417
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -639,13 +653,13 @@
       "hypothesis_id": "HYP-071ABD4713",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.10633686327608,
-        "net_pnl_inr": -20864.51317454616,
-        "positive_batch_fraction": 0.17307692307692307,
-        "positive_batches": 9,
-        "trades": 369
+        "median_batch_mean_net_bps": -10.999595650008303,
+        "net_pnl_inr": -21024.917923530476,
+        "positive_batch_fraction": 0.18867924528301888,
+        "positive_batches": 10,
+        "trades": 378
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -703,13 +717,13 @@
       "hypothesis_id": "HYP-091E1C02E7",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.216260126001078,
-        "net_pnl_inr": -78246.40842171031,
+        "median_batch_mean_net_bps": -12.286953813922976,
+        "net_pnl_inr": -79119.6228275945,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 1329
+        "trades": 1338
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -735,13 +749,13 @@
       "hypothesis_id": "HYP-09B103F886",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.47559581190513,
-        "net_pnl_inr": -3291.6938799954373,
-        "positive_batch_fraction": 0.16216216216216217,
+        "median_batch_mean_net_bps": -14.643173350769446,
+        "net_pnl_inr": -3755.2726089720436,
+        "positive_batch_fraction": 0.15789473684210525,
         "positive_batches": 6,
-        "trades": 46
+        "trades": 47
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -767,13 +781,13 @@
       "hypothesis_id": "HYP-0A153C2A2C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.624439625422946,
-        "net_pnl_inr": -4896.157078323678,
-        "positive_batch_fraction": 0.125,
+        "median_batch_mean_net_bps": -11.08346231011678,
+        "net_pnl_inr": -4979.100354201485,
+        "positive_batch_fraction": 0.12195121951219512,
         "positive_batches": 5,
-        "trades": 75
+        "trades": 78
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -799,13 +813,13 @@
       "hypothesis_id": "HYP-0A1FC547A8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 26,
+        "batches": 27,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.29503361091574,
-        "net_pnl_inr": -2017.8644797597717,
-        "positive_batch_fraction": 0.23076923076923078,
+        "median_batch_mean_net_bps": -11.8,
+        "net_pnl_inr": -2311.151940287432,
+        "positive_batch_fraction": 0.2222222222222222,
         "positive_batches": 6,
-        "trades": 26
+        "trades": 27
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -831,13 +845,13 @@
       "hypothesis_id": "HYP-0B60859B4E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.069996823452191,
-        "net_pnl_inr": -28407.27098420563,
-        "positive_batch_fraction": 0.07547169811320754,
+        "median_batch_mean_net_bps": -15.472190043613853,
+        "net_pnl_inr": -29745.331226774342,
+        "positive_batch_fraction": 0.07407407407407407,
         "positive_batches": 4,
-        "trades": 351
+        "trades": 355
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -863,13 +877,13 @@
       "hypothesis_id": "HYP-0BD4C3430C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.305027643338054,
-        "net_pnl_inr": -21731.207632779384,
+        "median_batch_mean_net_bps": -12.32547111868553,
+        "net_pnl_inr": -22543.69383092472,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 359
+        "trades": 371
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -895,13 +909,13 @@
       "hypothesis_id": "HYP-0C6EF2C6F5",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.05072765747525,
-        "net_pnl_inr": -6200.233774004987,
-        "positive_batch_fraction": 0.02040816326530612,
+        "median_batch_mean_net_bps": -13.094526298898925,
+        "net_pnl_inr": -6339.012087573356,
+        "positive_batch_fraction": 0.02,
         "positive_batches": 1,
-        "trades": 103
+        "trades": 105
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -927,13 +941,13 @@
       "hypothesis_id": "HYP-0C701171E1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.615392604310962,
-        "net_pnl_inr": -20256.958342904065,
-        "positive_batch_fraction": 0.03773584905660377,
+        "median_batch_mean_net_bps": -11.680736553993004,
+        "net_pnl_inr": -20828.675529970307,
+        "positive_batch_fraction": 0.037037037037037035,
         "positive_batches": 2,
-        "trades": 374
+        "trades": 377
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -959,13 +973,13 @@
       "hypothesis_id": "HYP-0D869439F8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.416077706765567,
-        "net_pnl_inr": -8045.012613580616,
-        "positive_batch_fraction": 0.0625,
-        "positive_batches": 3,
-        "trades": 124
+        "median_batch_mean_net_bps": -14.23161094224842,
+        "net_pnl_inr": -8032.665626016763,
+        "positive_batch_fraction": 0.08163265306122448,
+        "positive_batches": 4,
+        "trades": 128
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -991,13 +1005,13 @@
       "hypothesis_id": "HYP-0DFDA81E5E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.30236701188914,
-        "net_pnl_inr": -6302.318295098799,
-        "positive_batch_fraction": 0.0851063829787234,
+        "median_batch_mean_net_bps": -11.36618491961676,
+        "net_pnl_inr": -6885.271466039682,
+        "positive_batch_fraction": 0.08333333333333333,
         "positive_batches": 4,
-        "trades": 117
+        "trades": 120
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1023,13 +1037,13 @@
       "hypothesis_id": "HYP-0F256B3434",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.171421984086546,
-        "net_pnl_inr": -26680.062115722707,
+        "median_batch_mean_net_bps": -12.149381776415733,
+        "net_pnl_inr": -27143.463997675357,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 452
+        "trades": 460
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1055,13 +1069,13 @@
       "hypothesis_id": "HYP-0FE87EB6FB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.800432045319798,
-        "net_pnl_inr": -6472.792242788018,
-        "positive_batch_fraction": 0.1956521739130435,
+        "median_batch_mean_net_bps": -11.8,
+        "net_pnl_inr": -6643.337887624645,
+        "positive_batch_fraction": 0.19148936170212766,
         "positive_batches": 9,
-        "trades": 103
+        "trades": 106
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1119,13 +1133,13 @@
       "hypothesis_id": "HYP-11970703C6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.771190818035706,
-        "net_pnl_inr": -3763.453802278181,
-        "positive_batch_fraction": 0.21052631578947367,
+        "median_batch_mean_net_bps": -12.96604439517387,
+        "net_pnl_inr": -4144.656905532525,
+        "positive_batch_fraction": 0.20512820512820512,
         "positive_batches": 8,
-        "trades": 50
+        "trades": 51
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1151,13 +1165,13 @@
       "hypothesis_id": "HYP-122CD346A6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.331454743222451,
-        "net_pnl_inr": -22092.203327364146,
-        "positive_batch_fraction": 0.11538461538461539,
+        "median_batch_mean_net_bps": -16.44114187977219,
+        "net_pnl_inr": -22880.25032095171,
+        "positive_batch_fraction": 0.11320754716981132,
         "positive_batches": 6,
-        "trades": 309
+        "trades": 312
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -1183,13 +1197,13 @@
       "hypothesis_id": "HYP-1249EEA1D0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.469946355031635,
-        "net_pnl_inr": -25844.431134852875,
+        "median_batch_mean_net_bps": -11.473022765937738,
+        "net_pnl_inr": -26509.248097076048,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 449
+        "trades": 460
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1215,13 +1229,13 @@
       "hypothesis_id": "HYP-139CC38B04",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.631190239759139,
-        "net_pnl_inr": -6112.599471234486,
-        "positive_batch_fraction": 0.125,
+        "median_batch_mean_net_bps": -13.683948756594145,
+        "net_pnl_inr": -6371.499521209496,
+        "positive_batch_fraction": 0.12244897959183673,
         "positive_batches": 6,
-        "trades": 78
+        "trades": 79
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1247,13 +1261,13 @@
       "hypothesis_id": "HYP-14D8067E74",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 20,
+        "batches": 21,
         "eligible": false,
-        "median_batch_mean_net_bps": -21.296564874039717,
-        "net_pnl_inr": -1337.9348973574924,
-        "positive_batch_fraction": 0.4,
-        "positive_batches": 8,
-        "trades": 20
+        "median_batch_mean_net_bps": -20.092856296647778,
+        "net_pnl_inr": -1183.7420205077265,
+        "positive_batch_fraction": 0.42857142857142855,
+        "positive_batches": 9,
+        "trades": 21
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1279,13 +1293,13 @@
       "hypothesis_id": "HYP-152E200786",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.165963828017624,
-        "net_pnl_inr": -17203.654521347653,
-        "positive_batch_fraction": 0.04,
+        "median_batch_mean_net_bps": -12.165116710396296,
+        "net_pnl_inr": -17317.128854587823,
+        "positive_batch_fraction": 0.0392156862745098,
         "positive_batches": 2,
-        "trades": 298
+        "trades": 300
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1343,13 +1357,13 @@
       "hypothesis_id": "HYP-157E72E73A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.432055848438953,
-        "net_pnl_inr": -2708.0435764457384,
-        "positive_batch_fraction": 0.18421052631578946,
-        "positive_batches": 7,
-        "trades": 45
+        "median_batch_mean_net_bps": -13.353890878012166,
+        "net_pnl_inr": -2518.313546077733,
+        "positive_batch_fraction": 0.20512820512820512,
+        "positive_batches": 8,
+        "trades": 46
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1375,13 +1389,13 @@
       "hypothesis_id": "HYP-161005F4DF",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 32,
+        "batches": 33,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.002932548451831,
-        "net_pnl_inr": -2282.3674804275606,
-        "positive_batch_fraction": 0.125,
+        "median_batch_mean_net_bps": -14.025920586400588,
+        "net_pnl_inr": -2441.74833526434,
+        "positive_batch_fraction": 0.12121212121212122,
         "positive_batches": 4,
-        "trades": 38
+        "trades": 39
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1439,13 +1453,13 @@
       "hypothesis_id": "HYP-19CD4534C4",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.668966771792267,
-        "net_pnl_inr": -4370.253121773741,
-        "positive_batch_fraction": 0.1,
+        "median_batch_mean_net_bps": -10.750182103027996,
+        "net_pnl_inr": -4455.265524487357,
+        "positive_batch_fraction": 0.0975609756097561,
         "positive_batches": 4,
-        "trades": 78
+        "trades": 79
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1503,13 +1517,13 @@
       "hypothesis_id": "HYP-1A94A4327F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.628450237309153,
-        "net_pnl_inr": -6699.8362451550465,
-        "positive_batch_fraction": 0.0625,
-        "positive_batches": 3,
-        "trades": 117
+        "median_batch_mean_net_bps": -11.46775050146861,
+        "net_pnl_inr": -6549.106915319718,
+        "positive_batch_fraction": 0.08163265306122448,
+        "positive_batches": 4,
+        "trades": 121
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1535,13 +1549,13 @@
       "hypothesis_id": "HYP-1ABC4A4041",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.441863813527043,
-        "net_pnl_inr": -15890.28163253032,
-        "positive_batch_fraction": 0.03773584905660377,
+        "median_batch_mean_net_bps": -11.389054357833906,
+        "net_pnl_inr": -15952.489503315262,
+        "positive_batch_fraction": 0.037037037037037035,
         "positive_batches": 2,
-        "trades": 288
+        "trades": 291
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1567,13 +1581,13 @@
       "hypothesis_id": "HYP-1AD3358A96",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.715591882944933,
-        "net_pnl_inr": -7215.231678677247,
-        "positive_batch_fraction": 0.02,
+        "median_batch_mean_net_bps": -11.73531856772533,
+        "net_pnl_inr": -7764.733472308164,
+        "positive_batch_fraction": 0.0196078431372549,
         "positive_batches": 1,
-        "trades": 123
+        "trades": 128
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1599,13 +1613,13 @@
       "hypothesis_id": "HYP-1C58A25C3A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.116175072280871,
-        "net_pnl_inr": -26352.28564932437,
+        "median_batch_mean_net_bps": -12.336332955638374,
+        "net_pnl_inr": -27310.400971285595,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 424
+        "trades": 436
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1631,13 +1645,13 @@
       "hypothesis_id": "HYP-1CFDF5EE8D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.48867195888671,
-        "net_pnl_inr": -21037.064520572305,
+        "median_batch_mean_net_bps": -11.538058331235364,
+        "net_pnl_inr": -21455.778882644867,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 371
+        "trades": 378
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1695,13 +1709,13 @@
       "hypothesis_id": "HYP-205A326054",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.222514528946235,
-        "net_pnl_inr": -13456.4988342186,
-        "positive_batch_fraction": 0.14285714285714285,
-        "positive_batches": 7,
-        "trades": 288
+        "median_batch_mean_net_bps": -14.13240481382756,
+        "net_pnl_inr": -13556.801197685518,
+        "positive_batch_fraction": 0.16,
+        "positive_batches": 8,
+        "trades": 296
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -1727,13 +1741,13 @@
       "hypothesis_id": "HYP-20AB64F469",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.60662363329114,
-        "net_pnl_inr": -29630.414242120303,
+        "median_batch_mean_net_bps": -11.587857688194893,
+        "net_pnl_inr": -30095.298157191228,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 524
+        "trades": 534
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1759,13 +1773,13 @@
       "hypothesis_id": "HYP-212332D3A6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.489447273790475,
-        "net_pnl_inr": -7193.5712250623355,
-        "positive_batch_fraction": 0.10869565217391304,
+        "median_batch_mean_net_bps": -12.53491014398103,
+        "net_pnl_inr": -7474.018264234596,
+        "positive_batch_fraction": 0.10638297872340426,
         "positive_batches": 5,
-        "trades": 118
+        "trades": 120
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1791,13 +1805,13 @@
       "hypothesis_id": "HYP-2123CA2F25",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.375971020325474,
-        "net_pnl_inr": -5051.294763636603,
-        "positive_batch_fraction": 0.0975609756097561,
+        "median_batch_mean_net_bps": -14.561911034586673,
+        "net_pnl_inr": -5300.769769750875,
+        "positive_batch_fraction": 0.09523809523809523,
         "positive_batches": 4,
-        "trades": 66
+        "trades": 67
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1855,13 +1869,13 @@
       "hypothesis_id": "HYP-226FD6FD27",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.662782035624215,
-        "net_pnl_inr": -6910.97400568234,
-        "positive_batch_fraction": 0.14,
+        "median_batch_mean_net_bps": -12.537782659312459,
+        "net_pnl_inr": -7013.7294687727135,
+        "positive_batch_fraction": 0.13725490196078433,
         "positive_batches": 7,
-        "trades": 122
+        "trades": 125
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1919,13 +1933,13 @@
       "hypothesis_id": "HYP-26360DA29C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.185524819907947,
-        "net_pnl_inr": -4115.36118983841,
-        "positive_batch_fraction": 0.30952380952380953,
+        "median_batch_mean_net_bps": -13.187732445183865,
+        "net_pnl_inr": -4362.97615151133,
+        "positive_batch_fraction": 0.3023255813953488,
         "positive_batches": 13,
-        "trades": 72
+        "trades": 75
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1951,13 +1965,13 @@
       "hypothesis_id": "HYP-287706672E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.125481728257547,
-        "net_pnl_inr": -7096.07699292941,
-        "positive_batch_fraction": 0.043478260869565216,
+        "median_batch_mean_net_bps": -13.11688025730418,
+        "net_pnl_inr": -7241.360525551078,
+        "positive_batch_fraction": 0.0425531914893617,
         "positive_batches": 2,
-        "trades": 118
+        "trades": 121
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -1983,13 +1997,13 @@
       "hypothesis_id": "HYP-29106D2220",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.29567950684476,
-        "net_pnl_inr": -6038.012714701925,
-        "positive_batch_fraction": 0.08888888888888889,
+        "median_batch_mean_net_bps": -12.53416646413041,
+        "net_pnl_inr": -6285.135553831476,
+        "positive_batch_fraction": 0.08695652173913043,
         "positive_batches": 4,
-        "trades": 98
+        "trades": 99
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2015,13 +2029,13 @@
       "hypothesis_id": "HYP-2AEA9761B1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 30,
+        "batches": 31,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.028609382953217,
-        "net_pnl_inr": -2162.7077394765556,
-        "positive_batch_fraction": 0.3333333333333333,
+        "median_batch_mean_net_bps": -14.299731246511373,
+        "net_pnl_inr": -2383.207979224053,
+        "positive_batch_fraction": 0.3225806451612903,
         "positive_batches": 10,
-        "trades": 30
+        "trades": 31
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2047,13 +2061,13 @@
       "hypothesis_id": "HYP-2BF93DFD6C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 31,
+        "batches": 32,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -1591.934512575363,
-        "positive_batch_fraction": 0.3225806451612903,
-        "positive_batches": 10,
-        "trades": 37
+        "median_batch_mean_net_bps": -9.4247030878862,
+        "net_pnl_inr": -1287.1156692683785,
+        "positive_batch_fraction": 0.34375,
+        "positive_batches": 11,
+        "trades": 38
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2111,13 +2125,13 @@
       "hypothesis_id": "HYP-2DF7A29579",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.202719247270458,
-        "net_pnl_inr": -23098.599275348453,
-        "positive_batch_fraction": 0.018518518518518517,
+        "median_batch_mean_net_bps": -11.21009922786441,
+        "net_pnl_inr": -23499.22867031738,
+        "positive_batch_fraction": 0.01818181818181818,
         "positive_batches": 1,
-        "trades": 414
+        "trades": 420
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2143,13 +2157,13 @@
       "hypothesis_id": "HYP-2E59154B8F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -7.661624963727395,
-        "net_pnl_inr": -3774.9491145355382,
-        "positive_batch_fraction": 0.2222222222222222,
+        "median_batch_mean_net_bps": -7.9838823715,
+        "net_pnl_inr": -3891.1819089267315,
+        "positive_batch_fraction": 0.21739130434782608,
         "positive_batches": 10,
-        "trades": 78
+        "trades": 79
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2175,13 +2189,13 @@
       "hypothesis_id": "HYP-2E89EAF354",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.400108441688749,
-        "net_pnl_inr": -24897.815451864026,
+        "median_batch_mean_net_bps": -11.388163957114733,
+        "net_pnl_inr": -25184.420335082825,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 446
+        "trades": 455
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2239,13 +2253,13 @@
       "hypothesis_id": "HYP-2F3E6B7D8C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.29255192047526,
-        "net_pnl_inr": -11580.300630389265,
-        "positive_batch_fraction": 0.21568627450980393,
-        "positive_batches": 11,
-        "trades": 309
+        "median_batch_mean_net_bps": -11.208106341089177,
+        "net_pnl_inr": -11269.6858146033,
+        "positive_batch_fraction": 0.23076923076923078,
+        "positive_batches": 12,
+        "trades": 316
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -2271,13 +2285,13 @@
       "hypothesis_id": "HYP-3102FB81F1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.29203822883037,
-        "net_pnl_inr": -29968.366027635682,
+        "median_batch_mean_net_bps": -11.2777979548048,
+        "net_pnl_inr": -30741.56448923683,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 525
+        "trades": 539
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2303,13 +2317,13 @@
       "hypothesis_id": "HYP-33C41447CC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.15321802565025,
-        "net_pnl_inr": -2725.8951170285904,
-        "positive_batch_fraction": 0.1891891891891892,
+        "median_batch_mean_net_bps": -14.489193717568263,
+        "net_pnl_inr": -2967.135934934156,
+        "positive_batch_fraction": 0.18421052631578946,
         "positive_batches": 7,
-        "trades": 50
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2335,13 +2349,13 @@
       "hypothesis_id": "HYP-33C9EF868E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.813496723081704,
-        "net_pnl_inr": -10284.607396606616,
-        "positive_batch_fraction": 0.34146341463414637,
-        "positive_batches": 14,
-        "trades": 130
+        "median_batch_mean_net_bps": -7.534529733650471,
+        "net_pnl_inr": -10215.088632904346,
+        "positive_batch_fraction": 0.35714285714285715,
+        "positive_batches": 15,
+        "trades": 133
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -2367,13 +2381,13 @@
       "hypothesis_id": "HYP-34F35A6734",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.28489041999663,
-        "net_pnl_inr": -4033.833328325677,
-        "positive_batch_fraction": 0.05263157894736842,
+        "median_batch_mean_net_bps": -14.328103342959537,
+        "net_pnl_inr": -4120.753707832129,
+        "positive_batch_fraction": 0.05128205128205128,
         "positive_batches": 2,
-        "trades": 60
+        "trades": 61
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2399,13 +2413,13 @@
       "hypothesis_id": "HYP-35406CB376",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.138276061959004,
-        "net_pnl_inr": -26479.464376300293,
+        "median_batch_mean_net_bps": -12.092903594367208,
+        "net_pnl_inr": -27246.643404338123,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 446
+        "trades": 459
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2431,13 +2445,13 @@
       "hypothesis_id": "HYP-3615C6B038",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.322520416980197,
-        "net_pnl_inr": -7159.73022309607,
-        "positive_batch_fraction": 0.043478260869565216,
+        "median_batch_mean_net_bps": -11.043527571075595,
+        "net_pnl_inr": -7233.896997899937,
+        "positive_batch_fraction": 0.0425531914893617,
         "positive_batches": 2,
-        "trades": 128
+        "trades": 132
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2463,13 +2477,13 @@
       "hypothesis_id": "HYP-37ACA4669A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
         "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -3247.3268581604625,
-        "positive_batch_fraction": 0.17073170731707318,
-        "positive_batches": 7,
-        "trades": 59
+        "net_pnl_inr": -3020.4632040823926,
+        "positive_batch_fraction": 0.19047619047619047,
+        "positive_batches": 8,
+        "trades": 61
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2495,13 +2509,13 @@
       "hypothesis_id": "HYP-37DAA75E9D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.388368153585871,
-        "net_pnl_inr": -2058.169646696722,
-        "positive_batch_fraction": 0.2564102564102564,
+        "median_batch_mean_net_bps": -8.29306362861423,
+        "net_pnl_inr": -2074.1053702941954,
+        "positive_batch_fraction": 0.25,
         "positive_batches": 10,
-        "trades": 50
+        "trades": 51
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2559,13 +2573,13 @@
       "hypothesis_id": "HYP-387C5756C5",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.953323726418134,
-        "net_pnl_inr": -155856.97204723302,
+        "median_batch_mean_net_bps": -11.94681108667474,
+        "net_pnl_inr": -159646.80530076625,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 2639
+        "trades": 2702
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -2623,13 +2637,13 @@
       "hypothesis_id": "HYP-3959392DEE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 43,
+        "batches": 44,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.780680592330697,
-        "net_pnl_inr": -5189.144825170797,
-        "positive_batch_fraction": 0.09302325581395349,
+        "median_batch_mean_net_bps": -13.270924724484846,
+        "net_pnl_inr": -5423.456777320945,
+        "positive_batch_fraction": 0.09090909090909091,
         "positive_batches": 4,
-        "trades": 84
+        "trades": 85
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2655,13 +2669,13 @@
       "hypothesis_id": "HYP-3960B53531",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.528638741134898,
-        "net_pnl_inr": -21096.18263573797,
+        "median_batch_mean_net_bps": -11.512863288115298,
+        "net_pnl_inr": -21435.809135408483,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 376
+        "trades": 383
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2687,13 +2701,13 @@
       "hypothesis_id": "HYP-397C516CA6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 26,
+        "batches": 27,
         "eligible": false,
-        "median_batch_mean_net_bps": -4.411901514431017,
-        "net_pnl_inr": -962.3600998525751,
-        "positive_batch_fraction": 0.46153846153846156,
+        "median_batch_mean_net_bps": -4.899369085172157,
+        "net_pnl_inr": -1225.1921422496425,
+        "positive_batch_fraction": 0.4444444444444444,
         "positive_batches": 12,
-        "trades": 26
+        "trades": 27
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2719,13 +2733,13 @@
       "hypothesis_id": "HYP-3A4394936A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.083182649910327,
-        "net_pnl_inr": -22577.26360646399,
+        "median_batch_mean_net_bps": -12.08674644346067,
+        "net_pnl_inr": -23428.342601584915,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 378
+        "trades": 388
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2783,13 +2797,13 @@
       "hypothesis_id": "HYP-3BEA1D1D83",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.800562744061924,
-        "net_pnl_inr": -23382.23797756461,
+        "median_batch_mean_net_bps": -11.800638967396495,
+        "net_pnl_inr": -24017.906624357158,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 413
+        "trades": 421
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2815,13 +2829,13 @@
       "hypothesis_id": "HYP-3C213EB69B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
         "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -2825.3827406799696,
-        "positive_batch_fraction": 0.23684210526315788,
-        "positive_batches": 9,
-        "trades": 59
+        "net_pnl_inr": -2399.32601941952,
+        "positive_batch_fraction": 0.2564102564102564,
+        "positive_batches": 10,
+        "trades": 61
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2847,13 +2861,13 @@
       "hypothesis_id": "HYP-3DA8C3B4BC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.432859669168595,
-        "net_pnl_inr": -5080.363102676443,
-        "positive_batch_fraction": 0.14583333333333334,
+        "median_batch_mean_net_bps": -11.068952533933997,
+        "net_pnl_inr": -5093.852475030224,
+        "positive_batch_fraction": 0.14285714285714285,
         "positive_batches": 7,
-        "trades": 112
+        "trades": 114
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2879,13 +2893,13 @@
       "hypothesis_id": "HYP-3E527B843E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.25712196013866,
-        "net_pnl_inr": -32274.78725442535,
+        "median_batch_mean_net_bps": -12.202069118921209,
+        "net_pnl_inr": -32869.87214239977,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 540
+        "trades": 552
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2911,13 +2925,13 @@
       "hypothesis_id": "HYP-3FBFD269DE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.279592827343889,
-        "net_pnl_inr": -34364.601041682035,
-        "positive_batch_fraction": 0.1346153846153846,
-        "positive_batches": 7,
-        "trades": 611
+        "median_batch_mean_net_bps": -11.886134844661987,
+        "net_pnl_inr": -34541.5297483869,
+        "positive_batch_fraction": 0.1509433962264151,
+        "positive_batches": 8,
+        "trades": 626
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -2943,13 +2957,13 @@
       "hypothesis_id": "HYP-40873F0205",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.23724438100046,
-        "net_pnl_inr": -3030.448607843553,
-        "positive_batch_fraction": 0.25,
+        "median_batch_mean_net_bps": -15.750227138060925,
+        "net_pnl_inr": -3298.0575424115805,
+        "positive_batch_fraction": 0.24324324324324326,
         "positive_batches": 9,
-        "trades": 44
+        "trades": 45
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -2975,13 +2989,13 @@
       "hypothesis_id": "HYP-40E7B45B39",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.797144692709118,
-        "net_pnl_inr": -6642.107585883961,
-        "positive_batch_fraction": 0.13043478260869565,
+        "median_batch_mean_net_bps": -11.8,
+        "net_pnl_inr": -7041.360435093786,
+        "positive_batch_fraction": 0.1276595744680851,
         "positive_batches": 6,
-        "trades": 114
+        "trades": 117
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3007,13 +3021,13 @@
       "hypothesis_id": "HYP-4105317191",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.470866451776386,
-        "net_pnl_inr": -6997.845812852261,
-        "positive_batch_fraction": 0.06,
+        "median_batch_mean_net_bps": -11.506804900967417,
+        "net_pnl_inr": -7280.644741342749,
+        "positive_batch_fraction": 0.058823529411764705,
         "positive_batches": 3,
-        "trades": 133
+        "trades": 136
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3039,13 +3053,13 @@
       "hypothesis_id": "HYP-413BFD2875",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.471804310249993,
-        "net_pnl_inr": -5626.065374817405,
-        "positive_batch_fraction": 0.14,
+        "median_batch_mean_net_bps": -14.801860769638779,
+        "net_pnl_inr": -5852.740931120366,
+        "positive_batch_fraction": 0.13725490196078433,
         "positive_batches": 7,
-        "trades": 83
+        "trades": 86
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3103,13 +3117,13 @@
       "hypothesis_id": "HYP-42AC09448C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 23,
+        "batches": 24,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.89934735315442,
-        "net_pnl_inr": -984.5245826193923,
-        "positive_batch_fraction": 0.43478260869565216,
+        "median_batch_mean_net_bps": -8.966547812123551,
+        "net_pnl_inr": -1136.9690909575174,
+        "positive_batch_fraction": 0.4166666666666667,
         "positive_batches": 10,
-        "trades": 23
+        "trades": 24
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3199,13 +3213,13 @@
       "hypothesis_id": "HYP-446AB24877",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.818764829701532,
-        "net_pnl_inr": -1486.7508243409181,
-        "positive_batch_fraction": 0.2894736842105263,
-        "positive_batches": 11,
-        "trades": 47
+        "median_batch_mean_net_bps": -8.19379733140987,
+        "net_pnl_inr": -1271.0941451898484,
+        "positive_batch_fraction": 0.3076923076923077,
+        "positive_batches": 12,
+        "trades": 48
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3231,13 +3245,13 @@
       "hypothesis_id": "HYP-45B23C6F11",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.793333924855956,
-        "net_pnl_inr": -4555.842039298058,
-        "positive_batch_fraction": 0.13157894736842105,
+        "median_batch_mean_net_bps": -13.778434091303716,
+        "net_pnl_inr": -4679.521916068522,
+        "positive_batch_fraction": 0.1282051282051282,
         "positive_batches": 5,
-        "trades": 67
+        "trades": 70
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3263,13 +3277,13 @@
       "hypothesis_id": "HYP-45E397F713",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 23,
+        "batches": 24,
         "eligible": false,
-        "median_batch_mean_net_bps": -17.278370507032704,
-        "net_pnl_inr": -1736.7220505513676,
-        "positive_batch_fraction": 0.21739130434782608,
-        "positive_batches": 5,
-        "trades": 23
+        "median_batch_mean_net_bps": -17.217150000308624,
+        "net_pnl_inr": -1607.6224180211534,
+        "positive_batch_fraction": 0.25,
+        "positive_batches": 6,
+        "trades": 24
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3295,13 +3309,13 @@
       "hypothesis_id": "HYP-45E62BE1EC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 33,
+        "batches": 34,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.42391633411285,
-        "net_pnl_inr": -1468.322325757527,
-        "positive_batch_fraction": 0.24242424242424243,
-        "positive_batches": 8,
-        "trades": 39
+        "median_batch_mean_net_bps": -9.704696697875738,
+        "net_pnl_inr": -1040.8435734324514,
+        "positive_batch_fraction": 0.2647058823529412,
+        "positive_batches": 9,
+        "trades": 40
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3327,13 +3341,13 @@
       "hypothesis_id": "HYP-4603085B69",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.306141773550621,
-        "net_pnl_inr": -19737.221789299914,
+        "median_batch_mean_net_bps": -11.312016435526921,
+        "net_pnl_inr": -20278.459794119957,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 347
+        "trades": 354
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3359,13 +3373,13 @@
       "hypothesis_id": "HYP-4A1E152E89",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.02733684757559,
-        "net_pnl_inr": -4332.558336363491,
-        "positive_batch_fraction": 0.15555555555555556,
+        "median_batch_mean_net_bps": -14.37394879761952,
+        "net_pnl_inr": -4856.265378101175,
+        "positive_batch_fraction": 0.15217391304347827,
         "positive_batches": 7,
-        "trades": 68
+        "trades": 69
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3391,13 +3405,13 @@
       "hypothesis_id": "HYP-4B7D135AFE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.40415216290466,
-        "net_pnl_inr": -2804.820706593729,
-        "positive_batch_fraction": 0.22857142857142856,
+        "median_batch_mean_net_bps": -13.366618317162262,
+        "net_pnl_inr": -3169.3069908829984,
+        "positive_batch_fraction": 0.2222222222222222,
         "positive_batches": 8,
-        "trades": 47
+        "trades": 48
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3423,13 +3437,13 @@
       "hypothesis_id": "HYP-4BB723FF2E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.500828038254724,
-        "net_pnl_inr": -12325.751750894358,
-        "positive_batch_fraction": 0.24390243902439024,
+        "median_batch_mean_net_bps": -16.273496673305793,
+        "net_pnl_inr": -12582.140134398676,
+        "positive_batch_fraction": 0.23809523809523808,
         "positive_batches": 10,
-        "trades": 148
+        "trades": 150
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -3455,13 +3469,13 @@
       "hypothesis_id": "HYP-4BE1BC9D10",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.162838107305086,
-        "net_pnl_inr": -8703.89268789286,
-        "positive_batch_fraction": 0.10204081632653061,
+        "median_batch_mean_net_bps": -12.097469714810225,
+        "net_pnl_inr": -8889.43088326009,
+        "positive_batch_fraction": 0.1,
         "positive_batches": 5,
-        "trades": 124
+        "trades": 128
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3487,13 +3501,13 @@
       "hypothesis_id": "HYP-4C173EA8CD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.245633081052528,
-        "net_pnl_inr": -13116.76288829967,
+        "median_batch_mean_net_bps": -12.194010921563438,
+        "net_pnl_inr": -13119.04431554521,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 225
+        "trades": 226
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3519,13 +3533,13 @@
       "hypothesis_id": "HYP-4C4A14655B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.37810587828233,
-        "net_pnl_inr": -3809.107935225147,
-        "positive_batch_fraction": 0.16666666666666666,
-        "positive_batches": 7,
-        "trades": 67
+        "median_batch_mean_net_bps": -10.551811885971953,
+        "net_pnl_inr": -3379.87244753365,
+        "positive_batch_fraction": 0.18604651162790697,
+        "positive_batches": 8,
+        "trades": 68
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3615,13 +3629,13 @@
       "hypothesis_id": "HYP-4CE78CAAC4",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.438050808414333,
-        "net_pnl_inr": -3697.752957803162,
-        "positive_batch_fraction": 0.1956521739130435,
+        "median_batch_mean_net_bps": -8.830882991502776,
+        "net_pnl_inr": -4109.690570081951,
+        "positive_batch_fraction": 0.19148936170212766,
         "positive_batches": 9,
-        "trades": 75
+        "trades": 77
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3647,13 +3661,13 @@
       "hypothesis_id": "HYP-4F722111EE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 24,
+        "batches": 25,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.306524383367513,
-        "net_pnl_inr": -1887.1340512224544,
-        "positive_batch_fraction": 0.3333333333333333,
+        "median_batch_mean_net_bps": -12.780584428319498,
+        "net_pnl_inr": -2180.4215117501144,
+        "positive_batch_fraction": 0.32,
         "positive_batches": 8,
-        "trades": 24
+        "trades": 25
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3679,13 +3693,13 @@
       "hypothesis_id": "HYP-50BCAA8FD2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.819607843137037,
-        "net_pnl_inr": -2333.7354915036453,
-        "positive_batch_fraction": 0.24324324324324326,
-        "positive_batches": 9,
-        "trades": 50
+        "median_batch_mean_net_bps": -10.817047441820517,
+        "net_pnl_inr": -1910.315355715254,
+        "positive_batch_fraction": 0.2631578947368421,
+        "positive_batches": 10,
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3743,13 +3757,13 @@
       "hypothesis_id": "HYP-51CFE64E85",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.05857604933445,
-        "net_pnl_inr": -23845.343365375244,
-        "positive_batch_fraction": 0.018867924528301886,
+        "median_batch_mean_net_bps": -11.022000070259681,
+        "net_pnl_inr": -24294.682734062346,
+        "positive_batch_fraction": 0.018518518518518517,
         "positive_batches": 1,
-        "trades": 423
+        "trades": 433
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3775,13 +3789,13 @@
       "hypothesis_id": "HYP-51DE7A0822",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -21011.10070258746,
+        "median_batch_mean_net_bps": -11.79029779714832,
+        "net_pnl_inr": -21492.230648276094,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 361
+        "trades": 370
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3807,13 +3821,13 @@
       "hypothesis_id": "HYP-520DEBA36B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 43,
+        "batches": 44,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.600959232614361,
-        "net_pnl_inr": -3019.8817381396934,
-        "positive_batch_fraction": 0.23255813953488372,
+        "median_batch_mean_net_bps": -10.907964205348755,
+        "net_pnl_inr": -3421.148452332096,
+        "positive_batch_fraction": 0.22727272727272727,
         "positive_batches": 10,
-        "trades": 66
+        "trades": 68
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3839,13 +3853,13 @@
       "hypothesis_id": "HYP-5250439318",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 25,
+        "batches": 26,
         "eligible": false,
-        "median_batch_mean_net_bps": -22.505237239952983,
-        "net_pnl_inr": -2830.9835652373163,
-        "positive_batch_fraction": 0.24,
+        "median_batch_mean_net_bps": -22.834507754456027,
+        "net_pnl_inr": -3108.96197072549,
+        "positive_batch_fraction": 0.23076923076923078,
         "positive_batches": 6,
-        "trades": 25
+        "trades": 26
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3871,13 +3885,13 @@
       "hypothesis_id": "HYP-52875F266E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 20,
+        "batches": 21,
         "eligible": false,
-        "median_batch_mean_net_bps": -16.17231140713701,
-        "net_pnl_inr": -1633.997450584181,
-        "positive_batch_fraction": 0.45,
+        "median_batch_mean_net_bps": -17.532301519059125,
+        "net_pnl_inr": -1721.6589581794767,
+        "positive_batch_fraction": 0.42857142857142855,
         "positive_batches": 9,
-        "trades": 20
+        "trades": 21
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3903,13 +3917,13 @@
       "hypothesis_id": "HYP-52A3EF0E58",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.757490965425081,
-        "net_pnl_inr": -3484.517882934476,
-        "positive_batch_fraction": 0.15789473684210525,
+        "median_batch_mean_net_bps": -14.77265160523308,
+        "net_pnl_inr": -4003.952279529741,
+        "positive_batch_fraction": 0.15384615384615385,
         "positive_batches": 6,
-        "trades": 55
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -3999,13 +4013,13 @@
       "hypothesis_id": "HYP-540C9330F0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.037871839938731,
-        "net_pnl_inr": -5909.802419383068,
-        "positive_batch_fraction": 0.04081632653061224,
+        "median_batch_mean_net_bps": -11.949840209327373,
+        "net_pnl_inr": -5944.164846791045,
+        "positive_batch_fraction": 0.04,
         "positive_batches": 2,
-        "trades": 101
+        "trades": 103
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4031,13 +4045,13 @@
       "hypothesis_id": "HYP-54CEE2E1B6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.80030708512517,
-        "net_pnl_inr": -26895.21330927586,
+        "median_batch_mean_net_bps": -11.800614170250336,
+        "net_pnl_inr": -27565.911804805583,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 463
+        "trades": 474
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4063,13 +4077,13 @@
       "hypothesis_id": "HYP-558F28F8F6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.01528502622133,
-        "net_pnl_inr": -12646.886306266853,
-        "positive_batch_fraction": 0.23529411764705882,
-        "positive_batches": 12,
-        "trades": 301
+        "median_batch_mean_net_bps": -10.93757053179077,
+        "net_pnl_inr": -11590.72847662101,
+        "positive_batch_fraction": 0.25,
+        "positive_batches": 13,
+        "trades": 310
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -4095,13 +4109,13 @@
       "hypothesis_id": "HYP-55BC62ADFE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 19,
+        "batches": 20,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.486483146838946,
-        "net_pnl_inr": -2375.752812972254,
-        "positive_batch_fraction": 0.3157894736842105,
+        "median_batch_mean_net_bps": -11.048191201102199,
+        "net_pnl_inr": -2399.733357719338,
+        "positive_batch_fraction": 0.3,
         "positive_batches": 6,
-        "trades": 19
+        "trades": 20
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4127,13 +4141,13 @@
       "hypothesis_id": "HYP-55D4C06775",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.604786563145423,
-        "net_pnl_inr": -19205.111050682895,
-        "positive_batch_fraction": 0.16981132075471697,
+        "median_batch_mean_net_bps": -13.674507197156679,
+        "net_pnl_inr": -19935.281489442437,
+        "positive_batch_fraction": 0.16666666666666666,
         "positive_batches": 9,
-        "trades": 355
+        "trades": 365
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -4159,13 +4173,13 @@
       "hypothesis_id": "HYP-563441B692",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.797869338739503,
-        "net_pnl_inr": -2551.536720895424,
-        "positive_batch_fraction": 0.2857142857142857,
+        "median_batch_mean_net_bps": -12.99691704070187,
+        "net_pnl_inr": -2909.7066903384352,
+        "positive_batch_fraction": 0.2777777777777778,
         "positive_batches": 10,
-        "trades": 53
+        "trades": 55
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4191,13 +4205,13 @@
       "hypothesis_id": "HYP-586BC454D0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.673048920367732,
-        "net_pnl_inr": -5942.743597903717,
-        "positive_batch_fraction": 0.10204081632653061,
-        "positive_batches": 5,
-        "trades": 112
+        "median_batch_mean_net_bps": -10.630400180462136,
+        "net_pnl_inr": -5771.472878926061,
+        "positive_batch_fraction": 0.12,
+        "positive_batches": 6,
+        "trades": 114
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4223,13 +4237,13 @@
       "hypothesis_id": "HYP-598CA150E1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.793523509014271,
-        "net_pnl_inr": -16236.649046688506,
+        "median_batch_mean_net_bps": -11.809178141724548,
+        "net_pnl_inr": -16671.403499686985,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 288
+        "trades": 294
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4255,13 +4269,13 @@
       "hypothesis_id": "HYP-5B6D16017D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.915679842932681,
-        "net_pnl_inr": -39729.63100875395,
-        "positive_batch_fraction": 0.018867924528301886,
+        "median_batch_mean_net_bps": -12.85844504412755,
+        "net_pnl_inr": -40102.39016259982,
+        "positive_batch_fraction": 0.018518518518518517,
         "positive_batches": 1,
-        "trades": 607
+        "trades": 615
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -4287,13 +4301,13 @@
       "hypothesis_id": "HYP-5C67134D6F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.014624073848648,
-        "net_pnl_inr": -6492.597126831496,
-        "positive_batch_fraction": 0.061224489795918366,
+        "median_batch_mean_net_bps": -13.289976506737212,
+        "net_pnl_inr": -6915.396698285232,
+        "positive_batch_fraction": 0.06,
         "positive_batches": 3,
-        "trades": 112
+        "trades": 117
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4319,13 +4333,13 @@
       "hypothesis_id": "HYP-5D7FD2DFEB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.185880503143144,
-        "net_pnl_inr": -16199.377820084037,
+        "median_batch_mean_net_bps": -12.188281327457162,
+        "net_pnl_inr": -16976.79025644035,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 268
+        "trades": 277
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4351,13 +4365,13 @@
       "hypothesis_id": "HYP-5E6CE765E9",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.576235424764018,
-        "net_pnl_inr": -3322.0873956530745,
-        "positive_batch_fraction": 0.22857142857142856,
-        "positive_batches": 8,
-        "trades": 53
+        "median_batch_mean_net_bps": -14.34326537741804,
+        "net_pnl_inr": -2833.598044239602,
+        "positive_batch_fraction": 0.25,
+        "positive_batches": 9,
+        "trades": 54
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4369,13 +4383,13 @@
       "direction": "SHORT",
       "first_forward_batch": "20260913T171713Z_run_34771122064",
       "forward_summary": {
-        "batches_tested": 18,
+        "batches_tested": 19,
         "best_batch_mean_net_bps": 61.12304511367975,
-        "median_batch_mean_net_bps": -11.572185355099153,
-        "net_pnl_inr": -628.6487767230379,
-        "positive_batch_fraction": 0.2777777777777778,
+        "median_batch_mean_net_bps": -11.38415808646084,
+        "net_pnl_inr": -638.0551113760904,
+        "positive_batch_fraction": 0.2631578947368421,
         "positive_batches": 5,
-        "trades": 18,
+        "trades": 19,
         "worst_batch_mean_net_bps": -43.3540572925821
       },
       "forward_tests": [
@@ -4630,19 +4644,33 @@
           "trades": 1,
           "window_s": 60,
           "wins": 0
+        },
+        {
+          "batch_id": "20260916T173714Z_run_35129293144",
+          "direction": "SHORT",
+          "horizon_s": 1800,
+          "mean_net_bps": -1.8812669306104937,
+          "median_net_bps": -1.8812669306104937,
+          "net_pnl_inr": -9.406334653052468,
+          "net_return_bps_sum": -1.8812669306104937,
+          "scope": "SYMBOL",
+          "symbol": "B-ETH_USDT",
+          "trades": 1,
+          "window_s": 60,
+          "wins": 0
         }
       ],
       "horizon_s": 1800,
       "hypothesis_id": "HYP-5F97AEA99F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 26,
+        "batches": 27,
         "eligible": false,
-        "median_batch_mean_net_bps": -6.671621308673016,
-        "net_pnl_inr": -344.0439610610281,
-        "positive_batch_fraction": 0.38461538461538464,
+        "median_batch_mean_net_bps": -4.477724364075199,
+        "net_pnl_inr": -353.45029571408054,
+        "positive_batch_fraction": 0.37037037037037035,
         "positive_batches": 10,
-        "trades": 26
+        "trades": 27
       },
       "scope": "SYMBOL",
       "status": "RETIRED",
@@ -4668,13 +4696,13 @@
       "hypothesis_id": "HYP-60DD88765E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 31,
+        "batches": 32,
         "eligible": false,
-        "median_batch_mean_net_bps": -5.956745307136714,
-        "net_pnl_inr": -73.5099973641612,
-        "positive_batch_fraction": 0.3548387096774194,
-        "positive_batches": 11,
-        "trades": 45
+        "median_batch_mean_net_bps": -4.4126389257533,
+        "net_pnl_inr": -51.03253946084946,
+        "positive_batch_fraction": 0.375,
+        "positive_batches": 12,
+        "trades": 46
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4732,13 +4760,13 @@
       "hypothesis_id": "HYP-61DAA80646",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.688128731117045,
-        "net_pnl_inr": -14258.733499102978,
-        "positive_batch_fraction": 0.225,
+        "median_batch_mean_net_bps": -13.992147480640227,
+        "net_pnl_inr": -15164.810861930055,
+        "positive_batch_fraction": 0.21951219512195122,
         "positive_batches": 9,
-        "trades": 147
+        "trades": 151
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -4764,13 +4792,13 @@
       "hypothesis_id": "HYP-62428AD11E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.073496151358857,
-        "net_pnl_inr": -5203.01348434362,
-        "positive_batch_fraction": 0.045454545454545456,
-        "positive_batches": 2,
-        "trades": 81
+        "median_batch_mean_net_bps": -13.028209191759256,
+        "net_pnl_inr": -4981.917156265973,
+        "positive_batch_fraction": 0.06666666666666667,
+        "positive_batches": 3,
+        "trades": 82
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4860,13 +4888,13 @@
       "hypothesis_id": "HYP-63B1FE7BB3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.916054554889834,
-        "net_pnl_inr": -7986.696167711367,
-        "positive_batch_fraction": 0.058823529411764705,
+        "median_batch_mean_net_bps": -13.583687079948636,
+        "net_pnl_inr": -8241.831626265603,
+        "positive_batch_fraction": 0.057692307692307696,
         "positive_batches": 3,
-        "trades": 117
+        "trades": 121
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4892,13 +4920,13 @@
       "hypothesis_id": "HYP-64E9A765EF",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 43,
+        "batches": 44,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -3361.845044360203,
-        "positive_batch_fraction": 0.18604651162790697,
+        "median_batch_mean_net_bps": -12.397871577184828,
+        "net_pnl_inr": -3503.0585320261594,
+        "positive_batch_fraction": 0.18181818181818182,
         "positive_batches": 8,
-        "trades": 56
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4924,13 +4952,13 @@
       "hypothesis_id": "HYP-653D031DFC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 31,
+        "batches": 32,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.781643270835387,
-        "net_pnl_inr": -2609.313107344294,
-        "positive_batch_fraction": 0.3548387096774194,
+        "median_batch_mean_net_bps": -13.768654147733173,
+        "net_pnl_inr": -2872.145149741362,
+        "positive_batch_fraction": 0.34375,
         "positive_batches": 11,
-        "trades": 31
+        "trades": 32
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -4956,13 +4984,13 @@
       "hypothesis_id": "HYP-65AEE9989D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 20,
+        "batches": 21,
         "eligible": false,
-        "median_batch_mean_net_bps": -33.91026573536778,
-        "net_pnl_inr": -3139.804130141363,
-        "positive_batch_fraction": 0.3,
+        "median_batch_mean_net_bps": -33.573842357381,
+        "net_pnl_inr": -3270.4578991296135,
+        "positive_batch_fraction": 0.2857142857142857,
         "positive_batches": 6,
-        "trades": 20
+        "trades": 21
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5052,13 +5080,13 @@
       "hypothesis_id": "HYP-6750F1E610",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.798407015373705,
-        "net_pnl_inr": -36221.9940032471,
-        "positive_batch_fraction": 0.09259259259259259,
+        "median_batch_mean_net_bps": -11.67945470602373,
+        "net_pnl_inr": -37059.079931766755,
+        "positive_batch_fraction": 0.09090909090909091,
         "positive_batches": 5,
-        "trades": 678
+        "trades": 694
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5116,13 +5144,13 @@
       "hypothesis_id": "HYP-678E8725AD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.081410488079754,
-        "net_pnl_inr": -15611.218925147385,
-        "positive_batch_fraction": 0.02,
+        "median_batch_mean_net_bps": -12.313201773407636,
+        "net_pnl_inr": -16710.71684227305,
+        "positive_batch_fraction": 0.0196078431372549,
         "positive_batches": 1,
-        "trades": 268
+        "trades": 281
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5148,13 +5176,13 @@
       "hypothesis_id": "HYP-67A0C6895C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.804747371870363,
-        "net_pnl_inr": -13668.226320241212,
-        "positive_batch_fraction": 0.3333333333333333,
+        "median_batch_mean_net_bps": -16.06361928851815,
+        "net_pnl_inr": -14346.369126762378,
+        "positive_batch_fraction": 0.32558139534883723,
         "positive_batches": 14,
-        "trades": 150
+        "trades": 153
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5180,13 +5208,13 @@
       "hypothesis_id": "HYP-68436ECC32",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 24,
+        "batches": 25,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.87911720974774,
-        "net_pnl_inr": -2120.738608380645,
-        "positive_batch_fraction": 0.25,
-        "positive_batches": 6,
-        "trades": 24
+        "median_batch_mean_net_bps": -14.60772759090553,
+        "net_pnl_inr": -2079.934656566047,
+        "positive_batch_fraction": 0.28,
+        "positive_batches": 7,
+        "trades": 25
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5212,13 +5240,13 @@
       "hypothesis_id": "HYP-6874782497",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.948662229870425,
-        "net_pnl_inr": -32970.462000327,
-        "positive_batch_fraction": 0.0196078431372549,
-        "positive_batches": 1,
-        "trades": 484
+        "median_batch_mean_net_bps": -14.914605176017272,
+        "net_pnl_inr": -32768.511448757556,
+        "positive_batch_fraction": 0.038461538461538464,
+        "positive_batches": 2,
+        "trades": 491
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5244,13 +5272,13 @@
       "hypothesis_id": "HYP-68E556C7BE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.060832936757897,
-        "net_pnl_inr": -31975.51602810423,
+        "median_batch_mean_net_bps": -12.15773886312901,
+        "net_pnl_inr": -33289.63387384117,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 534
+        "trades": 550
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5276,13 +5304,13 @@
       "hypothesis_id": "HYP-6A7942BF9E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.233240596415808,
-        "net_pnl_inr": -3890.075728147597,
-        "positive_batch_fraction": 0.07692307692307693,
+        "median_batch_mean_net_bps": -12.268098863207756,
+        "net_pnl_inr": -3976.996107654049,
+        "positive_batch_fraction": 0.075,
         "positive_batches": 3,
-        "trades": 63
+        "trades": 64
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5308,13 +5336,13 @@
       "hypothesis_id": "HYP-6A9E51C99E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 33,
+        "batches": 34,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.244866843265502,
-        "net_pnl_inr": -3142.745674569421,
-        "positive_batch_fraction": 0.12121212121212122,
+        "median_batch_mean_net_bps": -13.733733173693498,
+        "net_pnl_inr": -3417.0869251652844,
+        "positive_batch_fraction": 0.11764705882352941,
         "positive_batches": 4,
-        "trades": 40
+        "trades": 41
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5372,13 +5400,13 @@
       "hypothesis_id": "HYP-6C3506FBCF",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.361087780064553,
-        "net_pnl_inr": -28118.079393573895,
+        "median_batch_mean_net_bps": -11.301732370086883,
+        "net_pnl_inr": -28471.556177039238,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 491
+        "trades": 499
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5404,13 +5432,13 @@
       "hypothesis_id": "HYP-6CB3868B9B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.004895476305276,
-        "net_pnl_inr": -8541.506149115241,
-        "positive_batch_fraction": 0.25,
-        "positive_batches": 10,
-        "trades": 135
+        "median_batch_mean_net_bps": -11.999539584658793,
+        "net_pnl_inr": -8291.27907478659,
+        "positive_batch_fraction": 0.2682926829268293,
+        "positive_batches": 11,
+        "trades": 138
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5468,13 +5496,13 @@
       "hypothesis_id": "HYP-6DB717FD6A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.731482497405283,
-        "net_pnl_inr": -11446.226119946115,
-        "positive_batch_fraction": 0.20833333333333334,
-        "positive_batches": 10,
-        "trades": 304
+        "median_batch_mean_net_bps": -8.528620393765161,
+        "net_pnl_inr": -10986.870567739026,
+        "positive_batch_fraction": 0.22448979591836735,
+        "positive_batches": 11,
+        "trades": 310
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5500,13 +5528,13 @@
       "hypothesis_id": "HYP-6E06BA1398",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.939151696171441,
-        "net_pnl_inr": -5505.325844836779,
-        "positive_batch_fraction": 0.022222222222222223,
-        "positive_batches": 1,
-        "trades": 82
+        "median_batch_mean_net_bps": -13.52922693146634,
+        "net_pnl_inr": -5430.624295889405,
+        "positive_batch_fraction": 0.043478260869565216,
+        "positive_batches": 2,
+        "trades": 83
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5532,13 +5560,13 @@
       "hypothesis_id": "HYP-6E20CDA12E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.18045231440731,
-        "net_pnl_inr": -7705.764444044852,
-        "positive_batch_fraction": 0.0851063829787234,
+        "median_batch_mean_net_bps": -13.175909097412198,
+        "net_pnl_inr": -7736.678051927775,
+        "positive_batch_fraction": 0.08333333333333333,
         "positive_batches": 4,
-        "trades": 123
+        "trades": 125
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5596,13 +5624,13 @@
       "hypothesis_id": "HYP-708807BCE2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.391731918554239,
-        "net_pnl_inr": -4858.233231157163,
-        "positive_batch_fraction": 0.13043478260869565,
+        "median_batch_mean_net_bps": -13.712302853716576,
+        "net_pnl_inr": -5431.214712557744,
+        "positive_batch_fraction": 0.1276595744680851,
         "positive_batches": 6,
-        "trades": 71
+        "trades": 72
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5628,13 +5656,13 @@
       "hypothesis_id": "HYP-708EBB04CB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -16.664195802810056,
-        "net_pnl_inr": -4041.390794279429,
-        "positive_batch_fraction": 0.2564102564102564,
+        "median_batch_mean_net_bps": -16.996055889244154,
+        "net_pnl_inr": -4342.797752785065,
+        "positive_batch_fraction": 0.25,
         "positive_batches": 10,
-        "trades": 49
+        "trades": 50
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5692,13 +5720,13 @@
       "hypothesis_id": "HYP-72D9A8965C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.440519523681434,
-        "net_pnl_inr": -2574.3668026771034,
-        "positive_batch_fraction": 0.3409090909090909,
+        "median_batch_mean_net_bps": -9.60509218612834,
+        "net_pnl_inr": -3019.484937589709,
+        "positive_batch_fraction": 0.3333333333333333,
         "positive_batches": 15,
-        "trades": 60
+        "trades": 63
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5756,13 +5784,13 @@
       "hypothesis_id": "HYP-741257C0E6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -16.514402986057224,
-        "net_pnl_inr": -5555.991101809912,
-        "positive_batch_fraction": 0.1111111111111111,
+        "median_batch_mean_net_bps": -16.235819997943754,
+        "net_pnl_inr": -5566.895151387677,
+        "positive_batch_fraction": 0.10869565217391304,
         "positive_batches": 5,
-        "trades": 73
+        "trades": 75
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5820,13 +5848,13 @@
       "hypothesis_id": "HYP-7596D9C77A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.10919248947927,
-        "net_pnl_inr": -24980.98014849765,
+        "median_batch_mean_net_bps": -11.998988445598108,
+        "net_pnl_inr": -25439.907997584753,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 423
+        "trades": 432
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5852,13 +5880,13 @@
       "hypothesis_id": "HYP-77D9217F28",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.783767830791128,
-        "net_pnl_inr": -2627.8593935072436,
-        "positive_batch_fraction": 0.24390243902439024,
-        "positive_batches": 10,
-        "trades": 51
+        "median_batch_mean_net_bps": -12.782464763119584,
+        "net_pnl_inr": -2336.2129844801557,
+        "positive_batch_fraction": 0.2619047619047619,
+        "positive_batches": 11,
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5884,13 +5912,13 @@
       "hypothesis_id": "HYP-77EBB050A7",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.54045834217315,
-        "net_pnl_inr": -13910.666066337853,
+        "median_batch_mean_net_bps": -12.555331843141637,
+        "net_pnl_inr": -14194.850119569466,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 224
+        "trades": 227
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5916,13 +5944,13 @@
       "hypothesis_id": "HYP-77FE19A89A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.822601259934089,
-        "net_pnl_inr": -17828.98081380726,
-        "positive_batch_fraction": 0.19148936170212766,
+        "median_batch_mean_net_bps": -15.317404724890974,
+        "net_pnl_inr": -19475.420711629435,
+        "positive_batch_fraction": 0.1875,
         "positive_batches": 9,
-        "trades": 286
+        "trades": 292
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -5948,13 +5976,13 @@
       "hypothesis_id": "HYP-78CE4E648B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.268843114391881,
-        "net_pnl_inr": -2701.899298243409,
-        "positive_batch_fraction": 0.15384615384615385,
-        "positive_batches": 6,
-        "trades": 51
+        "median_batch_mean_net_bps": -10.980165710118696,
+        "net_pnl_inr": -2541.3215219479034,
+        "positive_batch_fraction": 0.175,
+        "positive_batches": 7,
+        "trades": 53
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -5980,13 +6008,13 @@
       "hypothesis_id": "HYP-791AF6E134",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 22,
+        "batches": 23,
         "eligible": false,
-        "median_batch_mean_net_bps": -21.75715251304985,
-        "net_pnl_inr": -2779.9012517710503,
-        "positive_batch_fraction": 0.3181818181818182,
+        "median_batch_mean_net_bps": -20.402150537635467,
+        "net_pnl_inr": -2881.912004459228,
+        "positive_batch_fraction": 0.30434782608695654,
         "positive_batches": 7,
-        "trades": 22
+        "trades": 23
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6012,13 +6040,13 @@
       "hypothesis_id": "HYP-797E95ACD6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.96911558302809,
-        "net_pnl_inr": -25798.587714740148,
+        "median_batch_mean_net_bps": -11.884941607811587,
+        "net_pnl_inr": -26164.768968507553,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 434
+        "trades": 443
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6044,13 +6072,13 @@
       "hypothesis_id": "HYP-7A34459C3E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -8.620573241090302,
-        "net_pnl_inr": -2800.220237547222,
-        "positive_batch_fraction": 0.23809523809523808,
+        "median_batch_mean_net_bps": -8.488367284300992,
+        "net_pnl_inr": -2832.7595063304366,
+        "positive_batch_fraction": 0.23255813953488372,
         "positive_batches": 10,
-        "trades": 57
+        "trades": 58
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6076,13 +6104,13 @@
       "hypothesis_id": "HYP-7A83FC7184",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 27,
+        "batches": 28,
         "eligible": false,
-        "median_batch_mean_net_bps": -23.03315027458771,
-        "net_pnl_inr": -3632.7954487562606,
-        "positive_batch_fraction": 0.14814814814814814,
+        "median_batch_mean_net_bps": -23.376761095095645,
+        "net_pnl_inr": -3923.074358620002,
+        "positive_batch_fraction": 0.14285714285714285,
         "positive_batches": 4,
-        "trades": 27
+        "trades": 28
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6108,13 +6136,13 @@
       "hypothesis_id": "HYP-7B9A171DA5",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.92839115112906,
-        "net_pnl_inr": -20873.514833798432,
+        "median_batch_mean_net_bps": -12.04735917041413,
+        "net_pnl_inr": -22061.51582962839,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 355
+        "trades": 370
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6140,13 +6168,13 @@
       "hypothesis_id": "HYP-7D92548EFB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.208551488973566,
-        "net_pnl_inr": -18399.95245582729,
-        "positive_batch_fraction": 0.16326530612244897,
+        "median_batch_mean_net_bps": -12.562969707048868,
+        "net_pnl_inr": -19667.095091601845,
+        "positive_batch_fraction": 0.16,
         "positive_batches": 8,
-        "trades": 297
+        "trades": 302
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6236,13 +6264,13 @@
       "hypothesis_id": "HYP-820A8D1496",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.286191458824632,
-        "net_pnl_inr": -5820.390810366083,
-        "positive_batch_fraction": 0.1111111111111111,
+        "median_batch_mean_net_bps": -12.296507981897488,
+        "net_pnl_inr": -6211.854503014972,
+        "positive_batch_fraction": 0.10869565217391304,
         "positive_batches": 5,
-        "trades": 98
+        "trades": 101
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6268,13 +6296,13 @@
       "hypothesis_id": "HYP-82B3B1E8EC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -7.801729277276538,
-        "net_pnl_inr": -700.0360052260058,
-        "positive_batch_fraction": 0.3611111111111111,
+        "median_batch_mean_net_bps": -7.469120831529587,
+        "net_pnl_inr": -704.6923983631835,
+        "positive_batch_fraction": 0.35135135135135137,
         "positive_batches": 13,
-        "trades": 48
+        "trades": 49
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6300,13 +6328,13 @@
       "hypothesis_id": "HYP-83959C6CFD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.184358607534499,
-        "net_pnl_inr": -1974.1790414731247,
-        "positive_batch_fraction": 0.22857142857142856,
-        "positive_batches": 8,
-        "trades": 45
+        "median_batch_mean_net_bps": -13.582010612012553,
+        "net_pnl_inr": -1968.9315270301477,
+        "positive_batch_fraction": 0.25,
+        "positive_batches": 9,
+        "trades": 47
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6364,13 +6392,13 @@
       "hypothesis_id": "HYP-851C034652",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 23,
+        "batches": 24,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.130278079852866,
-        "net_pnl_inr": -2175.1185931959762,
-        "positive_batch_fraction": 0.30434782608695654,
+        "median_batch_mean_net_bps": -16.478568146734286,
+        "net_pnl_inr": -2269.252884264055,
+        "positive_batch_fraction": 0.2916666666666667,
         "positive_batches": 7,
-        "trades": 23
+        "trades": 24
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6396,13 +6424,13 @@
       "hypothesis_id": "HYP-85DB130B31",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.357404827668473,
-        "net_pnl_inr": -17397.88908141079,
+        "median_batch_mean_net_bps": -12.339118198648492,
+        "net_pnl_inr": -17881.689585399236,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 291
+        "trades": 300
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6428,13 +6456,13 @@
       "hypothesis_id": "HYP-8692EEA6A0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 34,
+        "batches": 35,
         "eligible": false,
         "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -2269.937418005878,
-        "positive_batch_fraction": 0.2647058823529412,
-        "positive_batches": 9,
-        "trades": 45
+        "net_pnl_inr": -2085.6980418433373,
+        "positive_batch_fraction": 0.2857142857142857,
+        "positive_batches": 10,
+        "trades": 46
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6460,13 +6488,13 @@
       "hypothesis_id": "HYP-870AE1FB2D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.717147543379163,
-        "net_pnl_inr": -12400.891756621695,
+        "median_batch_mean_net_bps": -12.719413414241695,
+        "net_pnl_inr": -12619.338112093455,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 199
+        "trades": 201
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6492,13 +6520,13 @@
       "hypothesis_id": "HYP-899E38609F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.320427655567146,
-        "net_pnl_inr": -7425.48028182985,
-        "positive_batch_fraction": 0.09803921568627451,
-        "positive_batches": 5,
-        "trades": 125
+        "median_batch_mean_net_bps": -11.196788911371627,
+        "net_pnl_inr": -7350.167795399951,
+        "positive_batch_fraction": 0.11538461538461539,
+        "positive_batches": 6,
+        "trades": 128
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6556,13 +6584,13 @@
       "hypothesis_id": "HYP-8A59BC7C68",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.045242171765803,
-        "net_pnl_inr": -17442.314970678908,
+        "median_batch_mean_net_bps": -12.094716226909114,
+        "net_pnl_inr": -17769.58533714095,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 296
+        "trades": 301
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6588,13 +6616,13 @@
       "hypothesis_id": "HYP-8A89C14056",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.96842388456054,
-        "net_pnl_inr": -34660.52243845584,
+        "median_batch_mean_net_bps": -11.918652759762036,
+        "net_pnl_inr": -35194.632178420776,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 580
+        "trades": 591
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6652,13 +6680,13 @@
       "hypothesis_id": "HYP-8D8E896E18",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.846451207307581,
-        "net_pnl_inr": -99551.06918075791,
-        "positive_batch_fraction": 0.018518518518518517,
+        "median_batch_mean_net_bps": -11.909766037911268,
+        "net_pnl_inr": -101574.09036293584,
+        "positive_batch_fraction": 0.01818181818181818,
         "positive_batches": 1,
-        "trades": 1733
+        "trades": 1760
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6684,13 +6712,13 @@
       "hypothesis_id": "HYP-8E65C7D657",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.37525241886466,
-        "net_pnl_inr": -37496.544647680625,
-        "positive_batch_fraction": 0.05555555555555555,
+        "median_batch_mean_net_bps": -15.386015871603838,
+        "net_pnl_inr": -38586.69540572224,
+        "positive_batch_fraction": 0.05454545454545454,
         "positive_batches": 3,
-        "trades": 484
+        "trades": 492
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6716,13 +6744,13 @@
       "hypothesis_id": "HYP-8F6168F481",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.011874290457335,
-        "net_pnl_inr": -187941.7442080067,
+        "median_batch_mean_net_bps": -12.022475328222848,
+        "net_pnl_inr": -192687.11448717953,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 3177
+        "trades": 3250
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6748,13 +6776,13 @@
       "hypothesis_id": "HYP-8FCA0A90DE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.117330205283073,
-        "net_pnl_inr": -7958.215202411479,
-        "positive_batch_fraction": 0.019230769230769232,
+        "median_batch_mean_net_bps": -12.3955720023737,
+        "net_pnl_inr": -8181.726117326822,
+        "positive_batch_fraction": 0.018867924528301886,
         "positive_batches": 1,
-        "trades": 125
+        "trades": 126
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6812,13 +6840,13 @@
       "hypothesis_id": "HYP-91E8C6A29A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.545599593635458,
-        "net_pnl_inr": -3943.008075520455,
-        "positive_batch_fraction": 0.13043478260869565,
+        "median_batch_mean_net_bps": -11.624740984227245,
+        "net_pnl_inr": -4364.113472938019,
+        "positive_batch_fraction": 0.1276595744680851,
         "positive_batches": 6,
-        "trades": 69
+        "trades": 70
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6844,13 +6872,13 @@
       "hypothesis_id": "HYP-920B448ADB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -18.818354287260572,
-        "net_pnl_inr": -14631.986753105379,
-        "positive_batch_fraction": 0.3333333333333333,
+        "median_batch_mean_net_bps": -19.538181892119844,
+        "net_pnl_inr": -15618.563383245311,
+        "positive_batch_fraction": 0.325,
         "positive_batches": 13,
-        "trades": 142
+        "trades": 146
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6876,13 +6904,13 @@
       "hypothesis_id": "HYP-9268DDBD49",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 22,
+        "batches": 23,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.411268345882988,
-        "net_pnl_inr": -699.9870805066042,
-        "positive_batch_fraction": 0.3181818181818182,
+        "median_batch_mean_net_bps": -11.076829621058794,
+        "net_pnl_inr": -704.6181484677646,
+        "positive_batch_fraction": 0.30434782608695654,
         "positive_batches": 7,
-        "trades": 22
+        "trades": 23
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6908,13 +6936,13 @@
       "hypothesis_id": "HYP-929E9A3430",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 43,
+        "batches": 44,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.465601429618355,
-        "net_pnl_inr": -2246.4699866826213,
-        "positive_batch_fraction": 0.20930232558139536,
-        "positive_batches": 9,
-        "trades": 56
+        "median_batch_mean_net_bps": -9.229528283499068,
+        "net_pnl_inr": -2146.1352093778733,
+        "positive_batch_fraction": 0.22727272727272727,
+        "positive_batches": 10,
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -6940,13 +6968,13 @@
       "hypothesis_id": "HYP-9331A1D3C3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.375902069960526,
-        "net_pnl_inr": -15961.135082374334,
-        "positive_batch_fraction": 0.14893617021276595,
+        "median_batch_mean_net_bps": -12.1522061848326,
+        "net_pnl_inr": -16662.466122375004,
+        "positive_batch_fraction": 0.14583333333333334,
         "positive_batches": 7,
-        "trades": 248
+        "trades": 251
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -6972,13 +7000,13 @@
       "hypothesis_id": "HYP-93D2DB2DF1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 22,
+        "batches": 23,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.051612609818875,
-        "net_pnl_inr": -2318.015166037169,
-        "positive_batch_fraction": 0.3181818181818182,
+        "median_batch_mean_net_bps": -14.92085511430027,
+        "net_pnl_inr": -2392.61944160867,
+        "positive_batch_fraction": 0.30434782608695654,
         "positive_batches": 7,
-        "trades": 22
+        "trades": 23
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7100,13 +7128,13 @@
       "hypothesis_id": "HYP-9730744057",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.280954055895211,
-        "net_pnl_inr": -5994.7408228594,
-        "positive_batch_fraction": 0.125,
+        "median_batch_mean_net_bps": -13.572281654496278,
+        "net_pnl_inr": -6353.76182998615,
+        "positive_batch_fraction": 0.12244897959183673,
         "positive_batches": 6,
-        "trades": 100
+        "trades": 104
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7431,13 +7459,13 @@
       "hypothesis_id": "HYP-99144457A3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.228146040712673,
-        "net_pnl_inr": -18249.597648979434,
-        "positive_batch_fraction": 0.0,
-        "positive_batches": 0,
-        "trades": 298
+        "median_batch_mean_net_bps": -12.217040906845467,
+        "net_pnl_inr": -18236.229902043036,
+        "positive_batch_fraction": 0.01818181818181818,
+        "positive_batches": 1,
+        "trades": 300
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7463,13 +7491,13 @@
       "hypothesis_id": "HYP-9A2B7463B3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.067161373919266,
-        "net_pnl_inr": -28088.604512266305,
+        "median_batch_mean_net_bps": -12.198692599891318,
+        "net_pnl_inr": -28749.79989243742,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 481
+        "trades": 492
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7495,13 +7523,13 @@
       "hypothesis_id": "HYP-9AEBD70B9D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.517240295323408,
-        "net_pnl_inr": -25141.970750912,
-        "positive_batch_fraction": 0.018518518518518517,
+        "median_batch_mean_net_bps": -11.52556738476586,
+        "net_pnl_inr": -26015.814407855207,
+        "positive_batch_fraction": 0.01818181818181818,
         "positive_batches": 1,
-        "trades": 445
+        "trades": 451
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7527,13 +7555,13 @@
       "hypothesis_id": "HYP-9D8225209A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.594926538108977,
-        "net_pnl_inr": -3949.848669576934,
-        "positive_batch_fraction": 0.1276595744680851,
-        "positive_batches": 6,
-        "trades": 68
+        "median_batch_mean_net_bps": -12.850028014874251,
+        "net_pnl_inr": -3817.3744739417016,
+        "positive_batch_fraction": 0.14583333333333334,
+        "positive_batches": 7,
+        "trades": 70
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7559,13 +7587,13 @@
       "hypothesis_id": "HYP-A049B2559A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.394697012929626,
-        "net_pnl_inr": -5534.633869992784,
-        "positive_batch_fraction": 0.08695652173913043,
-        "positive_batches": 4,
-        "trades": 103
+        "median_batch_mean_net_bps": -11.321480642034889,
+        "net_pnl_inr": -5308.5592766228165,
+        "positive_batch_fraction": 0.10638297872340426,
+        "positive_batches": 5,
+        "trades": 106
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7591,13 +7619,13 @@
       "hypothesis_id": "HYP-A139FE7FC0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 24,
+        "batches": 25,
         "eligible": false,
-        "median_batch_mean_net_bps": -17.982704044385144,
-        "net_pnl_inr": -3191.7404770920193,
-        "positive_batch_fraction": 0.25,
+        "median_batch_mean_net_bps": -21.785022466300063,
+        "net_pnl_inr": -3519.3897336208215,
+        "positive_batch_fraction": 0.24,
         "positive_batches": 6,
-        "trades": 24
+        "trades": 25
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7623,13 +7651,13 @@
       "hypothesis_id": "HYP-A15C9F5799",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 25,
+        "batches": 26,
         "eligible": false,
-        "median_batch_mean_net_bps": -19.048477819656874,
-        "net_pnl_inr": -2578.7354667086497,
-        "positive_batch_fraction": 0.36,
+        "median_batch_mean_net_bps": -18.881575377813064,
+        "net_pnl_inr": -2666.396974303945,
+        "positive_batch_fraction": 0.34615384615384615,
         "positive_batches": 9,
-        "trades": 25
+        "trades": 26
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7655,13 +7683,13 @@
       "hypothesis_id": "HYP-A16368371C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.417256637167828,
-        "net_pnl_inr": -6551.999232390465,
-        "positive_batch_fraction": 0.12244897959183673,
-        "positive_batches": 6,
-        "trades": 124
+        "median_batch_mean_net_bps": -10.415195220974528,
+        "net_pnl_inr": -6472.540502729359,
+        "positive_batch_fraction": 0.14,
+        "positive_batches": 7,
+        "trades": 127
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7687,13 +7715,13 @@
       "hypothesis_id": "HYP-A1A4873BEE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.112440796770766,
-        "net_pnl_inr": -5148.643589866403,
-        "positive_batch_fraction": 0.21153846153846154,
+        "median_batch_mean_net_bps": -11.209472265956556,
+        "net_pnl_inr": -5357.643589866403,
+        "positive_batch_fraction": 0.20754716981132076,
         "positive_batches": 11,
-        "trades": 86
+        "trades": 87
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7719,13 +7747,13 @@
       "hypothesis_id": "HYP-A226B36F12",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -7.509995709994856,
-        "net_pnl_inr": -2019.8105659388873,
-        "positive_batch_fraction": 0.34146341463414637,
+        "median_batch_mean_net_bps": -6.402243782721163,
+        "net_pnl_inr": -2042.9743633916935,
+        "positive_batch_fraction": 0.3333333333333333,
         "positive_batches": 14,
-        "trades": 57
+        "trades": 58
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7783,13 +7811,13 @@
       "hypothesis_id": "HYP-A424B5CC58",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.552158658232639,
-        "net_pnl_inr": -30301.745508955017,
+        "median_batch_mean_net_bps": -12.55724360737433,
+        "net_pnl_inr": -30899.232526896863,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 491
+        "trades": 500
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7815,13 +7843,13 @@
       "hypothesis_id": "HYP-A5B51F1707",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.691250847852409,
-        "net_pnl_inr": -22893.519073101663,
+        "median_batch_mean_net_bps": -11.683883214679831,
+        "net_pnl_inr": -23027.204597915377,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 395
+        "trades": 401
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7847,13 +7875,13 @@
       "hypothesis_id": "HYP-A83B1B9B87",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.174908362505606,
-        "net_pnl_inr": -6945.440073924125,
-        "positive_batch_fraction": 0.28205128205128205,
-        "positive_batches": 11,
-        "trades": 129
+        "median_batch_mean_net_bps": -12.086014031628071,
+        "net_pnl_inr": -6792.9339218188525,
+        "positive_batch_fraction": 0.3,
+        "positive_batches": 12,
+        "trades": 133
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -7879,13 +7907,13 @@
       "hypothesis_id": "HYP-A8E5343A7A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.056234420399626,
-        "net_pnl_inr": -2797.1100728016604,
-        "positive_batch_fraction": 0.1111111111111111,
-        "positive_batches": 4,
-        "trades": 51
+        "median_batch_mean_net_bps": -11.904047310309775,
+        "net_pnl_inr": -2620.6086901783146,
+        "positive_batch_fraction": 0.13513513513513514,
+        "positive_batches": 5,
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -7911,13 +7939,13 @@
       "hypothesis_id": "HYP-A9A5C115F6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.781658243830549,
-        "net_pnl_inr": -16011.751818816456,
+        "median_batch_mean_net_bps": -11.787209340830037,
+        "net_pnl_inr": -16271.072800418471,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 282
+        "trades": 285
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8007,13 +8035,13 @@
       "hypothesis_id": "HYP-AAA3FA43B5",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.082752435114386,
-        "net_pnl_inr": -4814.746382812821,
-        "positive_batch_fraction": 0.16666666666666666,
-        "positive_batches": 8,
-        "trades": 105
+        "median_batch_mean_net_bps": -11.077014015681698,
+        "net_pnl_inr": -4761.273531432125,
+        "positive_batch_fraction": 0.1836734693877551,
+        "positive_batches": 9,
+        "trades": 106
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8039,13 +8067,13 @@
       "hypothesis_id": "HYP-AB3F88D54A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.800788239532165,
-        "net_pnl_inr": -6863.859764224019,
-        "positive_batch_fraction": 0.061224489795918366,
+        "median_batch_mean_net_bps": -11.811203220084227,
+        "net_pnl_inr": -6982.019554430105,
+        "positive_batch_fraction": 0.06,
         "positive_batches": 3,
-        "trades": 112
+        "trades": 114
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8103,13 +8131,13 @@
       "hypothesis_id": "HYP-AB6D61B8DD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 24,
+        "batches": 25,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.984927421227223,
-        "net_pnl_inr": -1780.39888438875,
-        "positive_batch_fraction": 0.20833333333333334,
-        "positive_batches": 5,
-        "trades": 24
+        "median_batch_mean_net_bps": -12.842374451789563,
+        "net_pnl_inr": -1654.6403746291528,
+        "positive_batch_fraction": 0.24,
+        "positive_batches": 6,
+        "trades": 25
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8167,13 +8195,13 @@
       "hypothesis_id": "HYP-AD0C40AB07",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.759965164521795,
-        "net_pnl_inr": -3793.251713386632,
-        "positive_batch_fraction": 0.05714285714285714,
+        "median_batch_mean_net_bps": -15.149607135440526,
+        "net_pnl_inr": -3975.691119508854,
+        "positive_batch_fraction": 0.05555555555555555,
         "positive_batches": 2,
-        "trades": 50
+        "trades": 51
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8199,13 +8227,13 @@
       "hypothesis_id": "HYP-AE5B3D78A2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.814851417933227,
-        "net_pnl_inr": -26952.11975348543,
-        "positive_batch_fraction": 0.057692307692307696,
+        "median_batch_mean_net_bps": -12.008822761760264,
+        "net_pnl_inr": -27738.598675550744,
+        "positive_batch_fraction": 0.05660377358490566,
         "positive_batches": 3,
-        "trades": 481
+        "trades": 488
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8263,13 +8291,13 @@
       "hypothesis_id": "HYP-AEA71CD32A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.67580697363815,
-        "net_pnl_inr": -40520.853232825626,
-        "positive_batch_fraction": 0.038461538461538464,
+        "median_batch_mean_net_bps": -11.861237741087738,
+        "net_pnl_inr": -41794.42495861138,
+        "positive_batch_fraction": 0.03773584905660377,
         "positive_batches": 2,
-        "trades": 666
+        "trades": 678
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8295,13 +8323,13 @@
       "hypothesis_id": "HYP-AED9489137",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.979944510503074,
-        "net_pnl_inr": -3694.642012585461,
-        "positive_batch_fraction": 0.07692307692307693,
+        "median_batch_mean_net_bps": -13.99805538424045,
+        "net_pnl_inr": -3854.0228674222403,
+        "positive_batch_fraction": 0.075,
         "positive_batches": 3,
-        "trades": 52
+        "trades": 53
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8327,13 +8355,13 @@
       "hypothesis_id": "HYP-AF36BC567C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.066366772917025,
-        "net_pnl_inr": -7124.409689091239,
-        "positive_batch_fraction": 0.04,
-        "positive_batches": 2,
-        "trades": 134
+        "median_batch_mean_net_bps": -10.332733545834051,
+        "net_pnl_inr": -7100.44385291263,
+        "positive_batch_fraction": 0.058823529411764705,
+        "positive_batches": 3,
+        "trades": 136
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8359,13 +8387,13 @@
       "hypothesis_id": "HYP-AF6A9BCE5A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.833334371513004,
-        "net_pnl_inr": -34270.96567052525,
-        "positive_batch_fraction": 0.037037037037037035,
+        "median_batch_mean_net_bps": -13.305517308682019,
+        "net_pnl_inr": -35315.26117042741,
+        "positive_batch_fraction": 0.03636363636363636,
         "positive_batches": 2,
-        "trades": 484
+        "trades": 487
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8391,13 +8419,13 @@
       "hypothesis_id": "HYP-B09B8CD84C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.210936231265647,
-        "net_pnl_inr": -13944.170228616451,
-        "positive_batch_fraction": 0.20408163265306123,
-        "positive_batches": 10,
-        "trades": 295
+        "median_batch_mean_net_bps": -12.010933135830456,
+        "net_pnl_inr": -13736.573875910139,
+        "positive_batch_fraction": 0.22,
+        "positive_batches": 11,
+        "trades": 300
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8423,13 +8451,13 @@
       "hypothesis_id": "HYP-B11727DC37",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.595799587670252,
-        "net_pnl_inr": -3147.8872481097937,
-        "positive_batch_fraction": 0.1794871794871795,
+        "median_batch_mean_net_bps": -12.824493028636091,
+        "net_pnl_inr": -3504.9691630912153,
+        "positive_batch_fraction": 0.175,
         "positive_batches": 7,
-        "trades": 55
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8455,13 +8483,13 @@
       "hypothesis_id": "HYP-B155CEB9A5",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.037264774038144,
-        "net_pnl_inr": -22511.339265112707,
+        "median_batch_mean_net_bps": -12.021772268155285,
+        "net_pnl_inr": -22629.368936038045,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 371
+        "trades": 375
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8487,13 +8515,13 @@
       "hypothesis_id": "HYP-B16181C0FF",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.585423872079142,
-        "net_pnl_inr": -9524.0648413195,
-        "positive_batch_fraction": 0.28205128205128205,
+        "median_batch_mean_net_bps": -13.988010778467753,
+        "net_pnl_inr": -9608.075451544053,
+        "positive_batch_fraction": 0.275,
         "positive_batches": 11,
-        "trades": 131
+        "trades": 133
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8519,13 +8547,13 @@
       "hypothesis_id": "HYP-B3482FC8C1",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.452150125575024,
-        "net_pnl_inr": -145750.3174339912,
+        "median_batch_mean_net_bps": -11.423893924298111,
+        "net_pnl_inr": -148077.0550857832,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 2556
+        "trades": 2604
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8551,13 +8579,13 @@
       "hypothesis_id": "HYP-B34C73CFB0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.817713491658136,
-        "net_pnl_inr": -17860.03933791744,
+        "median_batch_mean_net_bps": -12.748681776242302,
+        "net_pnl_inr": -18057.308840275356,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 281
+        "trades": 288
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8583,13 +8611,13 @@
       "hypothesis_id": "HYP-B6CB669583",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 28,
+        "batches": 29,
         "eligible": false,
-        "median_batch_mean_net_bps": -20.44908362831707,
-        "net_pnl_inr": -3158.363213262641,
-        "positive_batch_fraction": 0.2857142857142857,
+        "median_batch_mean_net_bps": -23.03315027458771,
+        "net_pnl_inr": -3448.642123126382,
+        "positive_batch_fraction": 0.27586206896551724,
         "positive_batches": 8,
-        "trades": 28
+        "trades": 29
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8647,13 +8675,13 @@
       "hypothesis_id": "HYP-B7218A95D4",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
         "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -2672.6762884388922,
-        "positive_batch_fraction": 0.275,
-        "positive_batches": 11,
-        "trades": 52
+        "net_pnl_inr": -2507.962641906456,
+        "positive_batch_fraction": 0.2926829268292683,
+        "positive_batches": 12,
+        "trades": 53
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8711,13 +8739,13 @@
       "hypothesis_id": "HYP-BB2EC59F46",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.813663342238684,
-        "net_pnl_inr": -2653.4525260888313,
-        "positive_batch_fraction": 0.16666666666666666,
+        "median_batch_mean_net_bps": -15.067425539119075,
+        "net_pnl_inr": -3089.1109324983054,
+        "positive_batch_fraction": 0.16216216216216217,
         "positive_batches": 6,
-        "trades": 44
+        "trades": 45
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8775,13 +8803,13 @@
       "hypothesis_id": "HYP-BB7CA976A6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.274759039454151,
-        "net_pnl_inr": -40283.56517242343,
-        "positive_batch_fraction": 0.05660377358490566,
-        "positive_batches": 3,
-        "trades": 715
+        "median_batch_mean_net_bps": -11.258247226949019,
+        "net_pnl_inr": -40524.22156668333,
+        "positive_batch_fraction": 0.07407407407407407,
+        "positive_batches": 4,
+        "trades": 729
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8807,13 +8835,13 @@
       "hypothesis_id": "HYP-BC49F517E6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 32,
+        "batches": 33,
         "eligible": false,
-        "median_batch_mean_net_bps": -7.216166586393315,
-        "net_pnl_inr": -269.86214029465447,
-        "positive_batch_fraction": 0.40625,
-        "positive_batches": 13,
-        "trades": 39
+        "median_batch_mean_net_bps": -6.96196226789333,
+        "net_pnl_inr": -7.05692937654095,
+        "positive_batch_fraction": 0.42424242424242425,
+        "positive_batches": 14,
+        "trades": 40
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8839,13 +8867,13 @@
       "hypothesis_id": "HYP-BC63E6892B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.673731605422144,
-        "net_pnl_inr": -1817.0172126727473,
-        "positive_batch_fraction": 0.2702702702702703,
+        "median_batch_mean_net_bps": -11.236865802711073,
+        "net_pnl_inr": -1977.0600012307887,
+        "positive_batch_fraction": 0.2631578947368421,
         "positive_batches": 10,
-        "trades": 55
+        "trades": 56
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8871,13 +8899,13 @@
       "hypothesis_id": "HYP-BDFAF37E07",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.545411826463457,
-        "net_pnl_inr": -82315.28900461589,
+        "median_batch_mean_net_bps": -12.525053631126045,
+        "net_pnl_inr": -84072.86658346426,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 1382
+        "trades": 1421
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8903,13 +8931,13 @@
       "hypothesis_id": "HYP-BE29C56F94",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 25,
+        "batches": 26,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.746018467366753,
-        "net_pnl_inr": -2813.4129070584613,
-        "positive_batch_fraction": 0.28,
-        "positive_batches": 7,
-        "trades": 25
+        "median_batch_mean_net_bps": -13.049786553420008,
+        "net_pnl_inr": -2763.666596665418,
+        "positive_batch_fraction": 0.3076923076923077,
+        "positive_batches": 8,
+        "trades": 26
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -8935,13 +8963,13 @@
       "hypothesis_id": "HYP-C0A857EFA9",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -17.974122753169496,
-        "net_pnl_inr": -9885.996517458803,
-        "positive_batch_fraction": 0.34210526315789475,
-        "positive_batches": 13,
-        "trades": 140
+        "median_batch_mean_net_bps": -17.125288285637165,
+        "net_pnl_inr": -9684.97989905138,
+        "positive_batch_fraction": 0.358974358974359,
+        "positive_batches": 14,
+        "trades": 142
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -8967,13 +8995,13 @@
       "hypothesis_id": "HYP-C0BEB60D0B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.406369138141198,
-        "net_pnl_inr": -12676.895121511114,
+        "median_batch_mean_net_bps": -12.405749183424376,
+        "net_pnl_inr": -12946.10593790457,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 213
+        "trades": 221
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9031,13 +9059,13 @@
       "hypothesis_id": "HYP-C0DAD0C8FC",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.928424629845749,
-        "net_pnl_inr": -170149.06946257368,
+        "median_batch_mean_net_bps": -11.99870462475275,
+        "net_pnl_inr": -173768.25258172842,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 2944
+        "trades": 3002
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -9063,13 +9091,13 @@
       "hypothesis_id": "HYP-C1671B6EC2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.207904784274824,
-        "net_pnl_inr": -2091.506185625512,
-        "positive_batch_fraction": 0.275,
-        "positive_batches": 11,
-        "trades": 56
+        "median_batch_mean_net_bps": -8.465837175019999,
+        "net_pnl_inr": -1740.6894593805127,
+        "positive_batch_fraction": 0.2926829268292683,
+        "positive_batches": 12,
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9095,13 +9123,13 @@
       "hypothesis_id": "HYP-C2806D29A9",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.38039483790484,
-        "net_pnl_inr": -3262.0703997887067,
-        "positive_batch_fraction": 0.25,
-        "positive_batches": 11,
-        "trades": 55
+        "median_batch_mean_net_bps": -10.339719626168277,
+        "net_pnl_inr": -3101.2455455454,
+        "positive_batch_fraction": 0.26666666666666666,
+        "positive_batches": 12,
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9127,13 +9155,13 @@
       "hypothesis_id": "HYP-C42EAF48CD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.339477665123411,
-        "net_pnl_inr": -8143.0320245775365,
-        "positive_batch_fraction": 0.041666666666666664,
-        "positive_batches": 2,
-        "trades": 114
+        "median_batch_mean_net_bps": -13.279290910639808,
+        "net_pnl_inr": -7799.633945392721,
+        "positive_batch_fraction": 0.061224489795918366,
+        "positive_batches": 3,
+        "trades": 115
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9191,13 +9219,13 @@
       "hypothesis_id": "HYP-C84F58074C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.341101343435545,
-        "net_pnl_inr": -2069.674607678735,
-        "positive_batch_fraction": 0.26666666666666666,
-        "positive_batches": 12,
-        "trades": 58
+        "median_batch_mean_net_bps": -10.234520144660054,
+        "net_pnl_inr": -1964.0037627140532,
+        "positive_batch_fraction": 0.2826086956521739,
+        "positive_batches": 13,
+        "trades": 59
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9223,13 +9251,13 @@
       "hypothesis_id": "HYP-C8C98DF7A3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.411438295799703,
-        "net_pnl_inr": -6152.351151926795,
-        "positive_batch_fraction": 0.10416666666666667,
+        "median_batch_mean_net_bps": -15.086755702473313,
+        "net_pnl_inr": -6414.665170428372,
+        "positive_batch_fraction": 0.10204081632653061,
         "positive_batches": 5,
-        "trades": 85
+        "trades": 86
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9255,13 +9283,13 @@
       "hypothesis_id": "HYP-C8CEED1E03",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.688361174967488,
-        "net_pnl_inr": -5569.637912459352,
-        "positive_batch_fraction": 0.06,
+        "median_batch_mean_net_bps": -10.639659196471442,
+        "net_pnl_inr": -5573.212519411147,
+        "positive_batch_fraction": 0.058823529411764705,
         "positive_batches": 3,
-        "trades": 118
+        "trades": 120
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9287,13 +9315,13 @@
       "hypothesis_id": "HYP-C8EE852637",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.635767001371926,
-        "net_pnl_inr": -13986.460613061616,
+        "median_batch_mean_net_bps": -11.621003518630298,
+        "net_pnl_inr": -14392.037644166077,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 239
+        "trades": 247
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9319,13 +9347,13 @@
       "hypothesis_id": "HYP-C93FA1A70E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.033802461499732,
-        "net_pnl_inr": -2191.3338799043904,
-        "positive_batch_fraction": 0.23684210526315788,
+        "median_batch_mean_net_bps": -10.620546099470575,
+        "net_pnl_inr": -2536.958554874788,
+        "positive_batch_fraction": 0.23076923076923078,
         "positive_batches": 9,
-        "trades": 51
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9351,13 +9379,13 @@
       "hypothesis_id": "HYP-C99F006AD8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.275807918931648,
-        "net_pnl_inr": -5435.762698874783,
-        "positive_batch_fraction": 0.14285714285714285,
+        "median_batch_mean_net_bps": -11.35518222901324,
+        "net_pnl_inr": -6118.173771799773,
+        "positive_batch_fraction": 0.14,
         "positive_batches": 7,
-        "trades": 107
+        "trades": 109
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9383,13 +9411,13 @@
       "hypothesis_id": "HYP-CAD3C2BF73",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.775669835193874,
-        "net_pnl_inr": -5636.876810113643,
-        "positive_batch_fraction": 0.1590909090909091,
+        "median_batch_mean_net_bps": -13.85897429274571,
+        "net_pnl_inr": -6383.152895022266,
+        "positive_batch_fraction": 0.15555555555555556,
         "positive_batches": 7,
-        "trades": 73
+        "trades": 75
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9415,13 +9443,13 @@
       "hypothesis_id": "HYP-CB3460D402",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.168176221097085,
-        "net_pnl_inr": -2580.0127666521894,
-        "positive_batch_fraction": 0.2,
+        "median_batch_mean_net_bps": -13.858847527651175,
+        "net_pnl_inr": -2710.451543620325,
+        "positive_batch_fraction": 0.19444444444444445,
         "positive_batches": 7,
-        "trades": 46
+        "trades": 47
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9447,13 +9475,13 @@
       "hypothesis_id": "HYP-CD78B22B2F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.63026322128025,
-        "net_pnl_inr": -29976.733106758307,
+        "median_batch_mean_net_bps": -11.707991083273068,
+        "net_pnl_inr": -30817.97055552423,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 518
+        "trades": 531
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9479,13 +9507,13 @@
       "hypothesis_id": "HYP-CF0C5533EB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.380375447698512,
-        "net_pnl_inr": -23175.422387707098,
-        "positive_batch_fraction": 0.03773584905660377,
+        "median_batch_mean_net_bps": -12.475669095152906,
+        "net_pnl_inr": -23629.602118569343,
+        "positive_batch_fraction": 0.037037037037037035,
         "positive_batches": 2,
-        "trades": 388
+        "trades": 395
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9543,13 +9571,13 @@
       "hypothesis_id": "HYP-D0B6F934D9",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.095956480311331,
-        "net_pnl_inr": -12204.811910794067,
+        "median_batch_mean_net_bps": -12.029629554163254,
+        "net_pnl_inr": -12750.886496237292,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 217
+        "trades": 231
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9575,13 +9603,13 @@
       "hypothesis_id": "HYP-D12F9FFEC6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.1185086114114,
-        "net_pnl_inr": -6868.357467740903,
-        "positive_batch_fraction": 0.0851063829787234,
+        "median_batch_mean_net_bps": -12.0430808183553,
+        "net_pnl_inr": -6928.527978205739,
+        "positive_batch_fraction": 0.08333333333333333,
         "positive_batches": 4,
-        "trades": 119
+        "trades": 120
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9607,13 +9635,13 @@
       "hypothesis_id": "HYP-D275A7A0C8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 46,
+        "batches": 47,
         "eligible": false,
-        "median_batch_mean_net_bps": -18.584522267634192,
-        "net_pnl_inr": -8114.8358126951225,
-        "positive_batch_fraction": 0.15217391304347827,
-        "positive_batches": 7,
-        "trades": 88
+        "median_batch_mean_net_bps": -17.98311312070352,
+        "net_pnl_inr": -7974.964843186912,
+        "positive_batch_fraction": 0.1702127659574468,
+        "positive_batches": 8,
+        "trades": 90
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9639,13 +9667,13 @@
       "hypothesis_id": "HYP-D2D85E33B6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.662375560124698,
-        "net_pnl_inr": -14477.122448831919,
-        "positive_batch_fraction": 0.30952380952380953,
+        "median_batch_mean_net_bps": -16.07348912511283,
+        "net_pnl_inr": -15160.887170080978,
+        "positive_batch_fraction": 0.3023255813953488,
         "positive_batches": 13,
-        "trades": 153
+        "trades": 156
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -9671,13 +9699,13 @@
       "hypothesis_id": "HYP-D378D8ABD0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.000892581911696,
-        "net_pnl_inr": -3028.3365674386555,
-        "positive_batch_fraction": 0.34146341463414637,
+        "median_batch_mean_net_bps": -14.333367664913078,
+        "net_pnl_inr": -3511.864685061262,
+        "positive_batch_fraction": 0.3333333333333333,
         "positive_batches": 14,
-        "trades": 67
+        "trades": 70
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9735,13 +9763,13 @@
       "hypothesis_id": "HYP-D4A96EBF0A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 48,
+        "batches": 49,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.172135411576361,
-        "net_pnl_inr": -6902.963560782287,
-        "positive_batch_fraction": 0.041666666666666664,
-        "positive_batches": 2,
-        "trades": 107
+        "median_batch_mean_net_bps": -11.85109329506925,
+        "net_pnl_inr": -6805.2141019355295,
+        "positive_batch_fraction": 0.061224489795918366,
+        "positive_batches": 3,
+        "trades": 108
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9767,13 +9795,13 @@
       "hypothesis_id": "HYP-D4E3FC993B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.364831586962405,
-        "net_pnl_inr": -45099.625440611475,
-        "positive_batch_fraction": 0.03773584905660377,
+        "median_batch_mean_net_bps": -12.55651058081747,
+        "net_pnl_inr": -46163.42544140734,
+        "positive_batch_fraction": 0.037037037037037035,
         "positive_batches": 2,
-        "trades": 741
+        "trades": 756
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -9831,13 +9859,13 @@
       "hypothesis_id": "HYP-D59B0FBE34",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.241677497033724,
-        "net_pnl_inr": -4039.336262175002,
-        "positive_batch_fraction": 0.10810810810810811,
+        "median_batch_mean_net_bps": -14.174024586357937,
+        "net_pnl_inr": -4204.271175974311,
+        "positive_batch_fraction": 0.10526315789473684,
         "positive_batches": 4,
-        "trades": 63
+        "trades": 66
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9895,13 +9923,13 @@
       "hypothesis_id": "HYP-D75D4649ED",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.176840083727072,
-        "net_pnl_inr": -7417.392951546749,
-        "positive_batch_fraction": 0.14285714285714285,
+        "median_batch_mean_net_bps": -14.465472549085725,
+        "net_pnl_inr": -7710.802597954617,
+        "positive_batch_fraction": 0.14,
         "positive_batches": 7,
-        "trades": 121
+        "trades": 124
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9927,13 +9955,13 @@
       "hypothesis_id": "HYP-D80C4CB0CB",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.42353750860411,
-        "net_pnl_inr": -2780.2907771458395,
-        "positive_batch_fraction": 0.20512820512820512,
+        "median_batch_mean_net_bps": -12.035284968648774,
+        "net_pnl_inr": -2940.254595463403,
+        "positive_batch_fraction": 0.2,
         "positive_batches": 8,
-        "trades": 53
+        "trades": 54
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9959,13 +9987,13 @@
       "hypothesis_id": "HYP-D8576899B6",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.399835244994517,
-        "net_pnl_inr": -5859.8276573819385,
-        "positive_batch_fraction": 0.11363636363636363,
+        "median_batch_mean_net_bps": -10.428446029351747,
+        "net_pnl_inr": -6287.002889399053,
+        "positive_batch_fraction": 0.1111111111111111,
         "positive_batches": 5,
-        "trades": 97
+        "trades": 101
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -9991,13 +10019,13 @@
       "hypothesis_id": "HYP-D8C18E2E41",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.591838946582858,
-        "net_pnl_inr": -5883.933583472705,
-        "positive_batch_fraction": 0.10204081632653061,
+        "median_batch_mean_net_bps": -11.533201713934632,
+        "net_pnl_inr": -5921.604922132749,
+        "positive_batch_fraction": 0.1,
         "positive_batches": 5,
-        "trades": 107
+        "trades": 109
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10087,13 +10115,13 @@
       "hypothesis_id": "HYP-DA40E27960",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.738818119966705,
-        "net_pnl_inr": -31058.86109809764,
+        "median_batch_mean_net_bps": -11.798982371796296,
+        "net_pnl_inr": -31744.08086325966,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 529
+        "trades": 539
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10119,13 +10147,13 @@
       "hypothesis_id": "HYP-DAD76B3155",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.576358500768626,
-        "net_pnl_inr": -4312.416923297966,
-        "positive_batch_fraction": 0.1,
-        "positive_batches": 4,
-        "trades": 68
+        "median_batch_mean_net_bps": -12.292756470179546,
+        "net_pnl_inr": -3924.031787888274,
+        "positive_batch_fraction": 0.12195121951219512,
+        "positive_batches": 5,
+        "trades": 69
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10151,13 +10179,13 @@
       "hypothesis_id": "HYP-DAD857C91E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 51,
+        "batches": 52,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.298192606201098,
-        "net_pnl_inr": -16766.41719069604,
+        "median_batch_mean_net_bps": -12.363220813895012,
+        "net_pnl_inr": -17592.41036778632,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 281
+        "trades": 289
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10183,13 +10211,13 @@
       "hypothesis_id": "HYP-DAE7F18E97",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.196082948794944,
-        "net_pnl_inr": -20178.895484473833,
+        "median_batch_mean_net_bps": -12.32526048525701,
+        "net_pnl_inr": -20783.920959947496,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 332
+        "trades": 341
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10215,13 +10243,13 @@
       "hypothesis_id": "HYP-DB838F9E4D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.43498320922739,
-        "net_pnl_inr": -1776.0074973184514,
-        "positive_batch_fraction": 0.2631578947368421,
-        "positive_batches": 10,
-        "trades": 52
+        "median_batch_mean_net_bps": -11.069966418454781,
+        "net_pnl_inr": -1730.323874489663,
+        "positive_batch_fraction": 0.28205128205128205,
+        "positive_batches": 11,
+        "trades": 53
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10247,13 +10275,13 @@
       "hypothesis_id": "HYP-DC35EFCAE3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -17.767631889027548,
-        "net_pnl_inr": -3438.8185721649766,
-        "positive_batch_fraction": 0.18421052631578946,
+        "median_batch_mean_net_bps": -17.806410023114417,
+        "net_pnl_inr": -3802.541781916122,
+        "positive_batch_fraction": 0.1794871794871795,
         "positive_batches": 7,
-        "trades": 48
+        "trades": 49
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10279,13 +10307,13 @@
       "hypothesis_id": "HYP-DCB40778AF",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -19.262789690836915,
-        "net_pnl_inr": -4048.7519941298387,
-        "positive_batch_fraction": 0.07894736842105263,
+        "median_batch_mean_net_bps": -19.31954325437232,
+        "net_pnl_inr": -4341.563115406656,
+        "positive_batch_fraction": 0.07692307692307693,
         "positive_batches": 3,
-        "trades": 48
+        "trades": 49
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10311,13 +10339,13 @@
       "hypothesis_id": "HYP-DCCE5159BE",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 44,
+        "batches": 45,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.864836229024842,
-        "net_pnl_inr": -13373.829203437885,
+        "median_batch_mean_net_bps": -11.870244416804983,
+        "net_pnl_inr": -13581.301971623881,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 226
+        "trades": 229
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10343,13 +10371,13 @@
       "hypothesis_id": "HYP-DCD7E900C2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.996300832370432,
-        "net_pnl_inr": -2906.630863916259,
-        "positive_batch_fraction": 0.1794871794871795,
-        "positive_batches": 7,
-        "trades": 57
+        "median_batch_mean_net_bps": -9.37530001489342,
+        "net_pnl_inr": -2845.9613598683054,
+        "positive_batch_fraction": 0.2,
+        "positive_batches": 8,
+        "trades": 58
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10375,13 +10403,13 @@
       "hypothesis_id": "HYP-DDACA82A1D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.830523192113333,
-        "net_pnl_inr": -5376.970990957323,
-        "positive_batch_fraction": 0.11904761904761904,
+        "median_batch_mean_net_bps": -13.854223185350978,
+        "net_pnl_inr": -5959.746541564406,
+        "positive_batch_fraction": 0.11627906976744186,
         "positive_batches": 5,
-        "trades": 61
+        "trades": 62
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10407,13 +10435,13 @@
       "hypothesis_id": "HYP-DF05D60BF2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.232215474691857,
-        "net_pnl_inr": -5873.881260117293,
-        "positive_batch_fraction": 0.08888888888888889,
+        "median_batch_mean_net_bps": -15.652875117943317,
+        "net_pnl_inr": -6130.951346455536,
+        "positive_batch_fraction": 0.08695652173913043,
         "positive_batches": 4,
-        "trades": 77
+        "trades": 78
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10439,13 +10467,13 @@
       "hypothesis_id": "HYP-DF8D79E101",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 36,
+        "batches": 37,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.579770394119304,
-        "net_pnl_inr": -2158.1533024929763,
-        "positive_batch_fraction": 0.19444444444444445,
+        "median_batch_mean_net_bps": -9.59934965788042,
+        "net_pnl_inr": -2430.8895137741947,
+        "positive_batch_fraction": 0.1891891891891892,
         "positive_batches": 7,
-        "trades": 47
+        "trades": 49
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10503,13 +10531,13 @@
       "hypothesis_id": "HYP-E07103EC31",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 50,
+        "batches": 51,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.257937928055775,
-        "net_pnl_inr": -19019.79362081356,
-        "positive_batch_fraction": 0.1,
+        "median_batch_mean_net_bps": -15.288309797784379,
+        "net_pnl_inr": -20185.007305203788,
+        "positive_batch_fraction": 0.09803921568627451,
         "positive_batches": 5,
-        "trades": 273
+        "trades": 279
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -10535,13 +10563,13 @@
       "hypothesis_id": "HYP-E21398E15F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 24,
+        "batches": 25,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.647502852860839,
-        "net_pnl_inr": -1617.9576198321329,
-        "positive_batch_fraction": 0.125,
-        "positive_batches": 3,
-        "trades": 24
+        "median_batch_mean_net_bps": -13.127480390664882,
+        "net_pnl_inr": -1466.687311817751,
+        "positive_batch_fraction": 0.16,
+        "positive_batches": 4,
+        "trades": 25
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10567,13 +10595,13 @@
       "hypothesis_id": "HYP-E24D22680A",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 21,
+        "batches": 22,
         "eligible": false,
-        "median_batch_mean_net_bps": -9.76237462366233,
-        "net_pnl_inr": -466.84562904390384,
-        "positive_batch_fraction": 0.38095238095238093,
-        "positive_batches": 8,
-        "trades": 21
+        "median_batch_mean_net_bps": -8.838469727462796,
+        "net_pnl_inr": -414.1502724091482,
+        "positive_batch_fraction": 0.4090909090909091,
+        "positive_batches": 9,
+        "trades": 22
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10599,13 +10627,13 @@
       "hypothesis_id": "HYP-E2E94BE76E",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
         "median_batch_mean_net_bps": -11.8,
-        "net_pnl_inr": -3288.5527640177193,
-        "positive_batch_fraction": 0.21428571428571427,
+        "net_pnl_inr": -3322.463727533141,
+        "positive_batch_fraction": 0.20930232558139536,
         "positive_batches": 9,
-        "trades": 64
+        "trades": 66
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10631,13 +10659,13 @@
       "hypothesis_id": "HYP-E39C9C760B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.8000639712483,
-        "net_pnl_inr": -6612.767703901956,
-        "positive_batch_fraction": 0.12244897959183673,
-        "positive_batches": 6,
-        "trades": 122
+        "median_batch_mean_net_bps": -11.567484879128479,
+        "net_pnl_inr": -6436.8395599881005,
+        "positive_batch_fraction": 0.14,
+        "positive_batches": 7,
+        "trades": 123
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10695,13 +10723,13 @@
       "hypothesis_id": "HYP-E571C1DFC2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.908899181792652,
-        "net_pnl_inr": -130045.63296553807,
+        "median_batch_mean_net_bps": -11.886994735987997,
+        "net_pnl_inr": -133422.5835733903,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 2192
+        "trades": 2245
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -10727,13 +10755,13 @@
       "hypothesis_id": "HYP-E60E917E21",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -10.768536687423136,
-        "net_pnl_inr": -6644.957865697401,
-        "positive_batch_fraction": 0.2978723404255319,
-        "positive_batches": 14,
-        "trades": 226
+        "median_batch_mean_net_bps": -10.644665723899127,
+        "net_pnl_inr": -5649.855059147227,
+        "positive_batch_fraction": 0.3125,
+        "positive_batches": 15,
+        "trades": 229
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -10759,13 +10787,13 @@
       "hypothesis_id": "HYP-E689956E39",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 23,
+        "batches": 24,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.002501202500762,
-        "net_pnl_inr": -1785.841769076471,
-        "positive_batch_fraction": 0.2608695652173913,
+        "median_batch_mean_net_bps": -14.186114951559716,
+        "net_pnl_inr": -2113.4910256052735,
+        "positive_batch_fraction": 0.25,
         "positive_batches": 6,
-        "trades": 23
+        "trades": 24
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10791,13 +10819,13 @@
       "hypothesis_id": "HYP-E6CFDC7E5B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.946014055888018,
-        "net_pnl_inr": -8264.159204828808,
-        "positive_batch_fraction": 0.07692307692307693,
+        "median_batch_mean_net_bps": -11.8,
+        "net_pnl_inr": -8369.285114209371,
+        "positive_batch_fraction": 0.07547169811320754,
         "positive_batches": 4,
-        "trades": 129
+        "trades": 131
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10823,13 +10851,13 @@
       "hypothesis_id": "HYP-E6F699F0AD",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.037297721477222,
-        "net_pnl_inr": -1962.3929167407557,
-        "positive_batch_fraction": 0.2631578947368421,
+        "median_batch_mean_net_bps": -14.804060171547532,
+        "net_pnl_inr": -2087.376459668872,
+        "positive_batch_fraction": 0.2564102564102564,
         "positive_batches": 10,
-        "trades": 61
+        "trades": 62
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10855,13 +10883,13 @@
       "hypothesis_id": "HYP-E7BFCDD108",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.803886788948361,
-        "net_pnl_inr": -4094.765192940795,
-        "positive_batch_fraction": 0.07317073170731707,
+        "median_batch_mean_net_bps": -12.761964335146615,
+        "net_pnl_inr": -4265.820896418108,
+        "positive_batch_fraction": 0.07142857142857142,
         "positive_batches": 3,
-        "trades": 64
+        "trades": 67
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10887,13 +10915,13 @@
       "hypothesis_id": "HYP-E7F89A139D",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.990555431663312,
-        "net_pnl_inr": -16228.459771117283,
+        "median_batch_mean_net_bps": -11.895385784092477,
+        "net_pnl_inr": -16273.518095606907,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 264
+        "trades": 267
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10919,13 +10947,13 @@
       "hypothesis_id": "HYP-E979FB7D2C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 33,
+        "batches": 34,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.979892670011175,
-        "net_pnl_inr": -2942.9435282768754,
-        "positive_batch_fraction": 0.09090909090909091,
+        "median_batch_mean_net_bps": -14.513755408109699,
+        "net_pnl_inr": -3217.2847788727386,
+        "positive_batch_fraction": 0.08823529411764706,
         "positive_batches": 3,
-        "trades": 40
+        "trades": 41
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10951,13 +10979,13 @@
       "hypothesis_id": "HYP-EA38212E22",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.424780007559944,
-        "net_pnl_inr": -6847.274763160676,
-        "positive_batch_fraction": 0.0851063829787234,
+        "median_batch_mean_net_bps": -11.471133953904058,
+        "net_pnl_inr": -7159.961453454137,
+        "positive_batch_fraction": 0.08333333333333333,
         "positive_batches": 4,
-        "trades": 114
+        "trades": 118
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -10983,13 +11011,13 @@
       "hypothesis_id": "HYP-EB72D7123C",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -17.32104899931072,
-        "net_pnl_inr": -3531.6626229254116,
-        "positive_batch_fraction": 0.2571428571428571,
+        "median_batch_mean_net_bps": -17.324482487494485,
+        "net_pnl_inr": -3697.60686932496,
+        "positive_batch_fraction": 0.25,
         "positive_batches": 9,
-        "trades": 42
+        "trades": 43
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11079,13 +11107,13 @@
       "hypothesis_id": "HYP-ED2F8271F4",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 52,
+        "batches": 53,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.765976006370607,
-        "net_pnl_inr": -25519.748622535073,
+        "median_batch_mean_net_bps": -11.745898434569956,
+        "net_pnl_inr": -25997.140832806323,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 445
+        "trades": 455
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11111,13 +11139,13 @@
       "hypothesis_id": "HYP-EDD2B7FAE8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 31,
+        "batches": 32,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.087229479516097,
-        "net_pnl_inr": -2853.8258245604648,
-        "positive_batch_fraction": 0.1935483870967742,
+        "median_batch_mean_net_bps": -15.154914491818795,
+        "net_pnl_inr": -3128.167075156328,
+        "positive_batch_fraction": 0.1875,
         "positive_batches": 6,
-        "trades": 43
+        "trades": 44
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11175,13 +11203,13 @@
       "hypothesis_id": "HYP-EDF75B5F4F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 42,
+        "batches": 43,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.231468158996936,
-        "net_pnl_inr": -4165.954105320016,
-        "positive_batch_fraction": 0.09523809523809523,
+        "median_batch_mean_net_bps": -12.662936317993873,
+        "net_pnl_inr": -4516.875878130374,
+        "positive_batch_fraction": 0.09302325581395349,
         "positive_batches": 4,
-        "trades": 78
+        "trades": 82
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11207,13 +11235,13 @@
       "hypothesis_id": "HYP-EE08E40210",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 41,
+        "batches": 42,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.175332136584029,
-        "net_pnl_inr": -4466.714133849274,
-        "positive_batch_fraction": 0.04878048780487805,
+        "median_batch_mean_net_bps": -12.248928108941668,
+        "net_pnl_inr": -4693.683782278095,
+        "positive_batch_fraction": 0.047619047619047616,
         "positive_batches": 2,
-        "trades": 70
+        "trades": 72
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11239,13 +11267,13 @@
       "hypothesis_id": "HYP-EE0983CDF9",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.289566626223747,
-        "net_pnl_inr": -31393.52724908175,
-        "positive_batch_fraction": 0.1111111111111111,
+        "median_batch_mean_net_bps": -13.380034079375255,
+        "net_pnl_inr": -32652.57899533754,
+        "positive_batch_fraction": 0.10909090909090909,
         "positive_batches": 6,
-        "trades": 418
+        "trades": 423
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -11367,13 +11395,13 @@
       "hypothesis_id": "HYP-F02D4C2287",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.78418568578468,
-        "net_pnl_inr": -2933.8042922040972,
-        "positive_batch_fraction": 0.25,
+        "median_batch_mean_net_bps": -14.721627346431644,
+        "net_pnl_inr": -3488.463126201359,
+        "positive_batch_fraction": 0.24390243902439024,
         "positive_batches": 10,
-        "trades": 54
+        "trades": 55
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11399,13 +11427,13 @@
       "hypothesis_id": "HYP-F0A3F84571",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.22502762361818,
-        "net_pnl_inr": -40229.72749769874,
-        "positive_batch_fraction": 0.05555555555555555,
+        "median_batch_mean_net_bps": -12.222090914257823,
+        "net_pnl_inr": -40525.41251969973,
+        "positive_batch_fraction": 0.05454545454545454,
         "positive_batches": 3,
-        "trades": 744
+        "trades": 759
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -11431,13 +11459,13 @@
       "hypothesis_id": "HYP-F0C0611762",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -14.31604858621357,
-        "net_pnl_inr": -3506.1907520507143,
-        "positive_batch_fraction": 0.2,
+        "median_batch_mean_net_bps": -16.110596450926018,
+        "net_pnl_inr": -3689.4455289957154,
+        "positive_batch_fraction": 0.1951219512195122,
         "positive_batches": 8,
-        "trades": 56
+        "trades": 57
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11463,13 +11491,13 @@
       "hypothesis_id": "HYP-F175EE718F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 47,
+        "batches": 48,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.032869842770044,
-        "net_pnl_inr": -5812.930174686004,
-        "positive_batch_fraction": 0.06382978723404255,
-        "positive_batches": 3,
-        "trades": 102
+        "median_batch_mean_net_bps": -12.004581678508268,
+        "net_pnl_inr": -5705.477246770175,
+        "positive_batch_fraction": 0.08333333333333333,
+        "positive_batches": 4,
+        "trades": 104
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11495,13 +11523,13 @@
       "hypothesis_id": "HYP-F1B0B6386B",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 34,
+        "batches": 35,
         "eligible": false,
-        "median_batch_mean_net_bps": -16.47109348400774,
-        "net_pnl_inr": -3107.535598067127,
-        "positive_batch_fraction": 0.11764705882352941,
+        "median_batch_mean_net_bps": -17.385068216696908,
+        "net_pnl_inr": -3269.7896905033663,
+        "positive_batch_fraction": 0.11428571428571428,
         "positive_batches": 4,
-        "trades": 34
+        "trades": 35
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11527,13 +11555,13 @@
       "hypothesis_id": "HYP-F1CC699490",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.629852881934601,
-        "net_pnl_inr": -18266.32267935878,
+        "median_batch_mean_net_bps": -11.585215921425899,
+        "net_pnl_inr": -18328.404831578253,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 318
+        "trades": 321
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11559,13 +11587,13 @@
       "hypothesis_id": "HYP-F20F104FB8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 49,
+        "batches": 50,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.115217240383746,
-        "net_pnl_inr": -5767.120751009352,
-        "positive_batch_fraction": 0.1836734693877551,
+        "median_batch_mean_net_bps": -10.770642818689748,
+        "net_pnl_inr": -5783.324745303221,
+        "positive_batch_fraction": 0.18,
         "positive_batches": 9,
-        "trades": 123
+        "trades": 124
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11655,13 +11683,13 @@
       "hypothesis_id": "HYP-F5CDE587D0",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 39,
+        "batches": 40,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.002639599948708,
-        "net_pnl_inr": -2782.4522727353315,
-        "positive_batch_fraction": 0.1282051282051282,
-        "positive_batches": 5,
-        "trades": 52
+        "median_batch_mean_net_bps": -12.355994402470785,
+        "net_pnl_inr": -2719.6492722994763,
+        "positive_batch_fraction": 0.15,
+        "positive_batches": 6,
+        "trades": 53
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11687,13 +11715,13 @@
       "hypothesis_id": "HYP-F5CFD7B977",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 45,
+        "batches": 46,
         "eligible": false,
-        "median_batch_mean_net_bps": -16.67581460492964,
-        "net_pnl_inr": -8385.405129235087,
-        "positive_batch_fraction": 0.06666666666666667,
-        "positive_batches": 3,
-        "trades": 100
+        "median_batch_mean_net_bps": -16.052666964124768,
+        "net_pnl_inr": -8078.548896580899,
+        "positive_batch_fraction": 0.08695652173913043,
+        "positive_batches": 4,
+        "trades": 101
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11719,13 +11747,13 @@
       "hypothesis_id": "HYP-F756D66DC7",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 35,
+        "batches": 36,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.06691591525585,
-        "net_pnl_inr": -904.5967418296764,
-        "positive_batch_fraction": 0.4,
+        "median_batch_mean_net_bps": -10.362794146064747,
+        "net_pnl_inr": -909.2531349668541,
+        "positive_batch_fraction": 0.3888888888888889,
         "positive_batches": 14,
-        "trades": 46
+        "trades": 47
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11751,13 +11779,13 @@
       "hypothesis_id": "HYP-F7923F91C2",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -15.834940161032897,
-        "net_pnl_inr": -3644.42596651889,
-        "positive_batch_fraction": 0.2,
+        "median_batch_mean_net_bps": -15.916920543432157,
+        "net_pnl_inr": -4005.940870516124,
+        "positive_batch_fraction": 0.1951219512195122,
         "positive_batches": 8,
-        "trades": 51
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11783,13 +11811,13 @@
       "hypothesis_id": "HYP-F80868542F",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.515420869988024,
-        "net_pnl_inr": -45922.22658026982,
-        "positive_batch_fraction": 0.037037037037037035,
+        "median_batch_mean_net_bps": -13.36846993269347,
+        "net_pnl_inr": -46812.11122092786,
+        "positive_batch_fraction": 0.03636363636363636,
         "positive_batches": 2,
-        "trades": 722
+        "trades": 738
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -11815,13 +11843,13 @@
       "hypothesis_id": "HYP-F9484C3430",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -12.23104072970536,
-        "net_pnl_inr": -103584.44549289785,
+        "median_batch_mean_net_bps": -12.195829205985012,
+        "net_pnl_inr": -106191.14025800927,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 1724
+        "trades": 1767
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -11847,13 +11875,13 @@
       "hypothesis_id": "HYP-F975236DB7",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 54,
+        "batches": 55,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.583045884307948,
-        "net_pnl_inr": -24727.733649098733,
+        "median_batch_mean_net_bps": -11.517219954988857,
+        "net_pnl_inr": -24916.04775345596,
         "positive_batch_fraction": 0.0,
         "positive_batches": 0,
-        "trades": 426
+        "trades": 432
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11879,13 +11907,13 @@
       "hypothesis_id": "HYP-FAF7E185A8",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 53,
+        "batches": 54,
         "eligible": false,
-        "median_batch_mean_net_bps": -11.033623223109934,
-        "net_pnl_inr": -20350.441436866604,
-        "positive_batch_fraction": 0.1509433962264151,
+        "median_batch_mean_net_bps": -10.590257056063557,
+        "net_pnl_inr": -20826.9720652776,
+        "positive_batch_fraction": 0.14814814814814814,
         "positive_batches": 8,
-        "trades": 372
+        "trades": 383
       },
       "scope": "ALL_SYMBOLS",
       "status": "CANDIDATE",
@@ -11911,13 +11939,13 @@
       "hypothesis_id": "HYP-FC74494C78",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 40,
+        "batches": 41,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.616420079910249,
-        "net_pnl_inr": -2146.0974062641317,
-        "positive_batch_fraction": 0.275,
+        "median_batch_mean_net_bps": -13.744821319853074,
+        "net_pnl_inr": -2910.2380723687397,
+        "positive_batch_fraction": 0.2682926829268293,
         "positive_batches": 11,
-        "trades": 62
+        "trades": 64
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11943,13 +11971,13 @@
       "hypothesis_id": "HYP-FD10DA70D3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 37,
+        "batches": 38,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.769279243796419,
-        "net_pnl_inr": -2710.2654467800276,
-        "positive_batch_fraction": 0.16216216216216217,
+        "median_batch_mean_net_bps": -14.015027246075807,
+        "net_pnl_inr": -2939.3571556769484,
+        "positive_batch_fraction": 0.15789473684210525,
         "positive_batches": 6,
-        "trades": 50
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11975,13 +12003,13 @@
       "hypothesis_id": "HYP-FFFED007E3",
       "parameter_neighbor_support": 0,
       "retrospective_evidence": {
-        "batches": 38,
+        "batches": 39,
         "eligible": false,
-        "median_batch_mean_net_bps": -13.811189428015314,
-        "net_pnl_inr": -3712.5308316011397,
-        "positive_batch_fraction": 0.05263157894736842,
+        "median_batch_mean_net_bps": -13.979944510503074,
+        "net_pnl_inr": -3892.097561683288,
+        "positive_batch_fraction": 0.05128205128205128,
         "positive_batches": 2,
-        "trades": 51
+        "trades": 52
       },
       "scope": "SYMBOL",
       "status": "CANDIDATE",
@@ -11989,5 +12017,5 @@
     }
   },
   "schema_version": 1,
-  "updated_at_utc": "2026-09-16T17:37:28.811939+00:00"
+  "updated_at_utc": "2026-09-16T19:38:01.328054+00:00"
 }
